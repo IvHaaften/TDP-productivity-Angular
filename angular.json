@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "TDP-productivity-Angular"
+    }
+  },
+  "defaultProject": "TDP-productivity-Angular",
+  "cli": {
+    "analytics": "69c4bbb4-cc31-4f2c-b022-3b7ece5b3d28"
+  }
 }
