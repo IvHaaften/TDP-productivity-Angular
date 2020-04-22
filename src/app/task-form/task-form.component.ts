@@ -27,5 +27,9 @@ export class TaskFormComponent implements OnInit {
     );
   }
 
+  clear(){
+    this.task.name = '';
+    }
+
 
 }

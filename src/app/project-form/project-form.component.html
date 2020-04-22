@@ -1,6 +1,14 @@
 <form>
-    <input [(ngModel)]="project.projectName" type="text" name="name" placeholder="project name">
-    <input [(ngModel)]="project.deadline" type="date" name="deadline" placeholder="deadline">
-    <button type="submit" (click)="save(); clear()">Create</button>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputprojectname">Name</label>
+        <input [(ngModel)]="project.projectName" type="text" class="form-control" id="inputprojectname" name="name" placeholder="project name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputprojectdeadline">Deadline</label>
+        <input [(ngModel)]="project.deadline" type="date" class="form-control" id="inputprojectdeadline" name="deadline">
+      </div>
+    </div>
+    <button type="submit" (click)="save(); clear()" class="btn btn-primary">Save</button>
 </form>
 
