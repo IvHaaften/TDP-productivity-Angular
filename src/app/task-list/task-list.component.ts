@@ -20,9 +20,7 @@ export class TaskListComponent implements OnInit {
   }
 
   reloadAll() {
-    this.taskService.findAll().subscribe(
-      tasks => this.tasks = tasks
-    );
+    this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
   }
   
   delete(id) {

@@ -1,11 +1,18 @@
-
-
-<table>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Deadline</th>
+      <th scole="col"></th>
+    </tr>
+  </thead>
+  <tbody>
     <tr *ngFor="let project of projects">
+      <th scope="row">{{project.id}}</th>
       <td>{{project.projectName}}</td>
       <td>{{project.deadline}}</td>
-      <!--<td><app-task-list #taskComp></app-task-list></td> -->
       <td><button (click)="delete(project.id)">del</button></td>
-    </tr>
+  </tr>
+  </tbody>
 </table>
-
