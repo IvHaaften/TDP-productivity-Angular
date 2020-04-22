@@ -9,14 +9,16 @@ import {ProjectListComponent} from '../project-list/project-list.component';
   styleUrls: ['./project-form.component.css'],
   providers: [ProjectService]
 })
-export class ProjectFormComponent implements OnInit {
 
+export class ProjectFormComponent implements OnInit {
 
   @Input()
   projectList: ProjectListComponent;
 
+
   project = new Project();
   
+
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(){}

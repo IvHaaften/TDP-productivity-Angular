@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import{Project} from '../project';
 import{ProjectService} from '../project.service';
 
@@ -14,7 +14,7 @@ export class ProjectListComponent implements OnInit {
 
   constructor(private projectService: ProjectService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.reloadAll();
   }
 
