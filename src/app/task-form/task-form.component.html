@@ -6,7 +6,7 @@
       </div>
       <div class="form-group col-md-6">
         <label for="inputtaskproject">Project(placeholder)</label>
-        <input type="number" class="form-control" id="inputtaskproject" name="id">
+        <input [(ngModel)]="task.project.id" type="number" class="form-control" id="inputtaskproject" name="project.id">
       </div>
     </div>
     <button type="submit" (click)="save(); clear()" class="btn btn-primary">Save</button>
