@@ -8,6 +8,10 @@
         <label for="inputtaskproject">Project(placeholder)</label>
         <input type="number" class="form-control" id="inputtaskproject" name="project">
       </div>
+      <div class="form-group col-md-6">
+        <label for="inputTaskname">Expected duration</label>
+        <input [(ngModel)]="task.duration" type="time" class="form-control" id="inputtaskname" name="duration" placeholder="task name">
+      </div>
     </div>
     <button type="submit" (click)="save(); clear()" class="btn btn-primary">Save</button>
 </form>
