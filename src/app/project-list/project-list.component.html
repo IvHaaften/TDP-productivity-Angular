@@ -13,12 +13,36 @@
       <td>{{project.projectName}}</td>
       <td>{{project.deadline}}</td>
 
+      <td>
+        <div class="btn-group" role="group" aria-label="Buttons">
+          <!--Grouped buttons for each listing, contains button for edit modal-->        
+          <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#projectEditModal">Edit</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="delete(project.id)">Del</button>
+        </div>
+      </td>
+      <!-- project edit modal -->
+      <div class="modal fade" id="projectEditModal" tabindex="-1" role="dialog" aria-labelledby="projectEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="projectEditModalLabel">Edit project {{project.projectName}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>p p p p placeholder content</p>
+              <!-- <app-project-edit> </app-project-edit> -->
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <!-- the moved task form and list -->
       <div class="col-6"><app-task-form [taskList] = 'taskComp'> </app-task-form> </div>
       <div class="col"><app-task-list #taskComp></app-task-list></div>
 
-      
-      <td><button (click)="delete(project.id)">del</button></td>
   </tr>
   </tbody>
 </table>
+
