@@ -1,10 +1,12 @@
+<p>{{this.projects | json}}</p>
+
 <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">Deadline</th>
-      <th scole="col"></th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -31,17 +33,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>p p p p placeholder content</p>
-              <!-- <app-project-edit> </app-project-edit> -->
+              <app-project-edit ></app-project-edit>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- the moved task form and list -->
-      <div class="col-6"><app-task-form [taskList] = 'taskComp'> </app-task-form> </div>
-      <div class="col"><app-task-list #taskComp></app-task-list></div>
-
   </tr>
   </tbody>
 </table>
