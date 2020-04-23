@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TaskService } from '../task.service';
 import { TaskListComponent } from '../task-list/task-list.component';
 import { Task } from '../task';
+import {Project} from '../project';
 
 @Component({
   selector: 'app-task-form',
@@ -17,9 +18,12 @@ export class TaskFormComponent implements OnInit {
   task = new Task();
 
 
+
   constructor(private taskService:TaskService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.task.project = new Project();
+  }
 
   public save(){
     this.taskService.save(this.task).subscribe(

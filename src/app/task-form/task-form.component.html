@@ -1,3 +1,5 @@
+<!-- <p>{{this.task | json}}</p> -->
+
 <form>
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -6,7 +8,7 @@
       </div>
       <div class="form-group col-md-6">
         <label for="inputtaskproject">Project(placeholder)</label>
-        <input type="number" class="form-control" id="inputtaskproject" name="project">
+        <input [(ngModel)]="task.project.id" type="number" class="form-control" id="inputtaskproject" name="project.id">
       </div>
       <div class="form-group col-md-6">
         <label for="inputTaskname">Expected duration</label>
