@@ -6,14 +6,21 @@
         <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Project</th>
-        <th scole="col"></th>
+        <th scole="col">Duration</th>
+        <th scole="col">Description</th>
+        <th scole="col">Deadline</th>
+        <th scole="col">Status</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let task of tasks">
         <th scope="row">{{task.id}}</th>
         <td>{{task.name}}</td>
-        <td>placeholder</td>
+        <td>{{task.project.id}}</td>
+        <td>{{task.duration}}</td>
+        <td>{{task.description}}</td>
+        <td>{{task.deadline}}</td>
+        <td>{{task.status}}</td>
         <td><button (click)="delete(task.id)">del</button></td>
     </tr>
     </tbody>
