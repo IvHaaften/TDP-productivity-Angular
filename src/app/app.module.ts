@@ -10,6 +10,8 @@ import { TaskFormComponent } from './task-form/task-form.component';
 
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
+import { TaskEditComponent } from './task-edit/task-edit.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ProjectFormComponent } from './project-form/project-form.component';
     TaskFormComponent,
 
     ProjectListComponent,
-    ProjectFormComponent
+    ProjectFormComponent,
+    ProjectEditComponent,
+    TaskEditComponent
   ],
   imports: [
     BrowserModule,
