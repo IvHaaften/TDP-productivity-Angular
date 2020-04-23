@@ -17,7 +17,6 @@ import { ProjectFormComponent } from './project-form/project-form.component';
     AppComponent,
     TaskListComponent,
     TaskFormComponent,
-
     ProjectListComponent,
     ProjectFormComponent
   ],

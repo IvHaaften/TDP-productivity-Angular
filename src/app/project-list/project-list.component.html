@@ -13,6 +13,10 @@
       <td>{{project.projectName}}</td>
       <td>{{project.deadline}}</td>
 
+
+      <div class="col-6"><app-task-form [taskList] = 'taskComp'> </app-task-form> </div>
+      <div class="col"><app-task-list #taskComp></app-task-list></div>
+
       
       <td><button (click)="delete(project.id)">del</button></td>
   </tr>
