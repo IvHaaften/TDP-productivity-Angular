@@ -17,8 +17,6 @@ export class TaskFormComponent implements OnInit {
 
   task = new Task();
 
-
-
   constructor(private taskService:TaskService) { }
 
   ngOnInit() {
