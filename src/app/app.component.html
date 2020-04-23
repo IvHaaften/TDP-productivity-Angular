@@ -1,6 +1,6 @@
-<<!--Navbar-->
+<!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Unnamed Productivity Site</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,39 +24,33 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+      Login
+    </button>
   </div>
 </nav>
 <!--Site content-->
 <div class="container" style="margin-top:5%">
   <!--Popups for the forms-->
   <div class="row">
-    <div class="col-6">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal">
-        Add New Project
-      </button>
-    </div>
-    <div class="col-6">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
-        Add New Task
-      </button>
+    <div class="col">
+      <div class="btn-group" role="group" aria-label="Buttons">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal">
+          Add New Project
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
+          Add New Task
+        </button>
+      </div>
     </div>
   </div>
   
   <div class="row" style="margin-top:5%">
-    <div class="col-6"><app-project-form [projectList] = 'projectComp'> </app-project-form> </div>
     <div class="col"><app-project-list #projectComp></app-project-list></div>
   </div>
   <div class="row" style="margin-top:5%">
-    <!-- <div class="col-6"><app-task-form [taskList] = 'taskComp'> </app-task-form> </div>
-    <div class="col"><app-task-list #taskComp></app-task-list></div> -->
+    <div class="col"><app-task-list #taskComp></app-task-list></div>
   </div>
 </div>
 
@@ -89,7 +83,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <div class="col-6"><app-task-form [taskList] = 'taskComp'> </app-task-form> </div> -->
+
+        <app-task-form [taskList] = 'taskComp'> </app-task-form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Login Modal-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>p p p p placeholder content</p>
+
       </div>
     </div>
   </div>
