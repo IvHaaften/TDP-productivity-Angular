@@ -1,20 +1,43 @@
 <!-- <p>{{this.tasks | json}}</p> -->
 
 <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Project</th>
-        <th scole="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let task of tasks">
-        <th scope="row">{{task.id}}</th>
-        <td>{{task.name}}</td>
-        <td>placeholder</td>
-        <td><button (click)="delete(task.id)">del</button></td>
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Project</th>
+      <th scole="col"></th>
     </tr>
-    </tbody>
-  </table>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <th scope="row">{{task.id}}</th>
+      <td>{{task.name}}</td>
+      <td>placeholder</td>
+      <td>
+        <div class="btn-group" role="group" aria-label="Buttons">
+          <!--Grouped buttons for each listing, contains button for edit modal-->        
+          <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#taskEditModal">Edit</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="delete(task.id)">Del</button>
+        </div>
+      </td>
+      <!-- task edit modal -->
+      <div class="modal fade" id="taskEditModal" tabindex="-1" role="dialog" aria-labelledby="taskEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="taskEditModalLabel">Edit task {{task.name}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>p p p p placeholder content</p>
+              <!-- <app-task-edit> </app-task-edit> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </tr>
+  </tbody>
+</table>
