@@ -13,7 +13,7 @@
       <tr *ngFor="let task of tasks">
         <th scope="row">{{task.id}}</th>
         <td>{{task.name}}</td>
-        <td>placeholder</td>
+        <td>{{task.project.id}}</td>
         <td><button (click)="delete(task.id)">del</button></td>
     </tr>
     </tbody>
