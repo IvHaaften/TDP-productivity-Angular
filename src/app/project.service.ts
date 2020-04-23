@@ -19,8 +19,13 @@ export class ProjectService {
     return this.http.post('http://localhost:8080/project', project)
   }
 
-  delete(id) {
+  delete(id:number) {
     return this.http.delete('http://localhost:8080/project/' + id)
+  }
+
+  //to edit the listing.
+  change(id:number, project:Project){
+    return this.http.patch('http://localhost:8080/project/' + id, project)
   }
 
 
