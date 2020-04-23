@@ -19,7 +19,6 @@ import { TaskEditComponent } from './task-edit/task-edit.component';
     AppComponent,
     TaskListComponent,
     TaskFormComponent,
-
     ProjectListComponent,
     ProjectFormComponent,
     ProjectEditComponent,

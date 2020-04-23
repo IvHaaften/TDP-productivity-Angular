@@ -12,6 +12,7 @@
       <th scope="row">{{project.id}}</th>
       <td>{{project.projectName}}</td>
       <td>{{project.deadline}}</td>
+
       <td>
         <div class="btn-group" role="group" aria-label="Buttons">
           <!--Grouped buttons for each listing, contains button for edit modal-->        
@@ -36,7 +37,12 @@
           </div>
         </div>
       </div>
-    </tr>
+
+      <!-- the moved task form and list -->
+      <div class="col-6"><app-task-form [taskList] = 'taskComp'> </app-task-form> </div>
+      <div class="col"><app-task-list #taskComp></app-task-list></div>
+
+  </tr>
   </tbody>
 </table>
 

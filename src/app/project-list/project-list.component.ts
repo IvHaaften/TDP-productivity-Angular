@@ -9,23 +9,24 @@ import{ProjectService} from '../project.service';
   providers: [ProjectService]
 })
 export class ProjectListComponent implements OnInit {
-
+  
   projects: Project[];
-
+  
   constructor(private projectService: ProjectService) { }
-
+  
   ngOnInit(){
     this.reloadAll();
   }
-
+  
   reloadAll(){
     this.projectService.findAll().subscribe(projects => this.projects = projects);
   }
-
+  
   delete(id) {
     this.projectService.delete(id).subscribe(
       () => this.reloadAll()
-    );
+      );
+    }
+    
   }
-
-}
+  

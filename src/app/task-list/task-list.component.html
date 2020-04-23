@@ -2,18 +2,25 @@
 
 <table class="table table-hover">
   <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Project</th>
-      <th scole="col"></th>
-    </tr>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Project</th>
+        <th scole="col">Duration</th>
+        <th scole="col">Description</th>
+        <th scole="col">Deadline</th>
+        <th scole="col">Status</th>
+      </tr>
   </thead>
   <tbody>
     <tr *ngFor="let task of tasks">
-      <th scope="row">{{task.id}}</th>
-      <td>{{task.name}}</td>
-      <td>placeholder</td>
+        <th scope="row">{{task.id}}</th>
+        <td>{{task.name}}</td>
+        <td>{{task.project.id}}</td>
+        <td>{{task.duration}}</td>
+        <td>{{task.description}}</td>
+        <td>{{task.deadline}}</td>
+        <td>{{task.status}}</td>
       <td>
         <div class="btn-group" role="group" aria-label="Buttons">
           <!--Grouped buttons for each listing, contains button for edit modal-->        

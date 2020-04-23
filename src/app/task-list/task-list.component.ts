@@ -17,6 +17,7 @@ export class TaskListComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.reloadAll();
   }
 

@@ -14,6 +14,21 @@
         <label for="inputTaskname">Expected duration</label>
         <input [(ngModel)]="task.duration" type="time" class="form-control" id="inputtaskname" name="duration" placeholder="task name">
       </div>
+
+
+
+      <div class="form-group col-md-6">
+        <label for="inputTaskdescription">Description</label>
+        <input [(ngModel)]="task.description" type="text" class="form-control" id="inputTaskdescription" name="description" placeholder="task description">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputTaskdeadline">Deadline</label>
+        <input [(ngModel)]="task.deadline" type="date" class="form-control" id="inputtaskdeadline" name="deadline" placeholder="task deadline">
+      </div>
+      
+
+
+
     </div>
     <!--The datadissmiss modal makes this button dismiss the modal it is embedded in. might cause issues if the task form is nested in the project form.-->
     <button type="submit" (click)="save(); clear()" class="btn btn-primary" data-dismiss="modal">Save</button>
