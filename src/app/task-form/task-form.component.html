@@ -14,6 +14,21 @@
         <label for="inputTaskname">Expected duration</label>
         <input [(ngModel)]="task.duration" type="time" class="form-control" id="inputtaskname" name="duration" placeholder="task name">
       </div>
+
+
+
+      <div class="form-group col-md-6">
+        <label for="inputTaskdescription">Description</label>
+        <input [(ngModel)]="task.description" type="text" class="form-control" id="inputTaskdescription" name="description" placeholder="task description">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputTaskdeadline">Deadline</label>
+        <input [(ngModel)]="task.deadline" type="date" class="form-control" id="inputtaskdeadline" name="deadline" placeholder="task deadline">
+      </div>
+      
+
+
+
     </div>
     <button type="submit" (click)="save(); clear()" class="btn btn-primary">Save</button>
 </form>
