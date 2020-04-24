@@ -1,26 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
+// src/material-design/material-design.module.ts
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
 
-import { TaskListComponent } from './task-list/task-list.component';
-import { TaskFormComponent } from './task-form/task-form.component';
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatCheckboxModule } from '@angular/material/checkbox';
+// import { CdkTableModule } from '@angular/cdk/table';
+// import {MatDatepickerModule} from '@angular/material/datepicker';
+// import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+// import {MatSelectModule} from '@angular/material/select'
+// import {MatIconModule} from '@angular/material/icon'
+// import {MatSliderModule} from '@angular/material/slider';
 
-import { ProjectListComponent } from './project-list/project-list.component';
-import { ProjectFormComponent } from './project-form/project-form.component';
-import { ProjectEditComponent } from './project-edit/project-edit.component';
-import { TaskEditComponent } from './task-edit/task-edit.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { MatInputModule } from '@angular/material/input';
-import { TestComponent } from './test/test.component';
-
-import {MaterialDesignModule} from './material-design/material-design.module'
-/*
-
-//  datepicker
-import {NgModule} from '@angular/core';
 import {A11yModule} from '@angular/cdk/a11y';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -64,35 +54,66 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 
-// end date
-*/
 
 
+const modules: any[] = [
+  MatButtonModule,
+  MatCheckboxModule,
+  CdkTableModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatIconModule,
+  MatSliderModule,
+  A11yModule,
+  ClipboardModule,
+  DragDropModule,
+  PortalModule,
+  ScrollingModule,
+  CdkStepperModule,
+  CdkTableModule,
+  CdkTreeModule,
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+MatCheckboxModule,
+MatChipsModule,
+MatStepperModule,
+MatDatepickerModule,
+MatDialogModule,
+MatDividerModule,
+MatExpansionModule,
+MatGridListModule,
+MatIconModule,
+MatInputModule,
+MatListModule,
+MatMenuModule,
+MatNativeDateModule, MatRippleModule,
+MatPaginatorModule,
+MatProgressBarModule,
+MatProgressSpinnerModule,
+MatRadioModule,
+MatSelectModule,
+MatSidenavModule,
+MatSliderModule,
+MatSlideToggleModule,
+MatSnackBarModule,
+MatSortModule,
+MatTableModule,
+MatTabsModule,
+MatToolbarModule,
+MatTooltipModule,
+MatTreeModule,
+  
+];
 
-
+// Declare Module that imports/exports the @angular/material modules needed in the app
 @NgModule({
-  declarations: [
-    AppComponent,
-    TaskListComponent,
-    TaskFormComponent,
-    ProjectListComponent,
-    ProjectFormComponent,
-    ProjectEditComponent,
-    TaskEditComponent,
-    TestComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MaterialDesignModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [...modules],
+  exports: [...modules]
 })
-
-
-
-export class AppModule { }
+export class MaterialDesignModule {}
