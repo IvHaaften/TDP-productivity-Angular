@@ -17,9 +17,14 @@ export class ProjectFormComponent implements OnInit {
 
 
   project = new Project();
+
+  minDate: Date;
   
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService) {
+    const currentDate: Date = new Date; currentDate.getDate();
+    this.minDate = currentDate;
+   }
 
   ngOnInit(){}
 
