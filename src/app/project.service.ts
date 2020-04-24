@@ -28,5 +28,4 @@ export class ProjectService {
     return this.http.patch('http://localhost:8080/project/' + id, project)
   }
 
-
 }
