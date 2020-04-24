@@ -14,7 +14,7 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { MatInputModule } from '@angular/material/input';
-import { TestComponent } from './test/test.component';
+//import { TestComponent } from './test/test.component';
 
 import {MaterialDesignModule} from './material-design/material-design.module'
 /*
@@ -79,7 +79,7 @@ import {MatTreeModule} from '@angular/material/tree';
     ProjectFormComponent,
     ProjectEditComponent,
     TaskEditComponent,
-    TestComponent
+    //TestComponent
   ],
   imports: [
     BrowserModule,

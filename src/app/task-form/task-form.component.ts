@@ -15,9 +15,13 @@ export class TaskFormComponent implements OnInit {
   @Input()
   taskList:TaskListComponent;
 
+  minDate: Date;
+
   task = new Task();
 
-  constructor(private taskService:TaskService) { }
+  constructor(private taskService:TaskService) {
+    const currentDate: Date = new Date; currentDate.getDate();
+    this.minDate = currentDate; }
 
   ngOnInit() {
     this.task.project = new Project();
