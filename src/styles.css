@@ -20,3 +20,7 @@ ng::deep .cdk-overlay-pane mat-datepicker-popup{
 .cdk-overlay-container{
   z-index:2000;
 }
+
+.basic-container {
+  padding: 30px;
+}

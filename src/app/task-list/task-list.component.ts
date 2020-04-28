@@ -17,6 +17,7 @@ export interface TaskModalData {
 export class TaskListComponent implements OnInit {
 
   tasks: Task[];
+  displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description', 'actions'];
 
   constructor(private taskService: TaskService, public dialog: MatDialog) {
   }
