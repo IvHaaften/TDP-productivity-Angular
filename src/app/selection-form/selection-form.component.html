@@ -1,0 +1,13 @@
+
+  <form >
+    <input [(ngModel)]="selection.projectNumber" type="number" name="projectNumber" placeholder="project">
+    <input [(ngModel)]="selection.timeWindow" type="number" name="timeWindow" placeholder="time window">
+    <button (click)= "clear()">Save</button>
+  </form>
+  
+<table>
+    <tbody>
+        <td>{{selection.projectNumber}}</td>
+        <td>{{selection.timeWindow}}</td>
+    </tbody>
+</table>

@@ -1,0 +1,29 @@
+<table>
+<thead>
+    <tr>
+      <!-- <th scope="col">ID</th> -->
+      <th scope="col">Task</th>
+      <!-- <th scope="col">Project ID</th> -->
+      <th scope="col">Project</th>
+      <!-- <th scope="col">Duration</th> -->
+      <!-- <th scope="col">Description</th> -->
+      <!-- <th scope="col">Deadline</th> -->
+      <!-- <th scope="col">Status</th>
+      <th scope="col">Actions</th> -->
+    </tr>
+</thead>
+
+
+<tbody>
+  <tr *ngFor="let task of tasks">
+      <!-- <th scope="row">{{task.id}}</th> -->
+      <td>{{task.name}}</td>
+      <!-- <td>{{task.project.id}}</td> -->
+      <td>{{task.project.projectName}}</td>
+      <!-- <td>{{task.duration}}</td> -->
+      <!-- <td>{{task.description}}</td> -->
+      <!-- <td>{{task.deadline}}</td> -->
+      <!-- <td>{{task.status}}</td> -->
+  </tbody>
+</table>
+
