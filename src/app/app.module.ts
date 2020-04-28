@@ -12,8 +12,6 @@ import { ProjectListComponent, ProjectEditModal } from './project-list/project-l
 import { ProjectFormComponent } from './project-form/project-form.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { MatInputModule } from '@angular/material/input';
-
 import {MaterialDesignModule} from './material-design/material-design.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -26,7 +24,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TaskEditModal,
     ProjectListComponent,
     ProjectFormComponent,
+
     ProjectEditModal
+
   ],
   imports: [
     BrowserModule,

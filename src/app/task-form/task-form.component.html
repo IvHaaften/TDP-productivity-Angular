@@ -19,9 +19,14 @@
       <input [(ngModel)]="task.duration" type="time" class="form-control" id="inputtaskname" name="duration" placeholder="task name">
     </div>
     <div class="form-group col">
-      <label for="inputTaskdeadline">Deadline</label>
-      <input [(ngModel)]="task.deadline" type="date" class="form-control" id="inputtaskdeadline" name="deadline" placeholder="task deadline">
-    </div>
+    
+      <mat-form-field>
+        <mat-label for="inputprojectdeadline">Deadline</mat-label>
+        <input matInput [min]="minDate" [matDatepicker]="picker" [(ngModel)]="task.deadline" name="deadline">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      </div>
   </div>
   
   <div class="form-row">
