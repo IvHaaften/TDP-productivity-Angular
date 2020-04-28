@@ -30,6 +30,9 @@ export class SelectionFormComponent implements OnInit {
 
   clear(){
     this.list.selectedProjectID = this.projectNumber;
+    this.list.selectedTimeWindow = this.timeWindow;
+    this.projectNumber = 0;
+    this.timeWindow = null;
     this.list.reloadAll();
     
     }

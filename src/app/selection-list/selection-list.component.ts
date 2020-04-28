@@ -13,8 +13,7 @@ import {filter} from 'rxjs/operators';
 export class SelectionListComponent implements OnInit {
 
   selectedProjectID: number;
-
-
+  selectedTimeWindow: Date;
 
   tasks: Task[];
 
@@ -27,10 +26,8 @@ export class SelectionListComponent implements OnInit {
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => {
       
-      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID )
+      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID ).filter(task => task.duration <= this.selectedTimeWindow)
       this.tasks = filteredTasks} );
-
-    // .filter().filter().filter()
   }
   
   delete(id) {
