@@ -1,89 +1,102 @@
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Unnamed Productivity Site</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
-      Login
-    </button>
-  </div>
-</nav>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Unnamed Productivity Project</span>
+    <button mat-flat-button color="primary" aria-label="navigate to homepage">Home</button>
+    <span class="nav-spacer"></span>
+    <button mat-flat-button color="accent">Login</button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-
-<!--Site content-->
-<div class="container" style="margin-top:5%">
-
-
-<!-- Task selection component -->
-
-
-<div class="card-group">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Task selection card</h5>
-      <app-selection-form #selectionComp></app-selection-form>
+<!--Site body-->
+<div class="mat-app-background basic-container">
+  <!--Task Selection Component-->
+  <div class="card-group">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Task selection card</h5>
+        <app-selection-form #selectionComp></app-selection-form>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Task shortlist</h5>
-
-      <app-selection-list #selectionComp></app-selection-list>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Task shortlist</h5>
+        
+        <app-selection-list #selectionComp></app-selection-list>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Current day agenda card</h5>  
-    </div>
-  </div>
-</div>
-
-
-  <!--Popups for the forms-->
-  <div class="row">
-    <div class="col">
-      <div class="btn-group" role="group" aria-label="Buttons">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal">
-          Add New Project
-        </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
-          Add New Task
-        </button>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Current day agenda card</h5>  
       </div>
     </div>
   </div>
-  
-  <div class="row" style="margin-top:5%">
-    <div class="col"><app-project-list #projectComp></app-project-list></div>
-  </div>
-  <div class="row" style="margin-top:5%">
-    <div class="col"><app-task-list #taskComp></app-task-list></div> 
-  </div>
+  <mat-tab-group>
+    <mat-tab label="Projects">
+      <div><button mat-flat-button color="accent" data-toggle="modal" data-target="#projectModal">Add New Project</button></div>
+      <div><app-project-list #projectComp></app-project-list></div>
+    </mat-tab>
+    <mat-tab label="Tasks">
+      <button mat-flat-button color="accent" data-toggle="modal" data-target="#taskModal">Add New Task</button>
+      <app-task-list #taskComp></app-task-list>
+    </mat-tab>
+  </mat-tab-group>
 </div>
+<!-- end of Site body-->
 
+<!-- <mat-grid-list cols="2" rowHeight="4:3">
+  <mat-grid-tile>
+    <mat-grid-tile-header>
+      <span>Projects</span>
+      <span class="nav-spacer"></span>
+      <button mat-flat-button color="accent" data-toggle="modal" data-target="#projectModal">Add New Project</button>
+    </mat-grid-tile-header>
+    <app-project-list #projectComp></app-project-list>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-grid-tile-header>
+      <span>Tasks</span>
+      <span class="nav-spacer"></span>
+      <button mat-flat-button color="accent" data-toggle="modal" data-target="#taskModal">Add New Task</button>
+    </mat-grid-tile-header>
+    <app-task-list #taskComp></app-task-list>
+  </mat-grid-tile>
+</mat-grid-list> -->
 
+<!-- <div layout="row">
+  <div flex>
+    <mat-card class="list-card">
+      <mat-card-header>
+        <mat-toolbar>
+          <mat-toolbar-row>
+            <span>Projects</span>
+            <span class="nav-spacer"></span>
+            <button mat-flat-button color="accent" data-toggle="modal" data-target="#projectModal">Add New Project</button>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </mat-card-header>
+      <mat-card-content>
+        <app-project-list #projectComp></app-project-list>
+      </mat-card-content>
+    </mat-card>
+  </div> 
+  <div flex>
+    <mat-card class="list-card">
+      <mat-card-header>
+        <mat-toolbar>
+          <mat-toolbar-row>
+            <span>Tasks</span>
+            <span class="nav-spacer"></span>
+            <button mat-flat-button color="accent" data-toggle="modal" data-target="#taskModal">Add New Task</button>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </mat-card-header>
+      <mat-card-content>
+        <app-task-list #taskComp></app-task-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> -->
 
 
 
