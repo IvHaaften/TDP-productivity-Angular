@@ -16,7 +16,7 @@ import { SelectionFormComponent } from './selection-form/selection-form.componen
 import { SelectionListComponent } from './selection-list/selection-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {Filter} from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProjectFormComponent,    
     ProjectEditModal,
     SelectionFormComponent,
-    SelectionListComponent
+    SelectionListComponent,
+    Filter
   ],
   imports: [
     BrowserModule,

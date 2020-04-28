@@ -14,10 +14,11 @@
 </thead>
 
 
-<!-- |filter:selection.projectNumber -->
+
+<!-- <tr *ngFor="let task of tasks | filter:{argument1: selection.projectNumber, argument2: selection.timeWindow}"></tr> -->
 
 <tbody>
-  <tr *ngFor="let task of tasks">
+  <tr *ngFor="let task of tasks"></tr>
       <!-- <th scope="row">{{task.id}}</th> -->
       <td>{{task.name}}</td>
       <!-- <td>{{task.project.id}}</td> -->
