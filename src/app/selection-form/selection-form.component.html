@@ -1,8 +1,14 @@
 
   <form >
     <input [(ngModel)]="selection.projectNumber" type="number" name="projectNumber" placeholder="project">
-    <input [(ngModel)]="selection.timeWindow" type="number" name="timeWindow" placeholder="time window">
-    <button (click)= "clear()">Save</button>
+    <input [(ngModel)]="selection.timeWindow" type="time" name="timeWindow" placeholder="time window">
+    <button (click)= "clear()">Clear</button>
+
+    <ul>
+      <li *ngFor="let task of tasks">
+        {{task.name}};
+      </li>
+    </ul>
   </form>
   
 <table>
