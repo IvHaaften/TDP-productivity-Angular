@@ -35,124 +35,15 @@
   </div>
   <mat-tab-group>
     <mat-tab label="Projects">
-      <div><button mat-flat-button color="accent" data-toggle="modal" data-target="#projectModal">Add New Project</button></div>
+      <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
       <div><app-project-list #projectComp></app-project-list></div>
     </mat-tab>
     <mat-tab label="Tasks">
-      <button mat-flat-button color="accent" data-toggle="modal" data-target="#taskModal">Add New Task</button>
+      <app-task-form [taskList] = 'taskComp'></app-task-form>
       <app-task-list #taskComp></app-task-list>
     </mat-tab>
   </mat-tab-group>
 </div>
 <!-- end of Site body-->
-
-<!-- <mat-grid-list cols="2" rowHeight="4:3">
-  <mat-grid-tile>
-    <mat-grid-tile-header>
-      <span>Projects</span>
-      <span class="nav-spacer"></span>
-      <button mat-flat-button color="accent" data-toggle="modal" data-target="#projectModal">Add New Project</button>
-    </mat-grid-tile-header>
-    <app-project-list #projectComp></app-project-list>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-grid-tile-header>
-      <span>Tasks</span>
-      <span class="nav-spacer"></span>
-      <button mat-flat-button color="accent" data-toggle="modal" data-target="#taskModal">Add New Task</button>
-    </mat-grid-tile-header>
-    <app-task-list #taskComp></app-task-list>
-  </mat-grid-tile>
-</mat-grid-list> -->
-
-<!-- <div layout="row">
-  <div flex>
-    <mat-card class="list-card">
-      <mat-card-header>
-        <mat-toolbar>
-          <mat-toolbar-row>
-            <span>Projects</span>
-            <span class="nav-spacer"></span>
-            <button mat-flat-button color="accent" data-toggle="modal" data-target="#projectModal">Add New Project</button>
-          </mat-toolbar-row>
-        </mat-toolbar>
-      </mat-card-header>
-      <mat-card-content>
-        <app-project-list #projectComp></app-project-list>
-      </mat-card-content>
-    </mat-card>
-  </div> 
-  <div flex>
-    <mat-card class="list-card">
-      <mat-card-header>
-        <mat-toolbar>
-          <mat-toolbar-row>
-            <span>Tasks</span>
-            <span class="nav-spacer"></span>
-            <button mat-flat-button color="accent" data-toggle="modal" data-target="#taskModal">Add New Task</button>
-          </mat-toolbar-row>
-        </mat-toolbar>
-      </mat-card-header>
-      <mat-card-content>
-        <app-task-list #taskComp></app-task-list>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div> -->
-
-<!--Modal content-->
-<!-- project form modal -->
-<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="projectModalLabel">Add New Project</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <app-project-form [projectList] = 'projectComp'> </app-project-form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Task form modal-->
-<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="taskModalLabel">Add New Task</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-        <app-task-form [taskList] = 'taskComp'> </app-task-form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Login Modal-->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalLabel">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>p p p p placeholder content</p>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
 
 

@@ -1,12 +1,8 @@
-import {Component, OnInit, Input, Inject} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Task} from '../task';
 import {TaskService} from '../task.service';
-import {Project} from '../project';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
-
-export interface TaskModalData {
-  taskEdit: Task;
-}
+import {MatDialog} from '@angular/material/dialog';
+import { TaskModalComponent } from '../task-modal/task-modal.component';
 
 @Component({
   selector: 'app-task-list',
@@ -37,7 +33,7 @@ export class TaskListComponent implements OnInit {
   }
 
   editTask(task: Task) {
-    const dialogRef = this.dialog.open(TaskEditModal, {
+    const dialogRef = this.dialog.open(TaskModalComponent, {
       width: '50%',
       data: {taskEdit : task}
     });
@@ -46,18 +42,4 @@ export class TaskListComponent implements OnInit {
       this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
     })
   }
-}
-
-@Component({
-  selector: 'task-edit-modal',
-  templateUrl: 'task-edit-modal.html',
-})
-export class TaskEditModal {
-  
-  @Input()
-  taskEdit: Task;
-  
-  constructor(public dialogRef: MatDialogRef<TaskEditModal>,
-    @Inject(MAT_DIALOG_DATA) public data: TaskModalData) {}
-  
 }
