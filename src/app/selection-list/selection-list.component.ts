@@ -26,9 +26,13 @@ export class SelectionListComponent implements OnInit {
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => {
       
-      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID ).filter(task => task.duration <= this.selectedTimeWindow)
+      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID ).filter(task => task.duration <= this.selectedTimeWindow).slice(1,4).sort()
       this.tasks = filteredTasks} );
   }
+
+  // .slice(1,3) 
+  // .sort()
+
   
   delete(id) {
     this.taskService.delete(id).subscribe(
