@@ -19,7 +19,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectModalComponent } from './project-modal/project-modal.component';
 import { TaskModalComponent } from './task-modal/task-modal.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
