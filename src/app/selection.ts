@@ -2,5 +2,5 @@
 
 export class Selection {
     projectNumber: number;
-    timeWindow: number;
+    timeWindow: Date;
 }
