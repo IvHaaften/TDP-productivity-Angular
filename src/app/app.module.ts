@@ -5,11 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 
-import { TaskListComponent } from './task-list/task-list.component';
+import { TaskListComponent, TaskEditModal } from './task-list/task-list.component';
 import { TaskFormComponent } from './task-form/task-form.component';
 
-import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectListComponent, ProjectEditModal } from './project-list/project-list.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
+
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -69,7 +70,12 @@ import {MatTreeModule} from '@angular/material/tree';
 // end date
 */
 
+=======
 
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialDesignModule} from './material-design/material-design.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -77,12 +83,18 @@ import {MatTreeModule} from '@angular/material/tree';
     AppComponent,
     TaskListComponent,
     TaskFormComponent,
+    TaskEditModal,
     ProjectListComponent,
     ProjectFormComponent,
+
     ProjectEditComponent,
     TaskEditComponent,
     SelectionFormComponent,
     SelectionListComponent,
+=======
+
+    ProjectEditModal
+
 
   ],
   imports: [
@@ -91,6 +103,10 @@ import {MatTreeModule} from '@angular/material/tree';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    MaterialDesignModule,
+    NgbModule
+  ],
+  exports: [
     MaterialDesignModule
   ],
   providers: [],

@@ -24,7 +24,7 @@ export class ProjectService {
   }
 
   //to edit the listing.
-  change(id:number, project:Project){
+  patchProject(id:number, project:Project){
     return this.http.patch('http://localhost:8080/project/' + id, project)
   }
 
