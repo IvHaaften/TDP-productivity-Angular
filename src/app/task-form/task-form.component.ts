@@ -3,6 +3,8 @@ import { TaskService } from '../task.service';
 import { TaskListComponent } from '../task-list/task-list.component';
 import { Task } from '../task';
 import {Project} from '../project';
+import {MatDialog} from '@angular/material/dialog';
+import { TaskModalComponent } from '../task-modal/task-modal.component';
 
 @Component({
   selector: 'app-task-form',
@@ -11,31 +13,36 @@ import {Project} from '../project';
   providers: [TaskService]
 })
 export class TaskFormComponent implements OnInit {
-
+  
   @Input()
   taskList:TaskListComponent;
-
+  
   minDate: Date;
-
+  
   task = new Task();
-
-  constructor(private taskService:TaskService) {
+  
+  constructor(private taskService:TaskService, public dialog: MatDialog) {
     const currentDate: Date = new Date; currentDate.getDate();
-    this.minDate = currentDate; }
-
+    this.minDate = currentDate; 
+  }
+  
   ngOnInit() {
     this.task.project = new Project();
   }
-
+  
   public save(){
-    this.taskService.save(this.task).subscribe(
-      () => this.taskList.reloadAll()
-    );
+    this.taskService.save(this.task).subscribe(() => this.taskList.reloadAll());
   }
-
-  clear(){
-    this.task.name = '';
-    }
-
+  
+  newTask() {
+    const dialogRef = this.dialog.open(TaskModalComponent, {
+      width: '50%',
+      data:{taskEdit: this.task}
+    });
+    
+    dialogRef.afterClosed().subscribe(result=>{
+      this.taskService.save(result).subscribe(() => this.taskList.reloadAll());
+    })
+  }
 
 }
