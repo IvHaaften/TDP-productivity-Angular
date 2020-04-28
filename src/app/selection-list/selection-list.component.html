@@ -18,7 +18,7 @@
 <!-- <tr *ngFor="let task of tasks | filter:{argument1: selection.projectNumber, argument2: selection.timeWindow}"></tr> -->
 
 <tbody>
-  <tr *ngFor="let task of tasks"></tr>
+  <tr *ngFor="let task of tasks">
       <!-- <th scope="row">{{task.id}}</th> -->
       <td>{{task.name}}</td>
       <!-- <td>{{task.project.id}}</td> -->
@@ -27,6 +27,7 @@
       <!-- <td>{{task.description}}</td> -->
       <!-- <td>{{task.deadline}}</td> -->
       <!-- <td>{{task.status}}</td> -->
+    </tr>
   </tbody>
 </table>
 

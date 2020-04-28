@@ -13,17 +13,24 @@ import { TaskService } from '../task.service';
 })
 export class SelectionFormComponent implements OnInit {
 
-  selection = new Selection();
+  @Input()
+  list:SelectionListComponent
+
+  projectNumber: number;
+  timeWindow: Date;
+
   tasks: Task[];
 
   // constructor(private selectionService: SelectionService) { }
 
   ngOnInit(): void {
+    this.projectNumber
+    this.timeWindow
   }
 
   clear(){
-    this.selection.projectNumber = null;
-    this.selection.timeWindow = null;
+    this.list.selectedProjectID = this.projectNumber;
+    this.list.reloadAll();
     
     }
 }

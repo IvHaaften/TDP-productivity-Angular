@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import {Task} from '../task'
 import {TaskService} from '../task.service';
+import {SelectionFormComponent} from '../selection-form/selection-form.component'
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-selection-list',
@@ -9,6 +11,10 @@ import {TaskService} from '../task.service';
   providers:  [TaskService]
 })
 export class SelectionListComponent implements OnInit {
+
+  selectedProjectID: number;
+
+
 
   tasks: Task[];
 
@@ -19,7 +25,12 @@ export class SelectionListComponent implements OnInit {
   }
 
   reloadAll() {
-    this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
+    this.taskService.findAll().subscribe(tasks => {
+      
+      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID )
+      this.tasks = filteredTasks} );
+
+    // .filter().filter().filter()
   }
   
   delete(id) {
