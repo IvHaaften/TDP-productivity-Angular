@@ -16,9 +16,15 @@ import { SelectionFormComponent } from './selection-form/selection-form.componen
 import { SelectionListComponent } from './selection-list/selection-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { UserFormComponent } from './user-form/user-form.component';
+import { UserListComponent } from './user-list/user-list.component';
+
+
 import { ProjectModalComponent } from './project-modal/project-modal.component';
 import { TaskModalComponent } from './task-modal/task-modal.component';
 import { UserModalComponent } from './user-modal/user-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +35,8 @@ import { UserModalComponent } from './user-modal/user-modal.component';
     ProjectFormComponent,    
     SelectionFormComponent,
     SelectionListComponent,
+    UserFormComponent,
+    UserListComponent,
     ProjectModalComponent,
     TaskModalComponent,
     UserModalComponent

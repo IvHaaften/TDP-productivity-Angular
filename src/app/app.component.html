@@ -1,4 +1,21 @@
-<!--Navbar-->
+
+
+
+
+<!--Site content-->
+<div class="container" style="margin-top:5%">
+
+<app-user-form></app-user-form>
+
+<app-user-list [appGlobal]="this"></app-user-list>
+
+
+<!--p>boven userlist: user project = {{projectIdUser}}</p-->
+
+
+<!-- Task selection component -->
+
+
 
 <mat-toolbar color="primary">
   <mat-toolbar-row>
@@ -22,15 +39,17 @@
     <mat-tab-group>
       <mat-tab label="Projects">
         <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
-        <div><app-project-list #projectComp></app-project-list></div>
+        <div><app-project-list #projectComp [userIdProject]="projectIdUser"></app-project-list></div>
       </mat-tab>
       <mat-tab label="Tasks">
         <app-task-form [taskList] = 'taskComp'></app-task-form>
-        <app-task-list #taskComp></app-task-list>
+        <app-task-list #taskComp [userIdProject]="projectIdUser"></app-task-list>
       </mat-tab>
     </mat-tab-group>
   </mat-card>
+
 </div>
 <!-- end of Site body-->
+
 
 

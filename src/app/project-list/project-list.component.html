@@ -12,6 +12,44 @@
   </mat-expansion-panel>
 </mat-accordion>
 
+<!-->
+
+<!--p>project id = {{userIdProject}}</p>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Deadline</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let project of projects; index as i">
+      
+      <ng-container *ngIf="project.id == userIdProject">
+      <th scope="row">{{project.id}}</th>
+      <td>{{project.projectName}}</td>
+      <td>{{project.deadline}}</td>
+      
+      <td>
+        <div class="btn-group" role="group" aria-label="Buttons">
+          <!--Grouped buttons for each listing, contains button for edit modal-- >
+          <!--<button mat-raised-button (click)="openDialog()">Pick one</button>-- >
+          <button class="btn btn-secondary btn-sm" (click)="editProject(project)">Edit</button>        
+          <button type="button" class="btn btn-danger btn-sm" (click)="delete(project.id)">Del</button>
+        </div>
+      </td>
+      </ng-container>
+      
+    </tr>
+  </tbody>
+</table>
+
+<-->
+
 <table mat-table [dataSource]="projects" class="mat-elevation-z8">
   <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
   <ng-container matColumnDef="id">
@@ -36,3 +74,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
