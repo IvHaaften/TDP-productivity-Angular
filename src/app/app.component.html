@@ -12,26 +12,24 @@
 <!--Site body-->
 <div class="mat-app-background basic-container">
   <!--Task Selection Component-->
-  <mat-card id="moth-card">
-    <mat-card-title>Task selection card</mat-card-title>
-   <mat-card class="inline-block">
-    <app-selection-form [list]=selectionComp></app-selection-form>
-   </mat-card>
-   <mat-card class="inline-block">
-    <app-selection-list #selectionComp></app-selection-list>
-   </mat-card>
+  <mat-card id="SelectionComponent">
+    <mat-card-title>Task selection</mat-card-title>
+      <app-selection-form [list]=selectionComp></app-selection-form>
+      <app-selection-list #selectionComp></app-selection-list>
   </mat-card>
-  
-  <mat-tab-group>
-    <mat-tab label="Projects">
-      <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
-      <div><app-project-list #projectComp></app-project-list></div>
-    </mat-tab>
-    <mat-tab label="Tasks">
-      <app-task-form [taskList] = 'taskComp'></app-task-form>
-      <app-task-list #taskComp></app-task-list>
-    </mat-tab>
-  </mat-tab-group>
+  <br>
+  <mat-card id="Tabbed lists">
+    <mat-tab-group>
+      <mat-tab label="Projects">
+        <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
+        <div><app-project-list #projectComp></app-project-list></div>
+      </mat-tab>
+      <mat-tab label="Tasks">
+        <app-task-form [taskList] = 'taskComp'></app-task-form>
+        <app-task-list #taskComp></app-task-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
 </div>
 <!-- end of Site body-->
 

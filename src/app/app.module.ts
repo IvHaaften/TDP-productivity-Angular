@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectModalComponent } from './project-modal/project-modal.component';
 import { TaskModalComponent } from './task-modal/task-modal.component';
+import { UserModalComponent } from './user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TaskModalComponent } from './task-modal/task-modal.component';
     SelectionFormComponent,
     SelectionListComponent,
     ProjectModalComponent,
-    TaskModalComponent
+    TaskModalComponent,
+    UserModalComponent
   ],
   imports: [
     BrowserModule,
