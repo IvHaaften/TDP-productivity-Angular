@@ -1,6 +1,20 @@
-<p>{{this.projects | json}}</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        JSON received
+      </mat-panel-title>
+      <mat-panel-description>
+        Click to see the received JSON
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{this.projects | json}}</p>
+  </mat-expansion-panel>
+</mat-accordion>
 
-<!--p>project id = {{userIdProject}}</p-->
+<!-->
+
+<!--p>project id = {{userIdProject}}</p>
 
 
 <table class="table table-hover">
@@ -22,8 +36,8 @@
       
       <td>
         <div class="btn-group" role="group" aria-label="Buttons">
-          <!--Grouped buttons for each listing, contains button for edit modal-->
-          <!--<button mat-raised-button (click)="openDialog()">Pick one</button>-->
+          <!--Grouped buttons for each listing, contains button for edit modal-- >
+          <!--<button mat-raised-button (click)="openDialog()">Pick one</button>-- >
           <button class="btn btn-secondary btn-sm" (click)="editProject(project)">Edit</button>        
           <button type="button" class="btn btn-danger btn-sm" (click)="delete(project.id)">Del</button>
         </div>
@@ -33,3 +47,31 @@
     </tr>
   </tbody>
 </table>
+
+<-->
+
+<table mat-table [dataSource]="projects" class="mat-elevation-z8">
+  <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let project"> {{project.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="projectName">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let project"> {{project.projectName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="deadline">
+    <th mat-header-cell *matHeaderCellDef> Deadline </th>
+    <td mat-cell *matCellDef="let project"> {{project.deadline}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let project">
+      <button mat-raised-button color="primary" (click)="editProject(project)">Edit</button>        
+      <button mat-raised-button color="warn" (click)="delete(project.id)">Del</button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

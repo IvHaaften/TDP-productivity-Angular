@@ -1,29 +1,36 @@
-<table>
-<thead>
-    <tr>
-      <!-- <th scope="col">ID</th> -->
-      <th scope="col">Task</th>
-      <!-- <th scope="col">Project ID</th> -->
-      <th scope="col">Project</th>
-      <!-- <th scope="col">Duration</th> -->
-      <!-- <th scope="col">Description</th> -->
-      <!-- <th scope="col">Deadline</th> -->
-      <!-- <th scope="col">Status</th>
-      <th scope="col">Actions</th> -->
-    </tr>
-</thead>
+<table mat-table [dataSource]="tasks">
+  <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let task"> 
+      
+        <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                Click for details
+                <mat-panel-description>
+                  {{task.name}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>{{task.name}}{{task.duration}}</p>
+              
+            </mat-expansion-panel>
+          </mat-accordion>
+    
+    </td>
+  </ng-container>
 
 
-<tbody>
-  <tr *ngFor="let task of tasks">
-      <!-- <th scope="row">{{task.id}}</th> -->
-      <td>{{task.name}}</td>
-      <!-- <td>{{task.project.id}}</td> -->
-      <td>{{task.project.projectName}}</td>
-      <!-- <td>{{task.duration}}</td> -->
-      <!-- <td>{{task.description}}</td> -->
-      <!-- <td>{{task.deadline}}</td> -->
-      <!-- <td>{{task.status}}</td> -->
-  </tbody>
+
+  <!-- <ng-container matColumnDef="projectName">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let task"> {{task.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="deadline">
+    <th mat-header-cell *matHeaderCellDef> Deadline </th>
+    <td mat-cell *matCellDef="let task"> {{task.name}} </td>
+  </ng-container> -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-

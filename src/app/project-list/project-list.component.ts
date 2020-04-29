@@ -1,13 +1,17 @@
-import {Component, OnInit, Inject, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import{Project} from '../project';
 import{ProjectService} from '../project.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
+
 import { UserListComponent } from '../user-list/user-list.component';
+
+import{ProjectModalComponent} from '../project-modal/project-modal.component';
+import {MatDialog} from '@angular/material/dialog';
 
 
 export interface ProjectModalData {
   projectEdit: Project;
 }
+
 
 @Component({
   selector: 'app-project-list',
@@ -29,6 +33,7 @@ export class ProjectListComponent implements OnInit {
    }
 
   
+  displayedColumns: string[] = ['id', 'projectName', 'deadline'];
   
   ngOnInit(){
     this.reloadAll();
@@ -46,7 +51,7 @@ export class ProjectListComponent implements OnInit {
   
   
   editProject(project: Project) {
-    const dialogRef = this.dialog.open(ProjectEditModal, {
+    const dialogRef = this.dialog.open(ProjectModalComponent, {
       width: '50%',
       data: {projectEdit : project}
     });
@@ -56,21 +61,4 @@ export class ProjectListComponent implements OnInit {
     })
   }
 }
-
-
-@Component({
-  selector: 'project-edit-modal',
-  templateUrl: 'project-edit-modal.html',
-})
-export class ProjectEditModal /* implements OnInit */ {
-
-  @Input()
-  projectEdit: Project;
-  
-  constructor(
-    public dialogRef: MatDialogRef<ProjectEditModal>,
-    @Inject(MAT_DIALOG_DATA) public data: ProjectModalData) {}
-    
-  }
-  
   

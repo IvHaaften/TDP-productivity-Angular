@@ -1,37 +1,5 @@
 
-    
-    <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Unnamed Productivity Site</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
-      Login
-    </button>
-  </div>
-</nav>
+
 
 
 <!--Site content-->
@@ -48,106 +16,42 @@
 <!-- Task selection component -->
 
 
-<div class="card-group">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Task selection card</h5>
-      <app-selection-form #selectionComp></app-selection-form>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Task shortlist</h5>
 
-      <app-selection-list #selectionComp></app-selection-list>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Current day agenda card</h5>  
-    </div>
-  </div>
-</div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Unnamed Productivity Project</span>
+    <button mat-flat-button color="primary" aria-label="navigate to homepage">Home</button>
+    <span class="nav-spacer"></span>
+    <button mat-flat-button color="accent">Login</button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-
-  <!--Popups for the forms-->
-  <div class="row">
-    <div class="col">
-      <div class="btn-group" role="group" aria-label="Buttons">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal">
-          Add New Project
-        </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
-          Add New Task
-        </button>
-      </div>
-    </div>
-  </div>
+<!--Site body-->
+<div class="mat-app-background basic-container">
+  <!--Task Selection Component-->
+  <mat-card id="moth-card">
+    <mat-card-title>Task selection card</mat-card-title>
+   <mat-card class="inline-block">
+    <app-selection-form [list]=selectionComp></app-selection-form>
+   </mat-card>
+   <mat-card class="inline-block">
+    <app-selection-list #selectionComp></app-selection-list>
+   </mat-card>
+  </mat-card>
   
-  <div class="row" style="margin-top:5%">
-    <div class="col"><app-project-list #projectComp  [userIdProject]="projectIdUser"></app-project-list></div>
-    
-  </div>
-  <div class="row" style="margin-top:5%">
-    <div class="col"><app-task-list #taskComp  [userIdProject]="projectIdUser"></app-task-list></div> 
-  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Projects">
+      <div><app-project-form [projectList] = 'projectComp' ></app-project-form></div>
+      <div><app-project-list #projectComp  [userIdProject]="projectIdUser"></app-project-list></div>
+    </mat-tab>
+    <mat-tab label="Tasks">
+      <app-task-form [taskList] = 'taskComp'></app-task-form>
+      <app-task-list #taskComp  [userIdProject]="projectIdUser"></app-task-list>
+    </mat-tab>
+  </mat-tab-group>
 </div>
-
-
-
-<!--Modal content-->
-<!-- project form modal -->
-<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="projectModalLabel">Add New Project</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <app-project-form [projectList] = 'projectComp'></app-project-form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Task form modal-->
-<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="taskModalLabel">Add New Task</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-        <app-task-form [taskList] = 'taskComp'> </app-task-form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Login Modal-->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalLabel">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>p p p p placeholder content</p>
-        
-      </div>
-    </div>
-  </div>
-</div>
+<!-- end of Site body-->
 
 
 
