@@ -15,8 +15,6 @@ export class SelectionListComponent implements OnInit {
   selectedProjectID: number;
   selectedTimeWindow: number;
 
-  displayedColumns: string[] = ['id'];
-
   tasks: Task[];
 
   constructor(private taskService: TaskService) { }
