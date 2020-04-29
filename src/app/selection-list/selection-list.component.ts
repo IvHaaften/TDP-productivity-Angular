@@ -15,6 +15,8 @@ export class SelectionListComponent implements OnInit {
   selectedProjectID: number;
   selectedTimeWindow: Date;
 
+  displayedColumns: string[] = ['id'];
+
   tasks: Task[];
 
   constructor(private taskService: TaskService) { }
@@ -26,7 +28,8 @@ export class SelectionListComponent implements OnInit {
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => {
       
-      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID ).filter(task => task.duration <= this.selectedTimeWindow).slice(1,4).sort()
+      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID ).sort().slice(0,3);
+      // filteredTasks = filteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
       this.tasks = filteredTasks} );
   }
 

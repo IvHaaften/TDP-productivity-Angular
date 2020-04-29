@@ -16,7 +16,7 @@ export class ProjectListComponent implements OnInit {
   
   constructor(private projectService: ProjectService, public dialog: MatDialog) { }
   
-  displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
+  displayedColumns: string[] = ['id', 'projectName', 'deadline'];
   
   ngOnInit(){
     this.reloadAll();
