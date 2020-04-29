@@ -1,13 +1,23 @@
 
   <form >
     <input [(ngModel)]="this.projectNumber" type="number" name="projectNumber" placeholder="project">
-    <input [(ngModel)]="this.timeWindow" type="time" name="timeWindow" placeholder="time window">
-    <button (click)= "clear()">Clear</button>
+
+    <br>
+    <mat-form-field appearance="standard">
+        <mat-label>Time window</mat-label>
+        <mat-select [(value)]="this.timeWindow">
+            <mat-option>None</mat-option>
+            <mat-option value="5">5 min.</mat-option>
+            <mat-option value="10">10 min.</mat-option>
+            <mat-option value="15">15 min.</mat-option>
+            <mat-option value="30">30 min.</mat-option>
+            <mat-option value="45">45 min.</mat-option>
+            <mat-option value="60">60 min.</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <br>
+
+    <button (click)= "clear()">Select</button>
   </form>
-  
-<!-- <table>
-    <tbody>
-        <td>{{this.projectNumber}}</td>
-        <td>{{this.timeWindow}}</td>
-    </tbody>
-</table> -->
+
+  <!-- <input [(ngModel)]="this.timeWindow" type="time" name="timeWindow" placeholder="time window"> -->

@@ -13,7 +13,7 @@ import {filter} from 'rxjs/operators';
 export class SelectionListComponent implements OnInit {
 
   selectedProjectID: number;
-  selectedTimeWindow: Date;
+  selectedTimeWindow: number;
 
   displayedColumns: string[] = ['id'];
 
@@ -29,7 +29,7 @@ export class SelectionListComponent implements OnInit {
     this.taskService.findAll().subscribe(tasks => {
       
       let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID ).sort().slice(0,3);
-      // filteredTasks = filteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
+      filteredTasks = filteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
       this.tasks = filteredTasks} );
   }
 
@@ -42,5 +42,4 @@ export class SelectionListComponent implements OnInit {
       () => this.reloadAll()
     );
   }
-
 }
