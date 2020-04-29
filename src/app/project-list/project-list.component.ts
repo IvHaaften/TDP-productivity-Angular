@@ -33,7 +33,7 @@ export class ProjectListComponent implements OnInit {
    }
 
   
-  displayedColumns: string[] = ['id', 'projectName', 'deadline'];
+  displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
   
   ngOnInit(){
     this.reloadAll();

@@ -23,6 +23,7 @@ import { UserListComponent } from './user-list/user-list.component';
 
 import { ProjectModalComponent } from './project-modal/project-modal.component';
 import { TaskModalComponent } from './task-modal/task-modal.component';
+import { UserModalComponent } from './user-modal/user-modal.component';
 
 
 @NgModule({
@@ -34,13 +35,11 @@ import { TaskModalComponent } from './task-modal/task-modal.component';
     ProjectFormComponent,    
     SelectionFormComponent,
     SelectionListComponent,
-
     UserFormComponent,
     UserListComponent,
-
     ProjectModalComponent,
-    TaskModalComponent
-
+    TaskModalComponent,
+    UserModalComponent
   ],
   imports: [
     BrowserModule,
