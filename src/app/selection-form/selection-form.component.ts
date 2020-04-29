@@ -17,7 +17,7 @@ export class SelectionFormComponent implements OnInit {
   list:SelectionListComponent
 
   projectNumber: number;
-  timeWindow: Date;
+  timeWindow: number;
 
   tasks: Task[];
 
