@@ -19,12 +19,18 @@
             <input matInput type="text" [(ngModel)]="data.taskEdit.name" name="taskName">
         </mat-form-field>
         <br>
+
         <mat-form-field appearance="standard">
             <mat-label>Project</mat-label>
-            <input matInput type="number" [(ngModel)]="data.taskEdit.project.id" name="projectID">
-        </mat-form-field>
 
 
+            <!-- <input matInput type="number" [(ngModel)]="data.taskEdit.project.id" name="projectID"> -->
+                <mat-select mat-select [(value)]="data.taskEdit.project.id">
+                  <mat-option *ngFor="let project of projects" [value]="project.id">
+                    {{project.projectName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
         <br>
         <mat-form-field appearance="standard">
             <mat-label>Duration</mat-label>
@@ -39,19 +45,13 @@
               </mat-select>
         </mat-form-field>
         <br>
-
-         
-            
+ 
             <!-- <br>
         <mat-form-field appearance="standard">
             <mat-label>Duration</mat-label>
             <input matInput type="number" [(ngModel)]="data.taskEdit.duration" name="duration">
         </mat-form-field>
         <br> -->
-
-
-
-
 
         <mat-form-field appearance="standard">
             <mat-label>Description</mat-label>
@@ -68,5 +68,5 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button color="primary" mat-dialog-close>Cancel</button>
-    <button mat-button color="primary" [mat-dialog-close]="data.taskEdit">Save</button>
+    <button mat-button color="primary" [mat-dialog-close]="data.taskEdit" >Save</button>
 </div>

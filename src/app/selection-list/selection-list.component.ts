@@ -26,9 +26,10 @@ export class SelectionListComponent implements OnInit {
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => {
       
-      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID ).sort().slice(0,3);
+      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
       filteredTasks = filteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
-      this.tasks = filteredTasks} );
+      filteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1)
+      this.tasks = filteredTasks.slice(0,4)} );
   }
 
   // .slice(1,3) 
