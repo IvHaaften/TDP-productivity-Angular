@@ -4,6 +4,8 @@ import {SelectionListComponent} from '../selection-list/selection-list.component
 import { SelectionService } from '../selection.service';
 import {Task} from '../task'
 import { TaskService } from '../task.service';
+import { Project } from '../project';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-selection-form',
@@ -19,13 +21,19 @@ export class SelectionFormComponent implements OnInit {
   projectNumber: number;
   timeWindow: number;
 
+  projects: Project[];
   tasks: Task[];
 
-  // constructor(private selectionService: SelectionService) { }
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
     this.projectNumber
     this.timeWindow
+    this.reloadAll()
+  }
+
+  reloadAll(){
+    this.projectService.findAll().subscribe(projects => this.projects = projects);
   }
 
   clear(){

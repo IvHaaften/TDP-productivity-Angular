@@ -1,20 +1,27 @@
-<form >
-  <mat-form-field appearance="standard">
-    <mat-label>Project</mat-label>
-    <input matInput [(ngModel)]="this.projectNumber" type="number" name="projectNumber" placeholder="project">
-  </mat-form-field>
-  <mat-form-field appearance="standard">
-    <mat-label>Time window</mat-label>
-    <mat-select [(value)]="this.timeWindow">
-      <mat-option>None</mat-option>
-      <mat-option value="5">5 min.</mat-option>
-      <mat-option value="10">10 min.</mat-option>
-      <mat-option value="15">15 min.</mat-option>
-      <mat-option value="30">30 min.</mat-option>
-      <mat-option value="45">45 min.</mat-option>
-      <mat-option value="60">60 min.</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
-  <button mat-raised-button color="primary" (click)= "clear()">Select</button>
-</form>
+
+  <form >
+    <mat-form-field>
+      <mat-label>Project</mat-label>
+      <mat-select mat-select [(value)]="this.projectNumber">
+        <mat-option *ngFor="let project of projects" [value]="project.id">
+          {{project.projectName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field appearance="standard">
+        <mat-label>Time window</mat-label>
+        <mat-select [(value)]="this.timeWindow">
+            <mat-option>None</mat-option>
+            <mat-option value="5">5 min.</mat-option>
+            <mat-option value="10">10 min.</mat-option>
+            <mat-option value="15">15 min.</mat-option>
+            <mat-option value="30">30 min.</mat-option>
+            <mat-option value="45">45 min.</mat-option>
+            <mat-option value="60">60 min.</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="accent" (click)= "clear()">Select</button>
+  </form>
