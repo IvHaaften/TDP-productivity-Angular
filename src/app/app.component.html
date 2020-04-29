@@ -1,4 +1,6 @@
-<!--Navbar-->
+
+    
+    <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Unnamed Productivity Site</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +36,13 @@
 
 <!--Site content-->
 <div class="container" style="margin-top:5%">
+
+<app-user-form></app-user-form>
+
+<app-user-list [appGlobal]="this"></app-user-list>
+
+
+<!--p>boven userlist: user project = {{projectIdUser}}</p-->
 
 
 <!-- Task selection component -->
@@ -76,14 +85,13 @@
   </div>
   
   <div class="row" style="margin-top:5%">
-    <div class="col"><app-project-list #projectComp></app-project-list></div>
+    <div class="col"><app-project-list #projectComp  [userIdProject]="projectIdUser"></app-project-list></div>
+    
   </div>
   <div class="row" style="margin-top:5%">
-    <div class="col"><app-task-list #taskComp></app-task-list></div> 
+    <div class="col"><app-task-list #taskComp  [userIdProject]="projectIdUser"></app-task-list></div> 
   </div>
 </div>
-
-
 
 
 
@@ -99,7 +107,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <app-project-form [projectList] = 'projectComp'> </app-project-form>
+        <app-project-form [projectList] = 'projectComp'></app-project-form>
       </div>
     </div>
   </div>

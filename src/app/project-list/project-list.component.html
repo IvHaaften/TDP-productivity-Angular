@@ -1,5 +1,8 @@
 <p>{{this.projects | json}}</p>
 
+<!--p>project id = {{userIdProject}}</p-->
+
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -11,6 +14,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let project of projects; index as i">
+      
+      <ng-container *ngIf="project.id == userIdProject">
       <th scope="row">{{project.id}}</th>
       <td>{{project.projectName}}</td>
       <td>{{project.deadline}}</td>
@@ -23,6 +28,7 @@
           <button type="button" class="btn btn-danger btn-sm" (click)="delete(project.id)">Del</button>
         </div>
       </td>
+      </ng-container>
       
     </tr>
   </tbody>

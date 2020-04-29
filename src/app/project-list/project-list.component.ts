@@ -2,6 +2,7 @@ import {Component, OnInit, Inject, Input} from '@angular/core';
 import{Project} from '../project';
 import{ProjectService} from '../project.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
+import { UserListComponent } from '../user-list/user-list.component';
 
 
 export interface ProjectModalData {
@@ -14,15 +15,25 @@ export interface ProjectModalData {
   styleUrls: ['./project-list.component.css'],
   providers: [ProjectService]
 })
+
+
 export class ProjectListComponent implements OnInit {
   
   projects: Project[];
+
+
+  @Input()
+  userIdProject: UserListComponent
   
-  constructor(private projectService: ProjectService, public dialog: MatDialog) { }
+  constructor(private projectService: ProjectService, public dialog: MatDialog) {
+   }
+
   
   
   ngOnInit(){
     this.reloadAll();
+    
+    this.userIdProject;
   }
   
   reloadAll(){

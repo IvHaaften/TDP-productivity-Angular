@@ -3,6 +3,7 @@ import {Task} from '../task';
 import {TaskService} from '../task.service';
 import {Project} from '../project';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
+import { UserListComponent } from '../user-list/user-list.component';
 
 export interface TaskModalData {
   taskEdit: Task;
@@ -18,11 +19,17 @@ export class TaskListComponent implements OnInit {
 
   tasks: Task[];
 
+
+    @Input()
+  userIdProject: UserListComponent
+
   constructor(private taskService: TaskService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
     this.reloadAll();
+    
+    this.userIdProject;
   }
 
   reloadAll() {

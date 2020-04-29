@@ -16,6 +16,8 @@ import { SelectionFormComponent } from './selection-form/selection-form.componen
 import { SelectionListComponent } from './selection-list/selection-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserFormComponent } from './user-form/user-form.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProjectFormComponent,    
     ProjectEditModal,
     SelectionFormComponent,
-    SelectionListComponent
+    SelectionListComponent,
+    UserFormComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

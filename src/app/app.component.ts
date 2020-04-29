@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TDP-productivity-Angular';
+
+  user: number;
+
+  projectIdUser: number;
+
+  
+
+
+/*
+  setUserID(value): void {
+    this.user = value;
+}
+*/
 }
