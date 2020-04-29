@@ -1,8 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {Task} from '../task';
 import {TaskService} from '../task.service';
+import {Project} from '../project';
+import { UserListComponent } from '../user-list/user-list.component';
+
 import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
+
+
+
+export interface TaskModalData {
+  taskEdit: Task;
+}
 
 @Component({
   selector: 'app-task-list',
@@ -15,11 +24,17 @@ export class TaskListComponent implements OnInit {
   tasks: Task[];
   displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description', 'actions'];
 
+
+    @Input()
+  userIdProject: UserListComponent
+
   constructor(private taskService: TaskService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
     this.reloadAll();
+    
+    this.userIdProject;
   }
 
   reloadAll() {

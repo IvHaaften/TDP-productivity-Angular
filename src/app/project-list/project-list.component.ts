@@ -1,8 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import{Project} from '../project';
 import{ProjectService} from '../project.service';
+
+import { UserListComponent } from '../user-list/user-list.component';
+
 import{ProjectModalComponent} from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';
+
+
+export interface ProjectModalData {
+  projectEdit: Project;
+}
+
 
 @Component({
   selector: 'app-project-list',
@@ -10,16 +19,26 @@ import {MatDialog} from '@angular/material/dialog';
   styleUrls: ['./project-list.component.css'],
   providers: [ProjectService]
 })
+
+
 export class ProjectListComponent implements OnInit {
   
   projects: Project[];
+
+
+  @Input()
+  userIdProject: UserListComponent
   
-  constructor(private projectService: ProjectService, public dialog: MatDialog) { }
+  constructor(private projectService: ProjectService, public dialog: MatDialog) {
+   }
+
   
   displayedColumns: string[] = ['id', 'projectName', 'deadline'];
   
   ngOnInit(){
     this.reloadAll();
+    
+    this.userIdProject;
   }
   
   reloadAll(){
