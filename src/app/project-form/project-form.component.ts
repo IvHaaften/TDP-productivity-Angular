@@ -17,11 +17,9 @@ export class ProjectFormComponent implements OnInit {
   @Input()
   projectList: ProjectListComponent;
   
-  
   project = new Project();
   
   minDate: Date;
-  
   
   constructor(private projectService: ProjectService, public dialog: MatDialog) {
     const currentDate: Date = new Date; currentDate.getDate();
