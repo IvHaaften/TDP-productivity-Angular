@@ -6,7 +6,6 @@ import { ProjectService } from '../project.service';
 
 export interface TaskModalData {
   taskEdit: Task;
-  
 }
 
 @Component({
@@ -17,15 +16,14 @@ export interface TaskModalData {
 export class TaskModalComponent implements OnInit {
 
   projects: Project[];
-    
   @Input()
   taskEdit: Task;
-
   minDate: Date;
   
   constructor(public dialogRef: MatDialogRef<TaskModalComponent>,@Inject(MAT_DIALOG_DATA) public data: TaskModalData, private projectService: ProjectService) {
     const currentDate: Date = new Date; currentDate.getDate();
     this.minDate = currentDate;
+    // this.taskEdit.name = "default_Name"
   }
 
   ngOnInit(){
@@ -35,6 +33,5 @@ export class TaskModalComponent implements OnInit {
   reloadAll(){
     this.projectService.findAll().subscribe(projects => this.projects = projects);
   }
-
 
 }
