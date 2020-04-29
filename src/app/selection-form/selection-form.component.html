@@ -1,13 +1,12 @@
 
-  <form >
-    <input [(ngModel)]="this.projectNumber" type="number" name="projectNumber" placeholder="project">
-    <input [(ngModel)]="this.timeWindow" type="time" name="timeWindow" placeholder="time window">
-    <button (click)= "clear()">Clear</button>
-  </form>
-  
-<!-- <table>
-    <tbody>
-        <td>{{this.projectNumber}}</td>
-        <td>{{this.timeWindow}}</td>
-    </tbody>
-</table> -->
+<form >
+  <mat-form-field appearance="standard">
+    <mat-label>Project Id</mat-label>
+    <input matInput [(ngModel)]="this.projectNumber" type="number" name="projectNumber" placeholder="project">
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Time Window</mat-label>
+    <input matInput [(ngModel)]="this.timeWindow" type="time" name="timeWindow" placeholder="time window">
+  </mat-form-field>
+    <button mat-raised-button color="primary" (click)= "clear()">Clear</button>
+</form>
