@@ -60,38 +60,51 @@
 
 <-->
 
+
+
+<button (click)="selectTasks(userIdProject)">select</button>
+
+
 <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
   <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let task"> {{task.id}} </td>
+    <ng-container *matCellDef="let task">
+    <td mat-cell *ngIf="task.project.id == userIdProject">{{task.id}} </td></ng-container> 
   </ng-container>
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let task"> {{task.name}} </td>
+    <ng-container *matCellDef="let task">
+    <td mat-cell *ngIf="task.project.id == userIdProject">{{task.name}} <!-- /ng-container --></td></ng-container> 
   </ng-container>
   <ng-container matColumnDef="project.id">
     <th mat-header-cell *matHeaderCellDef> Project ID </th>
-    <td mat-cell *matCellDef="let task"> {{task.project.id}} </td>
+    <ng-container *matCellDef="let task">
+    <td mat-cell *ngIf="task.project.id == userIdProject">{{task.project.id}} <!-- /ng-container --></td></ng-container> 
   </ng-container>
   <ng-container matColumnDef="project.projectName">
     <th mat-header-cell *matHeaderCellDef> Project Name </th>
-    <td mat-cell *matCellDef="let task"> {{task.project.projectName}} </td>
+    <ng-container *matCellDef="let task">
+    <td mat-cell *ngIf="task.project.id == userIdProject"> {{task.project.projectName}} <!-- /ng-container --></td></ng-container> 
   </ng-container>
   <ng-container matColumnDef="duration">
     <th mat-header-cell *matHeaderCellDef> Duration </th>
-    <td mat-cell *matCellDef="let task"> {{task.duration}} </td>
+    <ng-container *matCellDef="let task">
+    <td mat-cell *ngIf="task.project.id == userIdProject">{{task.duration}} <!-- /ng-container --></td></ng-container> 
   </ng-container>
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef> Description </th>
-    <td mat-cell *matCellDef="let task"> {{task.description}} </td>
+    <ng-container *matCellDef="let task">
+    <td mat-cell *ngIf="task.project.id == userIdProject">{{task.description}} <!-- /ng-container --></td></ng-container> 
   </ng-container>
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <td mat-cell *matCellDef="let task">
+    <ng-container *matCellDef="let task">
+    <td mat-cell *ngIf="task.project.id == userIdProject">
       <button mat-raised-button color="primary" (click)="editTask(task)">Edit</button>        
       <button mat-raised-button color="warn" (click)="delete(task.id)">Del</button>
-    </td>
+      <!-- /ng-container -->
+    </td></ng-container> 
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -23,18 +23,29 @@ export class TaskListComponent implements OnInit {
   
   tasks: Task[];
   displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description', 'actions'];
-  
-  @Input()
-  userIdProject: UserListComponent
-  
+
+  selectedTasks: Array<Task> = [];
+
+
+    @Input()
+    userIdProject: UserListComponent
+
+
   constructor(private taskService: TaskService, public dialog: MatDialog) {
+    
   }
   
   ngOnInit() {
     this.reloadAll();
     this.userIdProject;
+
+    //this.selectTasks(this.userIdProject)
+   // this.selectedTasks = this.tasks
+
+    
+    
   }
-  
+
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
   }
@@ -53,4 +64,27 @@ export class TaskListComponent implements OnInit {
       this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
     })
   }
+
+
+  selectTasks(IdProject){
+    console.log("enter");
+    
+    for (let index = 0; index < this.tasks.length; index++){
+      if (this.tasks[index].project.id == IdProject){
+        console.log("in");
+        
+
+        this.selectedTasks.push(this.tasks[index]);
+        console.log("this.tasks = " + this.tasks[index]);
+        console.log("this.selectTasks = " + this.selectedTasks);
+        
+
+      }
+      else{console.log("out")}
+
+    }
+    //console.log(this.selectedTasks)
+  }
+  
+
 }
