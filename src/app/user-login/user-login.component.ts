@@ -45,7 +45,7 @@ export class UserLoginComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      this.userService.save(result).subscribe();
+      this.userService.login(result).subscribe();
     })
   }
 

@@ -7,6 +7,11 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class UserService {
+  login(user: User) {
+    return this.http.get('http://localhost:8080/user/login?user=' + user.username + '&password=' + user.password)
+    console.log("log out:: user = " + user.username + ", password = " + user.password);
+    
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +22,8 @@ export class UserService {
   save(user: User) {
     return this.http.post('http://localhost:8080/user', user)
   }
+
+
   
   delete(id) {
     return this.http.delete('http://localhost:8080/user/' + id)
