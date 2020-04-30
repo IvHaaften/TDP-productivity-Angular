@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Unnamed Productivity Project</span>
+    <button mat-flat-button color="primary" aria-label="navigate to homepage">Home</button>
+    <span class="nav-spacer"></span>
+    <mat-slide-toggle [checked]="!isDarkTheme" (change)="toggleDarkTheme($event.checked)">
+      <mat-icon >nights_stay</mat-icon>
+      <mat-icon >wb_sunny</mat-icon>
+    </mat-slide-toggle>
+    <app-user-login></app-user-login>
+  </mat-toolbar-row>
+</mat-toolbar>
