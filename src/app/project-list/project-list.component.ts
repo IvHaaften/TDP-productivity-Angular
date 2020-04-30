@@ -25,6 +25,8 @@ export class ProjectListComponent implements OnInit {
   
   projects: Project[];
 
+  selectedProjects: Array<Project> = [];
+
 
   @Input()
   userIdProject: UserListComponent
@@ -60,5 +62,19 @@ export class ProjectListComponent implements OnInit {
       this.projectService.patchProject(result.id, result).subscribe(() => this.reloadAll());
     })
   }
+
+  selectProjects(IdProject){
+    this.selectedProjects = [];
+      
+    for (let index = 0; index < this.projects.length; index++){
+      if (this.projects[index].id == IdProject){
+          
+        this.selectedProjects.push(this.projects[index]);
+      }
+
+    }
+  }
+
+
 }
   
