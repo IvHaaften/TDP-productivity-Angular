@@ -1,38 +1,38 @@
 <div [ngClass]="{'dark-theme': isDarkTheme | async}">
   <app-toolbar></app-toolbar>
   
-  <!--Site body-->
-  <div class="mat-app-background basic-container">
-    <mat-card id="UserComponent">
-      <!--user selection-->
-      <app-user-form></app-user-form>
-      <app-user-list [appGlobal]="this"></app-user-list>
-      <!--p>boven userlist: user project = {{projectIdUser}}</p-->
-    </mat-card>
-    <br>
-    <!--Task Selection Component-->
-    <mat-card id="SelectionComponent">
-      <mat-card-title>Task selection</mat-card-title>
-      <app-selection-form [list]=selectionComp></app-selection-form>
-      <app-selection-list #selectionComp></app-selection-list>
-    </mat-card>
-    <br>
-    <mat-card id="Tabbed lists">
-      <mat-tab-group>
-        <mat-tab label="Projects">
-          <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
-          <div><app-project-list #projectComp [userIdProject]="projectIdUser"></app-project-list></div>
-        </mat-tab>
-        <mat-tab label="Tasks">
-          <app-task-form [taskList] = 'taskComp'></app-task-form>
-          <app-task-list #taskComp [userIdProject]="projectIdUser"></app-task-list>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card>
+<!--Site body-->
+<div class="mat-app-background basic-container">
+  <mat-card id="UserComponent">
+  <!--user selection-->
+  <!-- app-user-form></app-user-form -->
+  <app-user-list [appGlobal]="this"></app-user-list>
+  <!--p>boven userlist: user project = {{projectIdUser}}</p-->
+</mat-card>
+<br>
+  <!--Task Selection Component-->
+  <mat-card id="SelectionComponent">
+    <mat-card-title>Task selection</mat-card-title>
+    <app-selection-form [list]=selectionComp></app-selection-form>
+    <app-selection-list #selectionComp></app-selection-list>
+  </mat-card>
+  <br>
+  <mat-card id="Tabbed lists">
+    <mat-tab-group>
+      <mat-tab label="Projects">
+        <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
+        <div><app-project-list #projectComp [userIdProject]="projectIdUser"></app-project-list></div>
+      </mat-tab>
+      <mat-tab label="Tasks">
+        <app-task-form [taskList] = 'taskComp'></app-task-form>
+        <app-task-list #taskComp [userIdProject]="projectIdUser"></app-task-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
   </div>
   <!-- end of Site body-->
   
-  <!-- Footer -->
+    <!-- Footer -->
   <mat-toolbar color="primary" role="footer">
     <p class="mat-body">The Pie Productivity Project</p>
     <span class="nav-spacer"></span>

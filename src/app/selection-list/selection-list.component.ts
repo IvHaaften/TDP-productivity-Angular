@@ -1,21 +1,28 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import {Task} from '../task'
 import {TaskService} from '../task.service';
-import {SelectionFormComponent} from '../selection-form/selection-form.component'
-import {filter} from 'rxjs/operators';
-
+import {animate, state, style, transition, trigger} from '@angular/animations';
 @Component({
   selector: 'app-selection-list',
   templateUrl: './selection-list.component.html',
   styleUrls: ['./selection-list.component.css'],
-  providers:  [TaskService]
+  providers:  [TaskService],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
+
 export class SelectionListComponent implements OnInit {
 
+  tasks: Task[];
+  columnsToDisplay = ['name', 'duration', 'deadline', 'status'];
+  expandedElement: Task | null;
   selectedProjectID: number;
   selectedTimeWindow: number;
-
-  tasks: Task[];
 
   constructor(private taskService: TaskService) { }
 
@@ -28,14 +35,12 @@ export class SelectionListComponent implements OnInit {
       
       let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
       filteredTasks = filteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
-      filteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1)
-      this.tasks = filteredTasks.slice(0,4)} );
+      filteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1);
+      filteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
+
+      this.tasks = filteredTasks.slice(0,4)});
   }
 
-  // .slice(1,3) 
-  // .sort()
-
-  
   delete(id) {
     this.taskService.delete(id).subscribe(
       () => this.reloadAll()

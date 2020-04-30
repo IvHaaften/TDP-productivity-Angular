@@ -19,12 +19,17 @@ export interface TaskModalData {
   styleUrls: ['./task-list.component.css'],
   providers:  [TaskService]
 })
+
+
 export class TaskListComponent implements OnInit {
   
+
   tasks: Task[];
-  displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description','status', 'actions'];
 
   selectedTasks: Array<Task> = [];
+
+  tempTask: Task;
 
 
     @Input()
@@ -51,6 +56,18 @@ export class TaskListComponent implements OnInit {
   
   delete(id: number) {
     this.taskService.delete(id).subscribe(() => this.reloadAll());
+  }
+
+  startTask(startedTask: Task){
+    startedTask.status="Started";
+    this.taskService.patchTask(startedTask.id, startedTask).subscribe(() => this.reloadAll());
+
+  }
+
+  closeTask(closedTask: Task){
+    closedTask.status="Closed";
+    this.taskService.patchTask(closedTask.id, closedTask).subscribe(() => this.reloadAll());
+
   }
   
   editTask(task: Task) {

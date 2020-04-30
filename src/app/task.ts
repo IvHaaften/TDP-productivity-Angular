@@ -6,6 +6,6 @@ export class Task{
     duration: number;
     description: string;
     deadline: Date;
-    status: number=0;
+    status: string = 'New';
     project: Project;
 }
