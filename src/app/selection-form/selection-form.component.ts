@@ -42,6 +42,5 @@ export class SelectionFormComponent implements OnInit {
     this.projectNumber = 0;
     this.timeWindow = null;
     this.list.reloadAll();
-    
     }
 }
