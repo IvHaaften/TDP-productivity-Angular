@@ -1,13 +1,6 @@
-
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Unnamed Productivity Project</span>
-    <button mat-flat-button color="primary" aria-label="navigate to homepage">Home</button>
-    <span class="nav-spacer"></span>
-    <app-user-login></app-user-login>
-  </mat-toolbar-row>
-</mat-toolbar>
-
+<div [ngClass]="{'dark-theme': isDarkTheme | async}">
+  <app-toolbar></app-toolbar>
+  
 <!--Site body-->
 <div class="mat-app-background basic-container">
   <mat-card id="UserComponent">
@@ -36,8 +29,15 @@
       </mat-tab>
     </mat-tab-group>
   </mat-card>
+  </div>
+  <!-- end of Site body-->
+  
+    <!-- Footer -->
+  <mat-toolbar color="primary" role="footer">
+    <p class="mat-body">The Pie Productivity Project</p>
+    <span class="nav-spacer"></span>
+    <p class="mat-small">Copyright information here.</p>
+  </mat-toolbar>
+  <!-- Footer -->
 </div>
-<!-- end of Site body-->
-
-
 

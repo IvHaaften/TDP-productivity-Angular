@@ -10,11 +10,10 @@ $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
 @include angular-material-theme($light-theme);
 
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
-$dark-warn:    mat-palette($mat-deep-orange);
+$dark-primary: mat-palette($mat-indigo, 900);
+$dark-accent:  mat-palette($mat-amber, 900);
+$dark-warn:    mat-palette($mat-red);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-
-.unicorn-dark-theme {
+.dark-theme {
     @include angular-material-theme($dark-theme);
   }
