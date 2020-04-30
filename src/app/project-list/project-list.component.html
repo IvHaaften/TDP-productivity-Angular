@@ -50,27 +50,30 @@
 
 < !-- -->
 
-<table mat-table [dataSource]="projects" class="mat-elevation-z8">
+
+<button (click)="selectProjects(userIdProject)">select</button>
+
+<table mat-table [dataSource]="selectedProjects" class="mat-elevation-z8">
   <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let project">
-      <ng-container *ngIf="project.id == userIdProject"> {{project.id}} </ng-container> </td>
+    <td mat-cell *matCellDef="let project of selectedProjects">
+      <ng-container> {{project.id}} </ng-container> </td>
   </ng-container>
   <ng-container matColumnDef="projectName">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let project">
-      <ng-container *ngIf="project.id == userIdProject"> {{project.projectName}} </ng-container></td>
+    <td mat-cell *matCellDef="let project of selectedProjects">
+      <ng-container > {{project.projectName}} </ng-container></td>
   </ng-container>
   <ng-container matColumnDef="deadline">
     <th mat-header-cell *matHeaderCellDef> Deadline </th>
-    <td mat-cell *matCellDef="let project">
-      <ng-container *ngIf="project.id == userIdProject"> {{project.deadline}} </ng-container></td>
+    <td mat-cell *matCellDef="let project of selectedProjects">
+      <ng-container > {{project.deadline}} </ng-container></td>
   </ng-container>
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <td mat-cell *matCellDef="let project">
-      <ng-container *ngIf="project.id == userIdProject">
+    <td mat-cell *matCellDef="let project of selectedProjects">
+      <ng-container >
       <button mat-raised-button color="primary" (click)="editProject(project)">Edit</button>        
       <button mat-raised-button color="warn" (click)="delete(project.id)">Del</button>
       </ng-container>
