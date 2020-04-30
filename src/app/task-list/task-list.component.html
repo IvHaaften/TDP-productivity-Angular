@@ -72,10 +72,10 @@
     <ng-container *matCellDef="let task of selectedTasks">
     <td mat-cell>
       <ng-container *ngIf="task.status == 'New'">
-      <button mat-raised-button color="secondary" (click)="startTask(task)">Start</button>
+      <button mat-raised-button color="accent" (click)="startTask(task)">Start</button>
       </ng-container>
       <ng-container *ngIf="task.status == 'Started'">
-      <button mat-raised-button color="secondary" (click)="closeTask(task)">Close</button>
+      <button mat-raised-button color="accent" (click)="closeTask(task)">Close</button>
       </ng-container>
       <button mat-raised-button color="primary" (click)="editTask(task)">Edit</button>        
       <button mat-raised-button color="warn" (click)="delete(task.id)">Del</button>

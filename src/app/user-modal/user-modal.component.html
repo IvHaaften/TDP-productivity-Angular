@@ -28,6 +28,11 @@
                 <mat-label>Repeat password</mat-label>
                 <input matInput type="password" [(ngModel)]="data.passwordCheck" name="password" required>
             </mat-form-field>
+        <br>
+        <mat-form-field appearance="standard">
+            <mat-label>Project</mat-label>
+            <input matInput type="number" [(ngModel)]="data.user.project" name="projectAccesID" required>
+        </mat-form-field>
             <p class="mat-caption" *ngIf="data.user.password != data.passwordCheck">The entered passwords do not match</p>
         </div>
     </div>
