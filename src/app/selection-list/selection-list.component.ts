@@ -3,19 +3,35 @@ import {Task} from '../task'
 import {TaskService} from '../task.service';
 import {SelectionFormComponent} from '../selection-form/selection-form.component'
 import {filter} from 'rxjs/operators';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Project} from '../project';
 
 @Component({
   selector: 'app-selection-list',
   templateUrl: './selection-list.component.html',
   styleUrls: ['./selection-list.component.css'],
-  providers:  [TaskService]
+  providers:  [TaskService],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
+
+
+
+
 export class SelectionListComponent implements OnInit {
+
+  tasks: Task[];
+  // dataSource = this.tasks;
+  columnsToDisplay = ['name', 'duration', 'description', 'deadline', 'status', 'project'];
+  expandedElement: Task | null;
 
   selectedProjectID: number;
   selectedTimeWindow: number;
-
-  tasks: Task[];
 
   constructor(private taskService: TaskService) { }
 
