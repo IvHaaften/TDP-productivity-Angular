@@ -20,7 +20,7 @@ export interface TaskModalData {
   providers:  [TaskService]
 })
 export class TaskListComponent implements OnInit {
-
+  
   tasks: Task[];
   displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description', 'actions'];
 
@@ -30,13 +30,13 @@ export class TaskListComponent implements OnInit {
     @Input()
     userIdProject: UserListComponent
 
+
   constructor(private taskService: TaskService, public dialog: MatDialog) {
     
   }
-
+  
   ngOnInit() {
     this.reloadAll();
-    
     this.userIdProject;
 
     //this.selectTasks(this.userIdProject)
@@ -45,26 +45,20 @@ export class TaskListComponent implements OnInit {
     
   }
 
-
-
-
-
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
   }
   
   delete(id: number) {
-    this.taskService.delete(id).subscribe(
-      () => this.reloadAll()
-    );
+    this.taskService.delete(id).subscribe(() => this.reloadAll());
   }
-
+  
   editTask(task: Task) {
     const dialogRef = this.dialog.open(TaskModalComponent, {
       width: '50%',
       data: {taskEdit : task}
     });
-
+    
     dialogRef.afterClosed().subscribe(result=>{
       this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
     })
