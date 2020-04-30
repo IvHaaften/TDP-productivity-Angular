@@ -24,6 +24,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { ProjectModalComponent } from './project-modal/project-modal.component';
 import { TaskModalComponent } from './task-modal/task-modal.component';
 import { UserModalComponent } from './user-modal/user-modal.component';
+import { UserLoginComponent } from './user-login/user-login.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { UserModalComponent } from './user-modal/user-modal.component';
     UserListComponent,
     ProjectModalComponent,
     TaskModalComponent,
-    UserModalComponent
+    UserModalComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,11 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { User } from '../user';
 
 export interface UserModalData {
-  user: number;
+  passwordCheck: String;
+  user: User;
+  origin: String;
 }
 
 @Component({
@@ -11,13 +14,13 @@ export interface UserModalData {
   styleUrls: ['./user-modal.component.css']
 })
 export class UserModalComponent implements OnInit {
-
+  
   @Input()
-  user: number;
+  user: User;
   
   constructor(public dialogRef: MatDialogRef<UserModalComponent>,@Inject(MAT_DIALOG_DATA) public data: UserModalData) {
   }
-
+  
   ngOnInit(){}
-
+  
 }
