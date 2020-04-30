@@ -43,7 +43,6 @@ export class TaskListComponent implements OnInit {
    // this.selectedTasks = this.tasks
 
     
-    
   }
 
   reloadAll() {
@@ -67,23 +66,16 @@ export class TaskListComponent implements OnInit {
 
 
   selectTasks(IdProject){
-    console.log("enter");
+    this.selectedTasks = [];
     
     for (let index = 0; index < this.tasks.length; index++){
       if (this.tasks[index].project.id == IdProject){
-        console.log("in");
         
-
         this.selectedTasks.push(this.tasks[index]);
-        console.log("this.tasks = " + this.tasks[index]);
-        console.log("this.selectTasks = " + this.selectedTasks);
-        
 
       }
-      else{console.log("out")}
 
     }
-    //console.log(this.selectedTasks)
   }
   
 
