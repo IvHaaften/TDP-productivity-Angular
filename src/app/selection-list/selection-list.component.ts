@@ -19,6 +19,11 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class SelectionListComponent implements OnInit {
 
   tasks: Task[];
+
+  newTasks:Task[];
+  startedTasks:Task[];
+  comingupTasks:Task[];
+
   columnsToDisplay = ['name', 'duration', 'deadline', 'status'];
   expandedElement: Task | null;
   selectedProjectID: number;
@@ -32,13 +37,31 @@ export class SelectionListComponent implements OnInit {
 
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => {
+      // Stukje code dat filtered en sorteerd voor new
       
-      let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
-      filteredTasks = filteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
-      filteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1);
-      filteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
+      let newfilteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
+      newfilteredTasks = newfilteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
+      newfilteredTasks = newfilteredTasks.filter(task => task.status === "New");
+      newfilteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1);
+      newfilteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
 
-      this.tasks = filteredTasks.slice(0,4)});
+      this.newTasks = newfilteredTasks.slice(0,4)
+
+
+      // Stukje code dat filtered en sorteerd voor started
+      let startedfilteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
+      startedfilteredTasks = startedfilteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
+      startedfilteredTasks = startedfilteredTasks.filter(task => task.status === "Started");
+      startedfilteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1);
+      startedfilteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
+
+      this.startedTasks = startedfilteredTasks.slice(0,4)
+
+
+      //Stukje code dat filtered en sorteerd voor coming up
+      let comingupfilteredTasks = tasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
+      this.comingupTasks = comingupfilteredTasks.slice(0,4)
+    });
   }
 
   delete(id) {
