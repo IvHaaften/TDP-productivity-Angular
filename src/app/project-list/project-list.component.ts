@@ -6,6 +6,7 @@ import { UserListComponent } from '../user-list/user-list.component';
 
 import{ProjectModalComponent} from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';
+import { SelectionFormComponent } from '../selection-form/selection-form.component';
 
 
 export interface ProjectModalData {
@@ -30,6 +31,9 @@ export class ProjectListComponent implements OnInit {
 
   @Input()
   userIdProject: UserListComponent
+
+  @Input()
+  projectUpdate:SelectionFormComponent
   
   constructor(private projectService: ProjectService, public dialog: MatDialog) {
    }
@@ -45,6 +49,7 @@ export class ProjectListComponent implements OnInit {
   
   reloadAll(){
     this.projectService.findAll().subscribe(projects => this.projects = projects);
+    this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
   }
   
   delete(id: number) {
