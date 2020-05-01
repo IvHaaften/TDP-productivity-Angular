@@ -24,7 +24,7 @@ export class SelectionListComponent implements OnInit {
   startedTasks:Task[];
   comingupTasks:Task[];
 
-  columnsToDisplay = ['name', 'duration', 'deadline', 'status'];
+  columnsToDisplay = ['name','duration', 'deadline', 'status', 'actions'];
   expandedElement: Task | null;
   selectedProjectID: number;
   selectedTimeWindow: number;
