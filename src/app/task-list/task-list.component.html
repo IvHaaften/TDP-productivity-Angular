@@ -17,18 +17,12 @@
 <p>project id = {{userIdProject}}</p>
 < -->
 
-
-
-
-
   <!-- >
     <p>{{this.selectedTasks | json}}</p>
     < -->
 
 
-
 <button (click)="selectTasks(userIdProject)">select</button>
-
 
 <table mat-table [dataSource]="selectedTasks" class="mat-elevation-z8">
   <!--Column ordering irrelevant dont forget to add them to displayedColumns-->

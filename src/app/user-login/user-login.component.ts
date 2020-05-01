@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {User} from '../user';
 import {UserService} from '../user.service';
 import {UserModalComponent } from '../user-modal/user-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-user-login',
@@ -11,20 +12,28 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-
+  
   user = new User();
+  
+  projectReturn: number;
 
-  constructor(private userService:UserService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
-
-  ngOnInit(): void {
+  @Input()
+  appGlobal2:AppComponent
+  
+  constructor(private userService:UserService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+    
   }
-
+  
+  ngOnInit(): void {
+    this.projectReturn;
+  }
+  
   wrongPasswordSnackbar(message: string) {
     this.snackBar.open(message, "Dismiss", {
       duration: 2000,
     });
   }
-
+  
   //if register button has been pressed
   newUser() {
     const dialogRef = this.dialog.open(UserModalComponent, {
@@ -36,7 +45,7 @@ export class UserLoginComponent implements OnInit {
       this.userService.save(result).subscribe();
     })
   }
-
+  
   //if login button has been pressed.
   loginUser() {
     const dialogRef = this.dialog.open(UserModalComponent, {
@@ -45,8 +54,16 @@ export class UserLoginComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      this.userService.login(result).subscribe();
+      this.userService.login(result).subscribe(projectReturn=> this.projectReturn = projectReturn);
+      
+      //console.log("returned id = " + this.projectReturn);
+      
+    this.appGlobal2.LoginId = this.projectReturn;
+      
     })
+    
   }
-
+  
+  
+  
 }

@@ -7,9 +7,14 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class UserService {
-  login(user: User) {
-    return this.http.get('http://localhost:8080/user/login?user=' + user.username + '&password=' + user.password)
+
+  userId:number;
+
+
+  login(user: User){
+    return this.http.get<number>('http://localhost:8080/user/login?user=' + user.username + '&password=' + user.password)
     console.log("log out:: user = " + user.username + ", password = " + user.password);
+    
     
   }
 
