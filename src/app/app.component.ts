@@ -14,9 +14,10 @@ export class AppComponent {
 
   user: number;
 
-  projectIdUser: number;
-
+  //projectIdUser: number;
+  LoginId: number;
   
+
 
 
 /*
