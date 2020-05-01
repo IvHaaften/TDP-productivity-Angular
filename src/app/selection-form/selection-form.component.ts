@@ -28,6 +28,7 @@ export class SelectionFormComponent implements OnInit {
   constructor(private projectService: ProjectService, private taskService:TaskService) { }
 
   ngOnInit(): void {
+    this.projects
     this.projectNumber
     this.timeWindow
     this.reloadAll()
@@ -45,35 +46,17 @@ export class SelectionFormComponent implements OnInit {
     });
   }
 
-
-
-//   this.taskService.findAll().subscribe(tasks => {
-      
-//     let filteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
-//     filteredTasks = filteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
-//     filteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1);
-//     filteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
-
-//     this.tasks = filteredTasks.slice(0,4)});
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
   clear(){
     this.list.selectedProjectID = this.projectNumber;
     this.list.selectedTimeWindow = this.timeWindow;
     this.projectNumber = 0;
     this.timeWindow = null;
     this.list.reloadAll();
+    }
+
+    delete(){
+      this.list.selectedProjectID = 0;
+      this.list.selectedTimeWindow = 0;
+      this.list.reloadAll();
     }
 }
