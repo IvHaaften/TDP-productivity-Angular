@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import {Task} from '../task'
 import {TaskService} from '../task.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskModalComponent } from '../task-modal/task-modal.component';
 @Component({
   selector: 'app-selection-list',
   templateUrl: './selection-list.component.html',
@@ -19,17 +21,18 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class SelectionListComponent implements OnInit {
 
   tasks: Task[];
-
+  displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description','status', 'actions'];
   newTasks:Task[];
   startedTasks:Task[];
   comingupTasks:Task[];
+  selectedTasks: Array<Task> = [];
 
   columnsToDisplay = ['name','duration', 'deadline', 'status'];
   expandedElement: Task | null;
   selectedProjectID: number;
   selectedTimeWindow: number;
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.reloadAll()
@@ -62,9 +65,45 @@ export class SelectionListComponent implements OnInit {
     });
   }
 
-  delete(id) {
-    this.taskService.delete(id).subscribe(
-      () => this.reloadAll()
-    );
+  
+  delete(id: number) {
+    this.taskService.delete(id).subscribe(() => this.reloadAll());
+  }
+
+  startTask(startedTask: Task){
+    startedTask.status="Started";
+    this.taskService.patchTask(startedTask.id, startedTask).subscribe(() => this.reloadAll());
+
+  }
+
+  closeTask(closedTask: Task){
+    closedTask.status="Closed";
+    this.taskService.patchTask(closedTask.id, closedTask).subscribe(() => this.reloadAll());
+
+  }
+  
+  editTask(task: Task) {
+    const dialogRef = this.dialog.open(TaskModalComponent, {
+      width: '50%',
+      data: {taskEdit : task}
+    });
+    
+    dialogRef.afterClosed().subscribe(result=>{
+      this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
+    })
+  }
+
+
+  selectTasks(IdProject){
+    this.selectedTasks = [];
+    
+    for (let index = 0; index < this.tasks.length; index++){
+      if (this.tasks[index].project.id == IdProject){
+        
+        this.selectedTasks.push(this.tasks[index]);
+
+      }
+
+    }
   }
 }

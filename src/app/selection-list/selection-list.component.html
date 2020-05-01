@@ -3,105 +3,182 @@
   <mat-tab-group>
     <!--Start of the nested table that shows the tasks which are coming up regardless of the project number-->
     <mat-tab label="Coming up">
-     
-      <table mat-table
-       [dataSource]="comingupTasks" multiTemplateDataRows
-       class="mat-elevation-z8">
-        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-          <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="expandedDetail">
-          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-            <div class="example-element-detail"
-                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-
-              <div class="example-element-description">
-                {{element.description}}
-              </div> 
-            </div>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
-            class="example-element-row"
-            [class.example-expanded-row]="expandedElement === element"
-            (click)="expandedElement = expandedElement === element ? null : element">
-        </tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-      </table> 
-
-
-    </mat-tab>
-
+      <mat-list>
+        <mat-list-item *ngFor="let task of comingupTasks">
+          <table mat-table [dataSource]="comingupTasks" class="mat-elevation-z8">
+            <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <ng-container *matCellDef="let task of comingupTasks">
+              <td mat-cell >{{task.id}} </td></ng-container> 
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <ng-container *matCellDef="let task of comingupTasks">
+              <td mat-cell>{{task.name}} <!-- /ng-container --></td></ng-container> 
+            </ng-container>
+            <ng-container matColumnDef="project.id">
+              <th mat-header-cell *matHeaderCellDef> Project ID </th>
+              <ng-container *matCellDef="let task of comingupTasks">
+              <td mat-cell >{{task.project.id}} <!-- /ng-container --></td></ng-container> 
+            </ng-container>
+            <ng-container matColumnDef="project.projectName">
+              <th mat-header-cell *matHeaderCellDef> Project Name </th>
+              <ng-container *matCellDef="let task of comingupTasks">
+              <td mat-cell > {{task.project.projectName}} <!-- /ng-container --></td></ng-container> 
+            </ng-container>
+            <ng-container matColumnDef="duration">
+              <th mat-header-cell *matHeaderCellDef> Duration </th>
+              <ng-container *matCellDef="let task of comingupTasks">
+              <td mat-cell>{{task.duration}} <!-- /ng-container --></td></ng-container> 
+            </ng-container>
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> Description </th>
+              <ng-container *matCellDef="let task of comingupTasks">
+              <td mat-cell>{{task.description}} <!-- /ng-container --></td></ng-container> 
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <ng-container *matCellDef="let task of comingupTasks">
+              <td mat-cell>{{task.status}} <!-- /ng-container --></td></ng-container> 
+            </ng-container>
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <ng-container *matCellDef="let task of comingupTasks">
+              <td mat-cell>
+                <ng-container *ngIf="task.status == 'New'">
+                <button mat-raised-button color="accent" (click)="startTask(task)">Start</button>
+                </ng-container>
+                <ng-container *ngIf="task.status == 'Started'">
+                <button mat-raised-button color="accent" (click)="closeTask(task)">Close</button>
+                </ng-container>
+                <button mat-raised-button color="primary" (click)="editTask(task)">Edit</button>        
+                <button mat-raised-button color="warn" (click)="delete(task.id)">Del</button>
+                <!-- /ng-container -->
+              </td></ng-container> 
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-list-item>
+      </mat-list>
+    </mat-tab> 
 
     <!--Start of the nested table that shows the tasks with status new-->
     <mat-tab label="New">
-
-      <table mat-table
-       [dataSource]="newTasks" multiTemplateDataRows
-       class="mat-elevation-z8">
-        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-          <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+      <table mat-table [dataSource]="newTasks" class="mat-elevation-z8">
+        <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <ng-container *matCellDef="let task of newTasks">
+          <td mat-cell >{{task.id}} </td></ng-container> 
         </ng-container>
-
-        <ng-container matColumnDef="expandedDetail">
-          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-            <div class="example-element-detail"
-                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-
-              <div class="example-element-description">
-                {{element.description}}
-              </div> 
-            </div>
-          </td>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <ng-container *matCellDef="let task of newTasks">
+          <td mat-cell>{{task.name}} <!-- /ng-container --></td></ng-container> 
         </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
-            class="example-element-row"
-            [class.example-expanded-row]="expandedElement === element"
-            (click)="expandedElement = expandedElement === element ? null : element">
-        </tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-      </table> 
-
-
+        <ng-container matColumnDef="project.id">
+          <th mat-header-cell *matHeaderCellDef> Project ID </th>
+          <ng-container *matCellDef="let task of newTasks">
+          <td mat-cell >{{task.project.id}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="project.projectName">
+          <th mat-header-cell *matHeaderCellDef> Project Name </th>
+          <ng-container *matCellDef="let task of newTasks">
+          <td mat-cell > {{task.project.projectName}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="duration">
+          <th mat-header-cell *matHeaderCellDef> Duration </th>
+          <ng-container *matCellDef="let task of newTasks">
+          <td mat-cell>{{task.duration}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <ng-container *matCellDef="let task of newTasks">
+          <td mat-cell>{{task.description}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <ng-container *matCellDef="let task of newTasks">
+          <td mat-cell>{{task.status}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <ng-container *matCellDef="let task of newTasks">
+          <td mat-cell>
+            <ng-container *ngIf="task.status == 'New'">
+            <button mat-raised-button color="accent" (click)="startTask(task)">Start</button>
+            </ng-container>
+            <ng-container *ngIf="task.status == 'Started'">
+            <button mat-raised-button color="accent" (click)="closeTask(task)">Close</button>
+            </ng-container>
+            <button mat-raised-button color="primary" (click)="editTask(task)">Edit</button>        
+            <button mat-raised-button color="warn" (click)="delete(task.id)">Del</button>
+            <!-- /ng-container -->
+          </td></ng-container> 
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
     </mat-tab>
     <!--Start of the nested table that shows the tasks with status started-->
     <mat-tab label="Started">
-
-      <table mat-table
-      [dataSource]="startedTasks" multiTemplateDataRows
-      class="mat-elevation-z8">
-        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-          <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+      <table mat-table [dataSource]="startedTasks" class="mat-elevation-z8">
+        <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <ng-container *matCellDef="let task of startedTasks">
+          <td mat-cell >{{task.id}} </td></ng-container> 
         </ng-container>
-
-        <ng-container matColumnDef="expandedDetail">
-          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-            <div class="example-element-detail"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-
-              <div class="example-element-description">
-                {{element.description}}
-              </div> 
-            </div>
-          </td>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <ng-container *matCellDef="let task of startedTasks">
+          <td mat-cell>{{task.name}} <!-- /ng-container --></td></ng-container> 
         </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-          <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
-              class="example-element-row"
-              [class.example-expanded-row]="expandedElement === element"
-              (click)="expandedElement = expandedElement === element ? null : element">
-          </tr>
-          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-        </table> 
+        <ng-container matColumnDef="project.id">
+          <th mat-header-cell *matHeaderCellDef> Project ID </th>
+          <ng-container *matCellDef="let task of startedTasks">
+          <td mat-cell >{{task.project.id}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="project.projectName">
+          <th mat-header-cell *matHeaderCellDef> Project Name </th>
+          <ng-container *matCellDef="let task of startedTasks">
+          <td mat-cell > {{task.project.projectName}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="duration">
+          <th mat-header-cell *matHeaderCellDef> Duration </th>
+          <ng-container *matCellDef="let task of startedTasks">
+          <td mat-cell>{{task.duration}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <ng-container *matCellDef="let task of startedTasks">
+          <td mat-cell>{{task.description}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <ng-container *matCellDef="let task of startedTasks">
+          <td mat-cell>{{task.status}} <!-- /ng-container --></td></ng-container> 
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <ng-container *matCellDef="let task of startedTasks">
+          <td mat-cell>
+            <ng-container *ngIf="task.status == 'New'">
+            <button mat-raised-button color="accent" (click)="startTask(task)">Start</button>
+            </ng-container>
+            <ng-container *ngIf="task.status == 'Started'">
+            <button mat-raised-button color="accent" (click)="closeTask(task)">Close</button>
+            </ng-container>
+            <button mat-raised-button color="primary" (click)="editTask(task)">Edit</button>        
+            <button mat-raised-button color="warn" (click)="delete(task.id)">Del</button>
+            <!-- /ng-container -->
+          </td></ng-container> 
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
     </mat-tab>
   </mat-tab-group>
 </mat-card>

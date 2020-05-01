@@ -1,3 +1,4 @@
+
 <div [ngClass]="{'dark-theme': isDarkTheme | async}">
   <app-toolbar></app-toolbar>
   
@@ -5,7 +6,20 @@
   
   <router-outlet></router-outlet>
   
+
   <mat-card id="UserComponent">
+<!--Site body-->
+
+<p>userID = {{LoginId}}</p>
+<div class="mat-app-background basic-container">
+  <mat-card id="UserComponent">
+  <!--user selection-->
+  <!-- app-user-form></app-user-form -->
+  <app-user-list [appGlobal]="this"></app-user-list>
+  <!--p>boven userlist: user project = {{projectIdUser}}</p-->
+</mat-card>
+<br>
+
   
   <!-- Footer -->
   <footer>
