@@ -38,8 +38,10 @@ export class UserListComponent implements OnInit {
 
   setUserProject(value): void {
     this.project = value;
-    this.appGlobal.projectIdUser = value;
+    //this.appGlobal.projectIdUser = value;
 }
+
+
 
 
 
