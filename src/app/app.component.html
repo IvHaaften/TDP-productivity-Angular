@@ -6,69 +6,6 @@
   <router-outlet></router-outlet>
   
   <mat-card id="UserComponent">
-
-
-  ################## start merge Edwin ###################
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Unnamed Productivity Project</span>
-    <button mat-flat-button color="primary" aria-label="navigate to homepage">Home</button>
-    <span class="nav-spacer"></span>
-    <app-user-login [appGlobal2]="this"></app-user-login>
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<!--Site body-->
-
-<p>userID = {{LoginId}}</p>
-<div class="mat-app-background basic-container">
-  <mat-card id="UserComponent">
-  <!--user selection-->
-  <!-- app-user-form></app-user-form -->
-  <app-user-list [appGlobal]="this"></app-user-list>
-  <!--p>boven userlist: user project = {{projectIdUser}}</p-->
-</mat-card>
-<br>
- ############33 end merge edwin ####################3
-
-  
-  ###############start merge original ########################
-    <!--user selection-->
-    <!-- app-user-form></app-user-form -->
-    <app-user-list [appGlobal]="this"></app-user-list>
-    <!--p>boven userlist: user project = {{projectIdUser}}</p-->
-      </mat-card>
-############# end merge original ###################
-
-  <!--Task Selection Component-->
-  <!--<mat-card id="SelectionComponent">
-    <mat-card-title>Task selection</mat-card-title>
-    <app-selection-form [list]=selectionComp #SelectionFormComponent></app-selection-form>
-    <app-selection-list #selectionComp></app-selection-list>
-  </mat-card>--->
-
-  <!---<mat-card id="Tabbed lists">
-    <mat-tab-group>
-      <mat-tab label="Projects">
-        <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
-
-
-  ################## start merge Edwin ###################
-        <div><app-project-list #projectComp [userIdProject]="LoginId"></app-project-list></div>
- ############33 end merge edwin ####################3
-
-  ###############start merge original ########################
-        <div><app-project-list #projectComp [userIdProject]="projectIdUser" [projectUpdate] = 'SelectionFormComponent'></app-project-list></div>
-############# end merge original ###################
-
-      </mat-tab>
-      <mat-tab label="Tasks">
-        <app-task-form [taskList] = 'taskComp'></app-task-form>
-        <app-task-list #taskComp [userIdProject]="LoginId"></app-task-list>
-      </mat-tab>
-    </mat-tab-group> --->
-  
-  <!-- end of Site body--> 
   
   <!-- Footer -->
   <footer>
