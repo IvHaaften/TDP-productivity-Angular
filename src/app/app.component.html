@@ -13,7 +13,7 @@
   <!--Task Selection Component-->
   <mat-card id="SelectionComponent">
     <mat-card-title>Task selection</mat-card-title>
-    <app-selection-form [list]=selectionComp></app-selection-form>
+    <app-selection-form [list]=selectionComp #SelectionFormComponent></app-selection-form>
     <app-selection-list #selectionComp></app-selection-list>
   </mat-card>
   <br>
@@ -21,7 +21,7 @@
     <mat-tab-group>
       <mat-tab label="Projects">
         <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
-        <div><app-project-list #projectComp [userIdProject]="projectIdUser"></app-project-list></div>
+        <div><app-project-list #projectComp [userIdProject]="projectIdUser" [projectUpdate] = 'SelectionFormComponent'></app-project-list></div>
       </mat-tab>
       <mat-tab label="Tasks">
         <app-task-form [taskList] = 'taskComp'></app-task-form>
