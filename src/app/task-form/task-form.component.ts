@@ -5,6 +5,9 @@ import { Task } from '../task';
 import {Project} from '../project';
 import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
+import { ThemeService } from '../theme.service';
+import { Observable } from 'rxjs/';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-task-form',
@@ -21,7 +24,9 @@ export class TaskFormComponent implements OnInit {
   
   task = new Task();
   
-  constructor(private taskService:TaskService, public dialog: MatDialog) {
+  theme:string;
+  
+  constructor(private taskService:TaskService, public dialog: MatDialog, private themeService: ThemeService) {
     const currentDate: Date = new Date; currentDate.getDate();
     this.minDate = currentDate; 
   }
@@ -30,14 +35,17 @@ export class TaskFormComponent implements OnInit {
     this.task.project = new Project();
   }
   
+  
   public save(){
     this.taskService.save(this.task).subscribe(() => this.taskList.reloadAll());
   }
   
   newTask() {
+    this.theme = this.themeService.currentActive();
     const dialogRef = this.dialog.open(TaskModalComponent, {
       width: '50%',
-      data:{taskEdit: this.task}
+      data:{taskEdit: this.task},
+      panelClass: this.theme,
     });
     
     dialogRef.afterClosed().subscribe(result=>{
@@ -45,7 +53,7 @@ export class TaskFormComponent implements OnInit {
       this.clear();
     })
   }
-
+  
   clear(){
     this.task.name = "";
     this.task.project = new Project;
@@ -53,5 +61,5 @@ export class TaskFormComponent implements OnInit {
     this.task.description = "";
     this.task.deadline = null;
   }
-
+  
 }
