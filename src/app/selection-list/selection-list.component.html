@@ -1,17 +1,3 @@
- <!-- <mat-accordion>
-  <mat-expansion-panel *ngFor="let task of tasks">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{task.name}}
-      </mat-panel-title>
-      <mat-panel-description>
-        Click for more details
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>{{task.name}}{{task.duration}}</p>
-  </mat-expansion-panel>
-</mat-accordion> -->
-
 <table mat-table
        [dataSource]="tasks" multiTemplateDataRows
        class="mat-elevation-z8">
@@ -27,9 +13,7 @@
 
         <div class="example-element-description">
           {{element.description}}
-
         </div> 
-
       </div>
     </td>
   </ng-container>
@@ -42,3 +26,5 @@
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 </table> 
+
+

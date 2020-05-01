@@ -1,26 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
-
-
-/*
-.mat-form-field-suffix{
-    display: none;
-}
-*/
-/*
-::ng-deep .cdk-overlay-container mat-datepicker-content{
-  z-index:2000;
-  https://stackoverflow.com/questions/53527964/mat-datepicker-toggle-showing-behind-modal
-}
-*/
-/*
-ng::deep .cdk-overlay-pane mat-datepicker-popup{
-  z-index:2000!important;
-}*/
-
 .cdk-overlay-container{
   z-index:2000;
 }
 
 .basic-container {
   padding: 30px;
+}
+
+body{
+  margin: 0px;
+}
+
+router-outlet{
+  margin: 0px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+mat-slide-toggle {
+  margin-right: 10px;
+  padding:5px;
+}
+
+footer {
+  position: sticky;
+  bottom:0;
+  width: 100%;
+  overflow: hidden;
 }

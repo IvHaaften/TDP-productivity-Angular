@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ThemeService } from './theme.service';
+import { Observable } from 'rxjs/';
 import {TaskFormComponent} from './task-form/task-form.component';
 import {TaskService} from './task.service';
 import {Task} from './task';
@@ -14,9 +16,19 @@ export class AppComponent {
 
   user: number;
 
+
   //projectIdUser: number;
   LoginId: number;
-  
+
+
+  isDarkTheme: Observable<boolean>;
+
+  constructor(private themeService: ThemeService) { }
+
+  ngOnInit() {
+    this.isDarkTheme = this.themeService.isDarkTheme;
+  }
+
 
 
 

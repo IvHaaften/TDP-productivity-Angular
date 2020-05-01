@@ -16,6 +16,8 @@ export class ProjectFormComponent implements OnInit {
   
   @Input()
   projectList: ProjectListComponent;
+
+ 
   
   project = new Project();
   
@@ -28,7 +30,11 @@ export class ProjectFormComponent implements OnInit {
   
   ngOnInit(){}
   
-  public save() {this.projectService.save(this.project).subscribe(() => this.projectList.reloadAll());}
+  public save() {
+    this.projectService.save(this.project).subscribe(() => this.projectList.reloadAll());
+
+  
+  }
   
   newProject() {
     const dialogRef = this.dialog.open(ProjectModalComponent, {
@@ -38,8 +44,12 @@ export class ProjectFormComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(result=>{
       this.projectService.save(result).subscribe(() => this.projectList.reloadAll());
+      this.clear();
     })
   }
-   
-  
+  clear(){
+    this.project.projectName = "";
+    this.project.deadline = null;
+    this.project.duration = null; 
+  }  
 }

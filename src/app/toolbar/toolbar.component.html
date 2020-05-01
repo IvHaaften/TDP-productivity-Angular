@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Unnamed Productivity Project</span>
+    <a routerLink="/home" mat-flat-button color="primary" aria-label="navigate to homepage">Home</a>
+    <a routerLink="/select" mat-flat-button color="primary" aria-label="navigate to project selector">Select</a>
+    <a routerLink="/list" mat-flat-button color="primary" aria-label="navigate to lists">Lists</a>
+    <span class="nav-spacer"></span>
+    <mat-icon >wb_sunny</mat-icon>
+    <mat-slide-toggle [checked]="!isDarkTheme" (change)="toggleDarkTheme($event.checked)">  
+      <mat-icon >nights_stay</mat-icon>
+    </mat-slide-toggle> 
+    <app-user-login class="center"></app-user-login>
+  </mat-toolbar-row>
+</mat-toolbar>
