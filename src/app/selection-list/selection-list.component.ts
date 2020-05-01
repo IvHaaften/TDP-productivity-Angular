@@ -24,7 +24,7 @@ export class SelectionListComponent implements OnInit {
   startedTasks:Task[];
   comingupTasks:Task[];
 
-  columnsToDisplay = ['name','duration', 'deadline', 'status', 'actions'];
+  columnsToDisplay = ['name','duration', 'deadline', 'status'];
   expandedElement: Task | null;
   selectedProjectID: number;
   selectedTimeWindow: number;
@@ -47,7 +47,6 @@ export class SelectionListComponent implements OnInit {
 
       this.newTasks = newfilteredTasks.slice(0,4)
 
-
       // Stukje code dat filtered en sorteerd voor started
       let startedfilteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
       startedfilteredTasks = startedfilteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
@@ -56,7 +55,6 @@ export class SelectionListComponent implements OnInit {
       startedfilteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
 
       this.startedTasks = startedfilteredTasks.slice(0,4)
-
 
       //Stukje code dat filtered en sorteerd voor coming up
       let comingupfilteredTasks = tasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
