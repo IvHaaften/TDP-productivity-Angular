@@ -26,6 +26,10 @@ import { TaskModalComponent } from './task-modal/task-modal.component';
 import { UserModalComponent } from './user-modal/user-modal.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { SelectPageComponent } from './select-page/select-page.component';
+import { ListPageComponent } from './list-page/list-page.component';
+
 
 
 @NgModule({
@@ -43,7 +47,10 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     TaskModalComponent,
     UserModalComponent,
     UserLoginComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    HomepageComponent,
+    SelectPageComponent,
+    ListPageComponent
   ],
   imports: [
     BrowserModule,
