@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import {LoginService} from '../login.service';
+import { Component, OnInit, } from '@angular/core';
 
 @Component({
   selector: 'app-homepage',
@@ -8,17 +7,10 @@ import {LoginService} from '../login.service';
 })
 export class HomepageComponent implements OnInit {
 
-  LoginId: number   // deze moet via een service naar alle andere componenten.
 
-  
-
-  constructor(public loginService:LoginService) { }
+  constructor() { }
 
   ngOnInit(): void {
   } 
-
-  ngOnDestroy(){
-      this.loginService.globalLoginId = this.LoginId;
-  }
 
 }
