@@ -14,3 +14,8 @@ mat-slide-toggle {
     margin-right: 10px;
     padding:5px;
 }
+
+
+.mat-toolbar.mat-primary{
+    height: 7vh;
+}

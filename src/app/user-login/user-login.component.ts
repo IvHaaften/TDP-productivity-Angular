@@ -31,7 +31,7 @@ export class UserLoginComponent implements OnInit {
   @Input()
   inlogFromHome:HomepageComponent
   
-
+  
   ngOnInit(): void {
     this.projectReturn;
   }
