@@ -29,3 +29,17 @@ footer {
   width: 100%;
   overflow: hidden;
 }
+
+.footerClass{
+    position: fixed;
+    bottom: 0px;;
+}
+
+.mat-app-background{
+  height: 86vh;
+}
+
+/*
+html{
+      background-color: #303030;
+}*/
