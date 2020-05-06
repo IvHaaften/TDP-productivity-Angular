@@ -39,7 +39,6 @@ footer {
   height: 86vh;
 }
 
-/*
-html{
-      background-color: #303030;
-}*/
+.mat-body{
+    margin-bottom: 80pt;
+}
