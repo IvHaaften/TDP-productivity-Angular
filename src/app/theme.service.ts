@@ -12,7 +12,7 @@ export class ThemeService {
   
   setDarkTheme(isDarkTheme: boolean) {
     this._darkTheme.next(isDarkTheme);
-    if(this.isDarkTheme){this.theme="dark-theme"}else{this.theme="light-theme"};
+    if(isDarkTheme){this.theme="dark-theme"}else{this.theme=""};
   }
 
   currentActive(){

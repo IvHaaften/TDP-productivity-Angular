@@ -44,6 +44,7 @@ export class UserLoginComponent implements OnInit {
         this.projectReturn = answer;
         this.LoginId = this.projectReturn;
         this.loginService.globalLoginId = this.LoginId; 
+        this.loginService.setLogin();
         console.log("loginID = " + this.loginService.globalLoginId);
       });
     })
@@ -62,7 +63,8 @@ export class UserLoginComponent implements OnInit {
       this.userService.login(result).subscribe(answer=>{
         this.projectReturn = answer;
         this.LoginId = this.projectReturn;
-        this.loginService.globalLoginId = this.LoginId; 
+        this.loginService.globalLoginId = this.LoginId;
+        this.loginService.setLogin(); 
         console.log("loginID = " + this.loginService.globalLoginId);
       });
     })
