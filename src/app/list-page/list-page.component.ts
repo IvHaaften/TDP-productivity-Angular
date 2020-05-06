@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from '../login.service';
 
 @Component({
   selector: 'app-list-page',
@@ -11,9 +12,10 @@ export class ListPageComponent implements OnInit {
 
   projectIdUser: number;
 
-  constructor() { }
+  constructor(public loginService:LoginService) { }
 
   ngOnInit(): void {
+    this.projectIdUser = this.loginService.globalLoginId;
   }
 
 }

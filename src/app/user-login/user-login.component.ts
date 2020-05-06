@@ -5,6 +5,7 @@ import {UserModalComponent } from '../user-modal/user-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { AppComponent } from '../app.component';
+import { HomepageComponent } from '../homepage/homepage.component';
 
 @Component({
   selector: 'app-user-login',
@@ -19,6 +20,9 @@ export class UserLoginComponent implements OnInit {
 
   @Input()
   appGlobal2:AppComponent
+
+  @Input()
+  inlogFromHome:HomepageComponent
   
   constructor(private userService:UserService, public dialog: MatDialog, private snackBar: MatSnackBar) {
     
@@ -58,7 +62,9 @@ export class UserLoginComponent implements OnInit {
       
       //console.log("returned id = " + this.projectReturn);
       
-    this.appGlobal2.LoginId = this.projectReturn;
+  //  this.appGlobal2.LoginId = this.projectReturn;
+    this.inlogFromHome.LoginId = this.projectReturn;
+      console.log("id = " + this.inlogFromHome.LoginId);
       
     })
     
