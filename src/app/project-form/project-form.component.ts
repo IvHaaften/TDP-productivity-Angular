@@ -34,8 +34,6 @@ export class ProjectFormComponent implements OnInit {
   
   public save() {
     this.projectService.save(this.project).subscribe(() => this.projectList.reloadAll());
-
-  
   }
   
   newProject() {

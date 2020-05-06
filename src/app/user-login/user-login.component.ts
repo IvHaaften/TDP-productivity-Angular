@@ -7,6 +7,7 @@ import { ThemeService } from '../theme.service';
 import { HomepageComponent } from '../homepage/homepage.component';
 import {LoginService} from '../login.service';
 import { AppComponent } from '../app.component';
+import{ProjectListComp} from '../project-list/project-list.component';
 
 @Component({
   selector: 'app-user-login',
@@ -16,6 +17,9 @@ import { AppComponent } from '../app.component';
 export class UserLoginComponent implements OnInit {
   
   user = new User();
+
+  @Input()
+  updateProjectList:ProjectListComp
   
   projectReturn: number;
   LoginId: number
@@ -62,6 +66,7 @@ export class UserLoginComponent implements OnInit {
         this.LoginId = this.projectReturn;
         this.loginService.globalLoginId = this.LoginId; 
         console.log("loginID = " + this.loginService.globalLoginId);
+        this.updateProjectList.selectProjects(1);
       });
     })
     
