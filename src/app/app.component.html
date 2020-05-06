@@ -3,6 +3,7 @@
   <app-toolbar></app-toolbar>
   
   <!--Site body-->
+
   
   <router-outlet></router-outlet>
   
@@ -13,7 +14,6 @@
   <mat-card id="UserComponent">
 
 
-  ################## start merge Edwin ###################
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Unnamed Productivity Project</span>
@@ -27,27 +27,15 @@
 <!--Site body-->
 
 <p>userID = {{LoginId}}</p>
-<div class="mat-app-background basic-container">
-  <mat-card id="UserComponent">
-  <!--user selection-->
-  <!-- app-user-form></app-user-form -->
-  <app-user-list [appGlobal]="this"></app-user-list>
-  <!--p>boven userlist: user project = {{projectIdUser}}</p-->
-</mat-card>
+
 <br>
 
   
-
- ############33 end merge edwin ####################3
-
-  
-  ###############start merge original ########################
     <!--user selection-->
     <!-- app-user-form></app-user-form -->
     <app-user-list [appGlobal]="this"></app-user-list>
     <!--p>boven userlist: user project = {{projectIdUser}}</p-->
       </mat-card>
-############# end merge original ###################
 
   <!--Task Selection Component-->
   <!--<mat-card id="SelectionComponent">
