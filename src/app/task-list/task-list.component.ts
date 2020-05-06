@@ -20,7 +20,7 @@ export interface TaskModalData {
   styleUrls: ['./task-list.component.css'],
   providers:  [TaskService]
 })
-
+ 
 
 export class TaskListComponent implements OnInit {
   
