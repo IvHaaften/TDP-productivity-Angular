@@ -49,17 +49,20 @@ export class TaskFormComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      this.taskService.save(result).subscribe(() => this.taskList.reloadAll());
-      this.clear();
-    })
+      this.taskService.save(result).subscribe(() => {
+        this.taskList.reloadAll();
+        this.clear();});
+        
+      })
+    }
+    
+    clear(){
+      this.task.name = "";
+      this.task.project = new Project;
+      this.task.duration = null; 
+      this.task.description = "";
+      this.task.deadline = null;
+    }
+    
   }
   
-  clear(){
-    this.task.name = "";
-    this.task.project = new Project;
-    this.task.duration = null; 
-    this.task.description = "";
-    this.task.deadline = null;
-  }
-  
-}

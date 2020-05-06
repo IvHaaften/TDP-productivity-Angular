@@ -42,12 +42,12 @@
     </div>
 </div>
 <div mat-dialog-actions>
-    <button mat-button color="primary" mat-dialog-close>Cancel</button>
+    <button mat-flat-button color="primary" mat-dialog-close>Cancel</button>
     <div *ngIf="data.origin=='login'">
-        <button mat-button color="primary" [mat-dialog-close]="data.user">Save</button>
+        <button mat-flat-button color="primary" [mat-dialog-close]="data.user">Save</button>
     </div>
     <div *ngIf="data.origin=='register'">
-        <button mat-button color="primary" [mat-dialog-close]="data.user" *ngIf="data.user.password == data.passwordCheck">Save</button>
-        <button mat-button disabled *ngIf="data.user.password != data.passwordCheck">Save</button>
+        <button mat-flat-button color="primary" [mat-dialog-close]="data.user" *ngIf="data.user.password == data.passwordCheck">Save</button>
+        <button mat-flat-button disabled *ngIf="data.user.password != data.passwordCheck">Save</button>
     </div>
 </div>
