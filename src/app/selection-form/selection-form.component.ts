@@ -5,6 +5,7 @@ import {Task} from '../task'
 import { TaskService } from '../task.service';
 import { Project } from '../project';
 import { ProjectService } from '../project.service';
+import {LoginService} from '../login.service'
 
 @Component({
   selector: 'app-selection-form',
@@ -25,7 +26,9 @@ export class SelectionFormComponent implements OnInit {
 
   important: Task[];
 
-  constructor(private projectService: ProjectService, private taskService:TaskService) { }
+  availableProject: number;
+
+  constructor(private projectService: ProjectService, private taskService:TaskService, public loginService: LoginService) { }
 
   ngOnInit(): void {
     this.projects
@@ -33,6 +36,7 @@ export class SelectionFormComponent implements OnInit {
     this.timeWindow
     this.reloadAll()
     this.priority()
+    this.availableProject = this.loginService.globalLoginId;
   }
 
   reloadAll(){

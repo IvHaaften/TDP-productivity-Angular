@@ -4,6 +4,8 @@ import {TaskService} from '../task.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
+
+
 @Component({
   selector: 'app-selection-list',
   templateUrl: './selection-list.component.html',
