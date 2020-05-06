@@ -26,6 +26,7 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectReturn;
+    this.LoginId;
   }
   
   //if register button has been pressed
@@ -55,11 +56,13 @@ export class UserLoginComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      this.userService.login(result).subscribe(projectReturn=> this.projectReturn = projectReturn);
-      this.LoginId = this.projectReturn;
-      console.log("id = " + this.LoginId);
-      this.loginService.globalLoginId = this.LoginId; 
-      console.log("globalLoginid = " + this.loginService.globalLoginId);
+      console.log("projectReturn init = " + this.projectReturn);
+      this.userService.login(result).subscribe(answer=>{
+        this.projectReturn = answer;
+        this.LoginId = this.projectReturn;
+        this.loginService.globalLoginId = this.LoginId; 
+        console.log("loginID = " + this.loginService.globalLoginId);
+      });
     })
     
   }
