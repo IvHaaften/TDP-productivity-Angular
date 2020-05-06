@@ -3,10 +3,10 @@ import {User} from '../user';
 import {UserService} from '../user.service';
 import {UserModalComponent } from '../user-modal/user-modal.component';
 import {MatDialog} from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import { ThemeService } from '../theme.service';
-import { AppComponent } from '../app.component';
 import { HomepageComponent } from '../homepage/homepage.component';
+import {LoginService} from '../login.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-user-login',
@@ -18,28 +18,13 @@ export class UserLoginComponent implements OnInit {
   user = new User();
   
   projectReturn: number;
-
-
+  LoginId: number
   theme:string;
-
-  constructor(private userService:UserService, public dialog: MatDialog, private snackBar: MatSnackBar, private themeService: ThemeService) { }
   
-
-  @Input()
-  appGlobal2:AppComponent
-
-  @Input()
-  inlogFromHome:HomepageComponent
+  constructor(private userService:UserService, public dialog: MatDialog, private themeService: ThemeService, public loginService:LoginService) {}
   
-
   ngOnInit(): void {
     this.projectReturn;
-  }
-  
-  wrongPasswordSnackbar(message: string) {
-    this.snackBar.open(message, "Dismiss", {
-      duration: 2000,
-    });
   }
   
   //if register button has been pressed
@@ -53,6 +38,9 @@ export class UserLoginComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(result=>{
       this.userService.save(result).subscribe();
+      this.LoginId = this.projectReturn;
+      console.log("id = " + this.LoginId);
+      this.loginService.globalLoginId = this.LoginId;
     })
   }
   
@@ -67,13 +55,10 @@ export class UserLoginComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(result=>{
       this.userService.login(result).subscribe(projectReturn=> this.projectReturn = projectReturn);
-      
-      //console.log("returned id = " + this.projectReturn);
-      
-  //  this.appGlobal2.LoginId = this.projectReturn;
-    this.inlogFromHome.LoginId = this.projectReturn;
-      console.log("id = " + this.inlogFromHome.LoginId);
-      
+      this.LoginId = this.projectReturn;
+      console.log("id = " + this.LoginId);
+      this.loginService.globalLoginId = this.LoginId; 
+      console.log("globalLoginid = " + this.loginService.globalLoginId);
     })
     
   }
