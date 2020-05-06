@@ -16,7 +16,10 @@ export class AppComponent {
 
   user: number;
 
-  projectIdUser: number;
+
+  //projectIdUser: number;
+  LoginId: number;
+
 
   isDarkTheme: Observable<boolean>;
 
@@ -25,6 +28,8 @@ export class AppComponent {
   ngOnInit() {
     this.isDarkTheme = this.themeService.isDarkTheme;
   }
+
+
 
 
 /*
