@@ -6,6 +6,7 @@ import { UserListComponent } from '../user-list/user-list.component';
 
 import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
+import { ThemeService } from '../theme.service';
 
 
 
@@ -25,6 +26,7 @@ export class TaskListComponent implements OnInit {
   
 
   tasks: Task[];
+  theme:string;
   displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description','status', 'actions'];
 
   selectedTasks: Array<Task> = [];
@@ -36,7 +38,7 @@ export class TaskListComponent implements OnInit {
     userIdProject: UserListComponent
 
 
-  constructor(private taskService: TaskService, public dialog: MatDialog) {
+  constructor(private taskService: TaskService, public dialog: MatDialog, private themeService: ThemeService) {
     
   }
   
@@ -71,9 +73,11 @@ export class TaskListComponent implements OnInit {
   }
   
   editTask(task: Task) {
+    this.theme = this.themeService.currentActive();
     const dialogRef = this.dialog.open(TaskModalComponent, {
       width: '50%',
-      data: {taskEdit : task}
+      data: {taskEdit : task},
+      panelClass: this.theme,
     });
     
     dialogRef.afterClosed().subscribe(result=>{

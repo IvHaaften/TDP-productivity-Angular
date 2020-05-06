@@ -7,6 +7,7 @@ import { UserListComponent } from '../user-list/user-list.component';
 import{ProjectModalComponent} from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import { SelectionFormComponent } from '../selection-form/selection-form.component';
+import { ThemeService } from '../theme.service';
 
 
 export interface ProjectModalData {
@@ -25,6 +26,7 @@ export interface ProjectModalData {
 export class ProjectListComponent implements OnInit {
   
   projects: Project[];
+  theme:string;
 
   selectedProjects: Array<Project> = [];
 
@@ -35,7 +37,7 @@ export class ProjectListComponent implements OnInit {
   @Input()
   projectUpdate:SelectionFormComponent
   
-  constructor(private projectService: ProjectService, public dialog: MatDialog) {
+  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService) {
    }
 
   
@@ -58,9 +60,11 @@ export class ProjectListComponent implements OnInit {
   
   
   editProject(project: Project) {
+    this.theme = this.themeService.currentActive();
     const dialogRef = this.dialog.open(ProjectModalComponent, {
       width: '50%',
-      data: {projectEdit : project}
+      data: {projectEdit : project},
+      panelClass: this.theme,
     });
 
     dialogRef.afterClosed().subscribe(result=>{
