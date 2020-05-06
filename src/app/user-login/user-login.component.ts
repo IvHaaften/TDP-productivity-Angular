@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ThemeService } from '../theme.service';
 import { AppComponent } from '../app.component';
+import { HomepageComponent } from '../homepage/homepage.component';
 
 @Component({
   selector: 'app-user-login',
@@ -26,6 +27,9 @@ export class UserLoginComponent implements OnInit {
 
   @Input()
   appGlobal2:AppComponent
+
+  @Input()
+  inlogFromHome:HomepageComponent
   
 
   ngOnInit(): void {
@@ -66,7 +70,9 @@ export class UserLoginComponent implements OnInit {
       
       //console.log("returned id = " + this.projectReturn);
       
-    this.appGlobal2.LoginId = this.projectReturn;
+  //  this.appGlobal2.LoginId = this.projectReturn;
+    this.inlogFromHome.LoginId = this.projectReturn;
+      console.log("id = " + this.inlogFromHome.LoginId);
       
     })
     
