@@ -23,7 +23,7 @@ export class UserLoginComponent implements OnInit {
   
   constructor(private userService:UserService, public dialog: MatDialog, private themeService: ThemeService, public loginService:LoginService) {}
   
-
+  
   ngOnInit(): void {
     this.projectReturn;
     this.LoginId;
@@ -40,9 +40,12 @@ export class UserLoginComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(result=>{
       this.userService.save(result).subscribe();
-      this.LoginId = this.projectReturn;
-      console.log("id = " + this.LoginId);
-      this.loginService.globalLoginId = this.LoginId;
+      this.userService.login(result).subscribe(answer=>{
+        this.projectReturn = answer;
+        this.LoginId = this.projectReturn;
+        this.loginService.globalLoginId = this.LoginId; 
+        console.log("loginID = " + this.loginService.globalLoginId);
+      });
     })
   }
   
@@ -56,7 +59,6 @@ export class UserLoginComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      console.log("projectReturn init = " + this.projectReturn);
       this.userService.login(result).subscribe(answer=>{
         this.projectReturn = answer;
         this.LoginId = this.projectReturn;
