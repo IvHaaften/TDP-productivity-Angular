@@ -7,7 +7,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { ThemeService } from '../theme.service';
 import { AppComponent } from '../app.component';
 
-
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -16,6 +15,9 @@ import { AppComponent } from '../app.component';
 export class UserLoginComponent implements OnInit {
   
   user = new User();
+  
+  projectReturn: number;
+
 
   theme:string;
 
