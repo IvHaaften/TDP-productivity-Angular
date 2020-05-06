@@ -4,6 +4,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Project } from '../project';
 import { ProjectService } from '../project.service';
 
+
 export interface TaskModalData {
   taskEdit: Task;
 }
@@ -27,7 +28,7 @@ export class TaskModalComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.reloadAll()
+    this.reloadAll();
   }
 
   reloadAll(){

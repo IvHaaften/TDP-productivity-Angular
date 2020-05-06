@@ -1,3 +1,4 @@
+
 <div [ngClass]="{'dark-theme': isDarkTheme | async}">
   <app-toolbar></app-toolbar>
   
@@ -6,6 +7,10 @@
   
   <router-outlet></router-outlet>
   
+
+
+  <mat-card id="UserComponent">
+
   <mat-card id="UserComponent">
 
 
@@ -17,6 +22,7 @@
     <app-user-login [appGlobal2]="this"></app-user-login>
   </mat-toolbar-row>
 </mat-toolbar>
+
 
 <!--Site body-->
 
@@ -61,6 +67,7 @@
   
   <!-- end of Site body--> 
   
+
   <!-- Footer -->
   <footer>
     <mat-toolbar color="primary" role="footer">

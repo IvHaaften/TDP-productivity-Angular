@@ -15,5 +15,10 @@ $dark-accent:  mat-palette($mat-amber, 900);
 $dark-warn:    mat-palette($mat-red);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .dark-theme {
-    @include angular-material-theme($dark-theme);
-  }
+  @include angular-material-theme($dark-theme);
+}
+
+
+.light-theme {
+  @include angular-material-theme($light-theme);
+}
