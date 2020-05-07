@@ -21,6 +21,8 @@ export class UserModalComponent implements OnInit {
   user: User;
   
   projects: Project[];
+
+  validationMessage:string;
   
   
   constructor(public dialogRef: MatDialogRef<UserModalComponent>,@Inject(MAT_DIALOG_DATA) public data: UserModalData, private projectService: ProjectService) {
@@ -31,6 +33,28 @@ export class UserModalComponent implements OnInit {
 
     reloadAll(){
     this.projectService.findAll().subscribe(projects => this.projects = projects);
+  }
+
+  validateRegistration(){
+    if (this.data.user.username == undefined)
+    this.validationMessage = "Name cannot be empty"
+    else if (this.data.user.password == undefined)
+    this.validationMessage = "Password cannot be empty"
+    else if (this.data.passwordCheck != this.data.user.password)
+    this.validationMessage = "Second password not identical to first"
+    else if (this.data.user.id == undefined)
+    this.validationMessage = "Project field cannot be empty"
+
+    confirm(this.validationMessage)
+  }
+
+  validateLogin(){
+    if (this.data.user.username == undefined)
+    this.validationMessage = "Name cannot be empty"
+    else if (this.data.user.password == undefined)
+    this.validationMessage = "Password cannot be empty"
+
+    confirm(this.validationMessage)
   }
   
 }
