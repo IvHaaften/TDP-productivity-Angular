@@ -12,8 +12,8 @@ import { ProjectListComponent} from './project-components/project-list/project-l
 import { ProjectFormComponent } from './project-components/project-form/project-form.component';
 
 import {MaterialDesignModule} from './material-design/material-design.module';
-import { SelectionFormComponent } from './selection-form/selection-form.component';
-import { SelectionListComponent } from './selection-list/selection-list.component';
+import { SelectionFormComponent } from './selection-components/selection-form/selection-form.component';
+import { SelectionListComponent } from './selection-components/selection-list/selection-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 

@@ -6,7 +6,7 @@ import { UserListComponent } from '../../user-components/user-list/user-list.com
 
 import{ProjectModalComponent} from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';
-import { SelectionFormComponent } from '../../selection-form/selection-form.component';
+import { SelectionFormComponent } from '../../selection-components/selection-form/selection-form.component';
 import { ThemeService } from '../../theme.service';
 
 

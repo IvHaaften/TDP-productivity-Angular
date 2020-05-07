@@ -1,11 +1,11 @@
 import { Component, OnInit,Input } from '@angular/core';
-import{Selection} from '../selection';
+import{Selection} from '../../selection';
 import {SelectionListComponent} from '../selection-list/selection-list.component';
-import {Task} from '../task'
-import { TaskService } from '../task.service';
-import { Project } from '../project';
-import { ProjectService } from '../project.service';
-import {LoginService} from '../login.service'
+import {Task} from '../../task'
+import { TaskService } from '../../task.service';
+import { Project } from '../../project';
+import { ProjectService } from '../../project.service';
+import {LoginService} from '../../login.service'
 
 @Component({
   selector: 'app-selection-form',
