@@ -56,6 +56,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(){
+    this.reloadAll();
     this.selectProjects(this.userIdProject)
     // this.loginService.getProject().subscribe(
     //   input => {

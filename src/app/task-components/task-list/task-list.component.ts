@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 import {Task} from '../../models/task';
 import {TaskService} from '../../task.service';
 import { UserListComponent } from '../../user-components/user-list/user-list.component';
@@ -21,7 +21,7 @@ export interface TaskModalData {
 })
  
 
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, AfterContentInit {
   
 
   tasks: Task[];
@@ -45,10 +45,18 @@ export class TaskListComponent implements OnInit {
     this.reloadAll();
     this.userIdProject;
 
-    //this.selectTasks(this.userIdProject)
+    this.selectTasks(this.userIdProject)
    // this.selectedTasks = this.tasks
+  }
 
-    
+
+  ngAfterContentInit(){
+    this.reloadAll();
+    this.selectTasks(this.userIdProject)
+    // this.loginService.getProject().subscribe(
+    //   input => {
+    //     this.reloadAll();
+    //     this.selectProjects(input.projNum);}) 
   }
 
   reloadAll() {
