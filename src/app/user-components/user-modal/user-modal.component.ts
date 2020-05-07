@@ -45,7 +45,7 @@ export class UserModalComponent implements OnInit {
     else if (this.data.user.id == undefined)
     this.validationMessage = "Project field cannot be empty"
 
-    confirm(this.validationMessage)
+    alert(this.validationMessage)
   }
 
   validateLogin(){
@@ -54,7 +54,7 @@ export class UserModalComponent implements OnInit {
     else if (this.data.user.password == undefined)
     this.validationMessage = "Password cannot be empty"
 
-    confirm(this.validationMessage)
+    alert(this.validationMessage)
   }
   
 }
