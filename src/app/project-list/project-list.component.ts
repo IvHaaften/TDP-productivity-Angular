@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { SelectionFormComponent } from '../selection-form/selection-form.component';
 import { ThemeService } from '../theme.service';
 import{LoginService} from '../login.service';
+import { Observable } from 'rxjs';
 
 export interface ProjectModalData {
   projectEdit: Project;
@@ -26,7 +27,7 @@ export class ProjectListComponent implements OnInit {
   
   selectedProjects: Array<Project> = [];
   selectionProjects: Project[]; 
-  projectSelected:number;
+  projectSelected: Observable<any>;
   
   @Input()
   userIdProject: UserListComponent
@@ -46,12 +47,13 @@ export class ProjectListComponent implements OnInit {
     this.reloadAll();
     this.userIdProject;
     this.loginService.getProject().subscribe(
-      something => this.printingfunction(something.projNum)); 
+      something => this.printingfunction(something)); 
     this.loginService.getProject().subscribe(
-         input => this.projectSelected = input.projNum); 
-  
+         input => this.projectSelected = input); 
+    this.loginService.getProject().subscribe(
+        input => this.selectProjects(input.projNum)); 
   }
-  
+
   reloadAll(){
     this.projectService.findAll().subscribe(projects => this.projects = projects);
     this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
@@ -84,9 +86,5 @@ export class ProjectListComponent implements OnInit {
       }
       
     }
-  }
-
-  selectButton(projectNumber: number){
-
   }
 }
