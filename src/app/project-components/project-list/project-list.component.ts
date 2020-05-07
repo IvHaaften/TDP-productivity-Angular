@@ -39,7 +39,6 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   projectUpdate:SelectionFormComponent
   
   constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private loginService:LoginService) {
-
   }
   
   displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
@@ -47,7 +46,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   ngOnInit(){
     this.reloadAll();
     this.userIdProject;
-    // this.selectProjects(this.userIdProject)
+    this.selectProjects(this.userIdProject)
 
 
     // this.loginService.getProject().subscribe(
@@ -57,7 +56,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(){
-    // this.selectProjects(this.userIdProject)
+    this.selectProjects(this.userIdProject)
     // this.loginService.getProject().subscribe(
     //   input => {
     //     this.reloadAll();
