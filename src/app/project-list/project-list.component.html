@@ -53,6 +53,9 @@
 
 <button (click)="selectProjects(userIdProject)">select</button>
 
+<h4>We have currently selected project: {{this.projectSelected}}</h4>
+<br>
+
 <table mat-table [dataSource]="selectedProjects" class="mat-elevation-z8">
   <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
   <ng-container matColumnDef="id">
