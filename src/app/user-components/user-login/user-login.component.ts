@@ -64,6 +64,8 @@ export class UserLoginComponent implements OnInit {
         this.loginService.globalLoginId = this.LoginId;
         this.loginService.setLogin(); 
         console.log("loginID = " + this.loginService.globalLoginId);
+        if (this.loginService.globalLoginId == -1)
+          alert("Login failed. Incorrect credentials")
         this.send(); 
       });
     })
