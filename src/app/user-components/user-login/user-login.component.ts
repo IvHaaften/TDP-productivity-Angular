@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../user';
-import {UserService} from '../user.service';
+import {User} from 'src/app/user';
+import {UserService} from 'src/app/user.service';
 import {UserModalComponent } from '../user-modal/user-modal.component';
 import {MatDialog} from '@angular/material/dialog';
-import { ThemeService } from '../theme.service';
-import {LoginService} from '../login.service';
+import { ThemeService } from 'src/app/theme.service';
+import {LoginService} from 'src/app/login.service';
 
 @Component({
   selector: 'app-user-login',

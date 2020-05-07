@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
-import { Task } from '../task';
+import { Task } from '../../task';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Project } from '../project';
-import { ProjectService } from '../project.service';
+import { Project } from '../../project';
+import { ProjectService } from '../../project.service';
 
 
 export interface TaskModalData {

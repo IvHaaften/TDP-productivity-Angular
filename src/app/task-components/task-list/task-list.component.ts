@@ -1,12 +1,11 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Task} from '../task';
-import {TaskService} from '../task.service';
-import {Project} from '../project';
-import { UserListComponent } from '../user-list/user-list.component';
+import {Task} from '../../task';
+import {TaskService} from '../../task.service';
+import { UserListComponent } from '../../user-components/user-list/user-list.component';
 
 import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
-import { ThemeService } from '../theme.service';
+import { ThemeService } from '../../theme.service';
 
 
 

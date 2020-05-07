@@ -1,13 +1,13 @@
 import {Component, OnInit, Input} from '@angular/core';
-import{Project} from '../project';
-import{ProjectService} from '../project.service';
+import{Project} from '../../project';
+import{ProjectService} from '../../project.service';
 
-import { UserListComponent } from '../user-list/user-list.component';
+import { UserListComponent } from '../../user-components/user-list/user-list.component';
 
 import{ProjectModalComponent} from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';
-import { SelectionFormComponent } from '../selection-form/selection-form.component';
-import { ThemeService } from '../theme.service';
+import { SelectionFormComponent } from '../../selection-form/selection-form.component';
+import { ThemeService } from '../../theme.service';
 
 
 export interface ProjectModalData {

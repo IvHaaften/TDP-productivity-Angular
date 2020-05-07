@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from './theme.service';
 import { Observable } from 'rxjs/';
-import {TaskFormComponent} from './task-form/task-form.component';
+import {TaskFormComponent} from './task-components/task-form/task-form.component';
 import {TaskService} from './task.service';
 import {Task} from './task';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';

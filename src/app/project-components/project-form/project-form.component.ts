@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import{ProjectService} from '../project.service';
-import {Project} from '../project';
+import{ProjectService} from '../../project.service';
+import {Project} from '../../project';
 import {ProjectListComponent} from '../project-list/project-list.component';
 import { ProjectModalComponent } from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';
-import { ThemeService } from '../theme.service';
+import { ThemeService } from '../../theme.service';
 
 @Component({
   selector: 'app-project-form',

@@ -1,13 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TaskService } from '../task.service';
+import { TaskService } from '../../task.service';
 import { TaskListComponent } from '../task-list/task-list.component';
-import { Task } from '../task';
-import {Project} from '../project';
+import { Task } from '../../task';
+import {Project} from '../../project';
 import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
-import { ThemeService } from '../theme.service';
-import { Observable } from 'rxjs/';
-import { NgClass } from '@angular/common';
+import { ThemeService } from '../../theme.service';
+
 
 @Component({
   selector: 'app-task-form',
