@@ -2,7 +2,7 @@
 @include mat-core();
 
 $light-primary: mat-palette($mat-amber, 700);
-$light-accent:  mat-palette($mat-indigo);
+$light-accent:  mat-palette($mat-deep-orange, 700);
 $light-warn:    mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
@@ -10,9 +10,9 @@ $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
 @include angular-material-theme($light-theme);
 
-$dark-primary: mat-palette($mat-indigo, 900);
-$dark-accent:  mat-palette($mat-amber, 900);
-$dark-warn:    mat-palette($mat-red);
+$dark-primary: mat-palette($mat-deep-orange, 900);
+$dark-accent:  mat-palette($mat-yellow, 700);
+$dark-warn:    mat-palette($mat-red, A400);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .dark-theme {
   @include angular-material-theme($dark-theme);
