@@ -1,0 +1,9 @@
+<p><strong>New user</strong></p>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input matInput [(ngModel)]="user.project" type="number" class="form-control" id="which_project" name="project" placeholder="access to which project">
+        </div>
+    </div>
+    <button  mat-raised-button color="primary" type="submit" (click)="save(); clear()">Save</button>
+</form>

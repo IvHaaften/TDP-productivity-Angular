@@ -25,7 +25,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/app/custom.scss"
+              "src/custom.scss"
             ],
             "scripts": []
           },
@@ -90,7 +90,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/app/custom.scss"
+              "src/custom.scss"
             ],
             "scripts": []
           }

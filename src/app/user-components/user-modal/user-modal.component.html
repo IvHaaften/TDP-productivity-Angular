@@ -1,0 +1,38 @@
+<div mat-dialog-content>
+    <div>
+        <mat-form-field appearance="standard">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" [(ngModel)]="data.user.username" name="username" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="standard">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [(ngModel)]="data.user.password" name="password" required>
+        </mat-form-field>
+        <div *ngIf="data.origin=='register'">
+            <mat-form-field appearance="standard" >
+                <mat-label>Repeat password</mat-label>
+                <input matInput type="password" [(ngModel)]="data.passwordCheck" name="password" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="standard">
+                <mat-select mat-select [(value)]="data.user.project">
+                    <mat-option *ngFor="let project of projects" [value]="project.id">
+                        {{project.projectName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p class="mat-caption" *ngIf="data.user.password != data.passwordCheck">The entered passwords do not match</p>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-flat-button color="primary" mat-dialog-close>Cancel</button>
+    <div *ngIf="data.origin=='login'">
+        <button mat-flat-button color="primary" [mat-dialog-close]="data.user">Login</button>
+    </div>
+    <div *ngIf="data.origin=='register'">
+        <button mat-flat-button color="primary" [mat-dialog-close]="data.user" *ngIf="data.user.password == data.passwordCheck">Register</button>
+        <button mat-flat-button disabled *ngIf="data.user.password != data.passwordCheck">Register</button>
+    </div>
+</div>
