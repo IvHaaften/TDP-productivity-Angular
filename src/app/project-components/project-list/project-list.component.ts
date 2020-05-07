@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 import{Project} from '../../models/project';
 import{ProjectService} from '../../project.service';
 
@@ -24,7 +24,7 @@ export interface ProjectModalData {
 })
 
 
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements OnInit, AfterContentInit {
   
   projects: Project[];
   theme:string;
@@ -39,6 +39,7 @@ export class ProjectListComponent implements OnInit {
   projectUpdate:SelectionFormComponent
   
   constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private loginService:LoginService) {
+
   }
   
   displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
@@ -46,15 +47,26 @@ export class ProjectListComponent implements OnInit {
   ngOnInit(){
     this.reloadAll();
     this.userIdProject;
+    this.selectProjects(this.userIdProject)
+
+
     this.loginService.getProject().subscribe(
-      something => this.printingfunction(something)); 
-    this.loginService.getProject().subscribe(
-         input => this.projectSelected = input); 
-    this.loginService.getProject().subscribe(
-        input => this.selectProjects(input.projNum)); 
-    
+        input => {
+          this.reloadAll();
+          this.selectProjects(input.projNum);}) 
   }
-  
+
+
+  ngAfterContentInit(){
+    this.selectProjects(this.userIdProject)
+    this.loginService.getProject().subscribe(
+      input => {
+        this.reloadAll();
+        this.selectProjects(input.projNum);}) 
+  }
+
+
+   
   reloadAll(){
     this.projectService.findAll().subscribe(projects => this.projects = projects);
     this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);

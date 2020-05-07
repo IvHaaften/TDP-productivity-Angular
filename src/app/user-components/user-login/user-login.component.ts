@@ -73,6 +73,7 @@ export class UserLoginComponent implements OnInit {
   //function that sends the observable to login service 
   send(){
     this.loginService.sendProject(this.projectReturn);
+    
   }
   
   
