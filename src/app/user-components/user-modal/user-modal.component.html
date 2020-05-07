@@ -29,10 +29,34 @@
 <div mat-dialog-actions>
     <button mat-flat-button color="primary" mat-dialog-close>Cancel</button>
     <div *ngIf="data.origin=='login'">
-        <button mat-flat-button color="primary" [mat-dialog-close]="data.user">Login</button>
+        <ng-container *ngIf="data.user.username != null
+        && data.user.password != null">
+        <button mat-button color="primary" [mat-dialog-close]="data.user">Login</button>
+    </ng-container>
+    <ng-container *ngIf="data.user.username == null
+    || data.user.password == null">
+        <button mat-button color="primary" disabled>Save</button>
+        <button mat-button color="primary" (click)="validateLogin()")>Save</button>
+    </ng-container>
     </div>
+
+
+
     <div *ngIf="data.origin=='register'">
-        <button mat-flat-button color="primary" [mat-dialog-close]="data.user" *ngIf="data.user.password == data.passwordCheck">Register</button>
-        <button mat-flat-button disabled *ngIf="data.user.password != data.passwordCheck">Register</button>
+        <ng-container *ngIf="data.user.username != null
+    && data.user.password != null
+    && data.passwordCheck != null
+    && data.user.project != null
+    && data.passwordCheck == data.user.password">
+            <button mat-button color="primary" [mat-dialog-close]="data.user" >Register</button>
+        </ng-container>
+        <ng-container *ngIf="data.user.username == null
+    || data.user.password == null
+    || data.passwordCheck == null
+    || data.user.project == null
+    || data.passwordCheck != data.user.password">
+            <button mat-button color="primary" (click)="validateRegistration()">Save</button>
+        </ng-container>
     </div>
+
 </div>
