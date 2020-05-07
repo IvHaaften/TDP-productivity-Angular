@@ -38,25 +38,19 @@ export class TaskListComponent implements OnInit, AfterContentInit {
 
 
   constructor(private taskService: TaskService, public dialog: MatDialog, private themeService: ThemeService) {
-    
   }
   
   ngOnInit() {
     this.reloadAll();
     this.userIdProject;
 
-    this.selectTasks(this.userIdProject)
+    // this.selectTasks(this.userIdProject)
    // this.selectedTasks = this.tasks
   }
 
-
   ngAfterContentInit(){
-    this.reloadAll();
-    this.selectTasks(this.userIdProject)
-    // this.loginService.getProject().subscribe(
-    //   input => {
-    //     this.reloadAll();
-    //     this.selectProjects(input.projNum);}) 
+    // this.reloadAll();
+    // this.selectTasks(this.userIdProject)
   }
 
   reloadAll() {
@@ -70,7 +64,6 @@ export class TaskListComponent implements OnInit, AfterContentInit {
   startTask(startedTask: Task){
     startedTask.status="Started";
     this.taskService.patchTask(startedTask.id, startedTask).subscribe(() => this.reloadAll());
-
   }
 
   closeTask(closedTask: Task){
