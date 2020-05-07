@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../theme.service';
 import { Observable } from 'rxjs';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,11 +11,14 @@ import { Observable } from 'rxjs';
 export class ToolbarComponent implements OnInit {
   
   isDarkTheme: Observable<boolean>;
+  isLogin: boolean;
   
-  constructor( private themeService: ThemeService ) { }
+  constructor( private themeService: ThemeService, private loginService: LoginService) { }
   
   ngOnInit() {
     this.isDarkTheme = this.themeService.isDarkTheme;
+    this.loginService.setLogin();
+    this.loginService.getLogin().subscribe(isLogin => this.isLogin = isLogin) 
   }
   
   toggleDarkTheme(checked: boolean) {
