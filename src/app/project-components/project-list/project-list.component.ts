@@ -8,7 +8,8 @@ import{ProjectModalComponent} from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import { SelectionFormComponent } from '../../selection-components/selection-form/selection-form.component';
 import { ThemeService } from '../../theme.service';
-
+import { Observable } from 'rxjs';
+import { LoginService } from 'src/app/login.service';
 
 export interface ProjectModalData {
   projectEdit: Project;
@@ -29,7 +30,7 @@ export class ProjectListComponent implements OnInit {
   theme:string;
   
   selectedProjects: Array<Project> = [];
-  
+  projectSelected: Observable<any>;
   
   @Input()
   userIdProject: UserListComponent
@@ -37,15 +38,21 @@ export class ProjectListComponent implements OnInit {
   @Input()
   projectUpdate:SelectionFormComponent
   
-  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService) {
+  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private loginService:LoginService) {
   }
   
   displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
   
   ngOnInit(){
     this.reloadAll();
-    
     this.userIdProject;
+    this.loginService.getProject().subscribe(
+      something => this.printingfunction(something)); 
+    this.loginService.getProject().subscribe(
+         input => this.projectSelected = input); 
+    this.loginService.getProject().subscribe(
+        input => this.selectProjects(input.projNum)); 
+    
   }
   
   reloadAll(){
@@ -81,6 +88,10 @@ export class ProjectListComponent implements OnInit {
       }
       
     }
+  }
+
+  printingfunction(input){
+    console.log("print method called from the login service with selected project=" + input)
   }
   
   

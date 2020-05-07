@@ -19,5 +19,18 @@ export class LoginService {
     return this.isLogin
   }
 
+
+//stuk aangaande de select button update
+
+  private subject = new Subject<any>();
+
+  sendProject(projNum: number) {
+    this.subject.next({projNum: projNum})
+  }
+
+  getProject(): Observable<any> {
+    return this.subject.asObservable();
+  }
+
   constructor() { }
 }

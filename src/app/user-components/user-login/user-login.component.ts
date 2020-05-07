@@ -64,9 +64,15 @@ export class UserLoginComponent implements OnInit {
         this.loginService.globalLoginId = this.LoginId;
         this.loginService.setLogin(); 
         console.log("loginID = " + this.loginService.globalLoginId);
+        this.send(); 
       });
     })
     
+  }
+
+  //function that sends the observable to login service 
+  send(){
+    this.loginService.sendProject(this.projectReturn);
   }
   
   
