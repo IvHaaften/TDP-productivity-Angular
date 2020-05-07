@@ -1,18 +1,4 @@
 <div mat-dialog-content>
-    <mat-accordion>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    JSON Contents
-                </mat-panel-title>
-                <mat-panel-description>
-                    Click to see the form's JSON
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>{{data.user | json}} {{data.passwordCheck | json}}</p>
-        </mat-expansion-panel>
-    </mat-accordion>
-    
     <div>
         <mat-form-field appearance="standard">
             <mat-label>Name</mat-label>
@@ -35,7 +21,6 @@
                         {{project.projectName}}
                     </mat-option>
                 </mat-select>
-                
             </mat-form-field>
             <p class="mat-caption" *ngIf="data.user.password != data.passwordCheck">The entered passwords do not match</p>
         </div>
@@ -44,10 +29,10 @@
 <div mat-dialog-actions>
     <button mat-flat-button color="primary" mat-dialog-close>Cancel</button>
     <div *ngIf="data.origin=='login'">
-        <button mat-flat-button color="primary" [mat-dialog-close]="data.user">Save</button>
+        <button mat-flat-button color="primary" [mat-dialog-close]="data.user">Login</button>
     </div>
     <div *ngIf="data.origin=='register'">
-        <button mat-flat-button color="primary" [mat-dialog-close]="data.user" *ngIf="data.user.password == data.passwordCheck">Save</button>
-        <button mat-flat-button disabled *ngIf="data.user.password != data.passwordCheck">Save</button>
+        <button mat-flat-button color="primary" [mat-dialog-close]="data.user" *ngIf="data.user.password == data.passwordCheck">Register</button>
+        <button mat-flat-button disabled *ngIf="data.user.password != data.passwordCheck">Register</button>
     </div>
 </div>

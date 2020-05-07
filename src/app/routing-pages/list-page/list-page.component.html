@@ -1,0 +1,15 @@
+<!--Task Selection Component-->
+<div class="mat-app-background basic-container">
+  <mat-card id="Tabbed lists">
+    <mat-tab-group>
+      <mat-tab label="Projects">
+        <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
+        <div><app-project-list #projectComp [userIdProject]="projectIdUser"></app-project-list></div>
+      </mat-tab>
+      <mat-tab label="Tasks">
+        <app-task-form [taskList] = 'taskComp'></app-task-form>
+        <app-task-list #taskComp [userIdProject]="projectIdUser"></app-task-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>
