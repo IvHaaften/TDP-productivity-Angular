@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TaskService } from '../../task.service';
 import { TaskListComponent } from '../task-list/task-list.component';
-import { Task } from '../../task';
-import {Project} from '../../project';
+import { Task } from '../../models/task';
+import {Project} from '../../models/project';
 import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 import { ThemeService } from '../../theme.service';

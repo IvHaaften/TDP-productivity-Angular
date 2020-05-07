@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
-import { User } from 'src/app/user';
+import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/user.service';
 import { AppComponent } from 'src/app/app.component';
 //import { EventEmitter } from 'protractor';

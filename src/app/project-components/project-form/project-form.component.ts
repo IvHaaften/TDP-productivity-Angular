@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import{ProjectService} from '../../project.service';
-import {Project} from '../../project';
+import {Project} from '../../models/project';
 import {ProjectListComponent} from '../project-list/project-list.component';
 import { ProjectModalComponent } from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';

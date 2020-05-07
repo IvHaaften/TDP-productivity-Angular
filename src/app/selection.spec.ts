@@ -1,4 +1,4 @@
-import { Selection } from './selection';
+import { Selection } from './models/selection';
 
 describe('Selection', () => {
   it('should create an instance', () => {

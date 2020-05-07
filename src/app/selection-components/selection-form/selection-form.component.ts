@@ -1,9 +1,9 @@
 import { Component, OnInit,Input } from '@angular/core';
-import{Selection} from '../../selection';
+import{Selection} from '../../models/selection';
 import {SelectionListComponent} from '../selection-list/selection-list.component';
-import {Task} from '../../task'
+import {Task} from '../../models/task'
 import { TaskService } from '../../task.service';
-import { Project } from '../../project';
+import { Project } from '../../models/project';
 import { ProjectService } from '../../project.service';
 import {LoginService} from '../../login.service'
 

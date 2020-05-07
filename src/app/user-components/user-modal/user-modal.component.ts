@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { User } from 'src/app/user';
+import { User } from 'src/app/models/user';
 import { ProjectService } from 'src/app/project.service';
-import { Project } from 'src/app/project';
+import { Project } from 'src/app/models/project';
 
 export interface UserModalData {
   passwordCheck: String;

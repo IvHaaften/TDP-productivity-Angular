@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import{Project} from '../../project';
+import{Project} from '../../models/project';
 import{ProjectService} from '../../project.service';
 
 import { UserListComponent } from '../../user-components/user-list/user-list.component';
