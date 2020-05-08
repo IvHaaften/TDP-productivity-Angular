@@ -14,14 +14,6 @@
                 <mat-label>Repeat password</mat-label>
                 <input matInput type="password" [(ngModel)]="data.passwordCheck" name="password" required>
             </mat-form-field>
-            <br>
-            <mat-form-field appearance="standard">
-                <mat-select mat-select [(value)]="data.user.project">
-                    <mat-option *ngFor="let project of projects" [value]="project.id">
-                        {{project.projectName}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
             <p class="mat-caption" *ngIf="data.user.password != data.passwordCheck">The entered passwords do not match</p>
         </div>
     </div>
@@ -46,14 +38,12 @@
         <ng-container *ngIf="data.user.username != null
     && data.user.password != null
     && data.passwordCheck != null
-    && data.user.project != null
     && data.passwordCheck == data.user.password">
             <button mat-button color="primary" [mat-dialog-close]="data.user" >Register</button>
         </ng-container>
         <ng-container *ngIf="data.user.username == null
     || data.user.password == null
     || data.passwordCheck == null
-    || data.user.project == null
     || data.passwordCheck != data.user.password">
             <button mat-button color="primary" (click)="validateRegistration()">Register</button>
         </ng-container>

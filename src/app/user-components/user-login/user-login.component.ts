@@ -16,7 +16,6 @@ export class UserLoginComponent implements OnInit {
   
   user = new User();
   
-  projectReturn: number;
   LoginId: number
   theme:string;
 
@@ -28,11 +27,9 @@ export class UserLoginComponent implements OnInit {
   
   
   ngOnInit(): void {
-    this.projectReturn;
     this.LoginId = parseInt(sessionStorage.getItem('loginId'));
     this.logoutId; 
     this.loginService.getLogin().subscribe(isLogin => this.isLogin = isLogin) 
-   
   }
 
   //if register button has been pressed
@@ -47,9 +44,10 @@ export class UserLoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       this.userService.save(result).subscribe();
       this.userService.login(result).subscribe(answer=>{
-        // this.projectReturn = answer;
-        // this.LoginId = this.projectReturn;
+        //this.LoginId =  answer;
+        //this.loginService.globalLoginId = this.LoginId; 
         this.loginService.globalLoginId = answer; 
+
         this.loginService.setLogin();
         sessionStorage.setItem('loginId', answer.toString())
         console.log("loginID = " + this.loginService.globalLoginId);
@@ -68,8 +66,8 @@ export class UserLoginComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(result=>{
       this.userService.login(result).subscribe(answer=>{
-        // this.projectReturn = answer;
-        // this.LoginId = this.projectReturn;
+        //this.LoginId =  answer;
+        //this.loginService.globalLoginId = this.LoginId;
         this.loginService.globalLoginId = answer;
         this.loginService.setLogin(); 
         console.log("loginID = " + this.loginService.globalLoginId);
@@ -105,7 +103,6 @@ export class UserLoginComponent implements OnInit {
   //function that sends the observable to login service 
   send(){
     this.loginService.sendProject(this.loginService.globalLoginId);
-    
   }
   
   

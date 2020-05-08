@@ -20,7 +20,7 @@ export class UserModalComponent implements OnInit {
   @Input()
   user: User;
   
-  projects: Project[];
+  //projects: Project[];
 
   validationMessage:string;
   
@@ -32,7 +32,7 @@ export class UserModalComponent implements OnInit {
     this.reloadAll();}
 
     reloadAll(){
-    this.projectService.findAll().subscribe(projects => this.projects = projects);
+    //this.projectService.findAll().subscribe(projects => this.projects = projects);
   }
 
   validateRegistration(){
@@ -42,8 +42,8 @@ export class UserModalComponent implements OnInit {
     this.validationMessage = "Password cannot be empty"
     else if (this.data.passwordCheck != this.data.user.password)
     this.validationMessage = "Second password not identical to first"
-    else if (this.data.user.id == undefined)
-    this.validationMessage = "Project field cannot be empty"
+    //else if (this.data.user.id == undefined)
+    //this.validationMessage = "Project field cannot be empty"
 
     alert(this.validationMessage)
   }
