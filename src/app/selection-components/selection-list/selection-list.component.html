@@ -2,7 +2,7 @@
   <mat-tab-group>
     <!--Start of the nested table that shows the tasks which are coming up regardless of the project number-->
     <mat-tab label="Coming up">
-      <table mat-table [dataSource]="newTasks" class="mat-elevation-z8">
+      <table mat-table [dataSource]="comingupTasks" class="mat-elevation-z8">
         <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -29,7 +29,7 @@
           </ng-container> 
         </ng-container>
         <ng-container matColumnDef="duration">
-          <th mat-header-cell *matHeaderCellDef> Duration </th>
+          <th mat-header-cell *matHeaderCellDef> Duration (min.) </th>
           <ng-container *matCellDef="let task">
             <td mat-cell>{{task.duration}} <!-- /ng-container --></td>
           </ng-container> 

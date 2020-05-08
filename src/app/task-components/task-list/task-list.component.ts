@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 import {Task} from '../../models/task';
 import {TaskService} from '../../task.service';
 import { UserListComponent } from '../../user-components/user-list/user-list.component';
@@ -6,8 +6,6 @@ import { UserListComponent } from '../../user-components/user-list/user-list.com
 import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 import { ThemeService } from '../../theme.service';
-
-
 
 export interface TaskModalData {
   taskEdit: Task;
@@ -21,7 +19,7 @@ export interface TaskModalData {
 })
  
 
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, AfterContentInit {
   
 
   tasks: Task[];
@@ -32,23 +30,35 @@ export class TaskListComponent implements OnInit {
 
   tempTask: Task;
 
-
     @Input()
     userIdProject: UserListComponent
 
 
   constructor(private taskService: TaskService, public dialog: MatDialog, private themeService: ThemeService) {
-    
+    this.reloadAll();
+    this.userIdProject;
+    this.selectedTasks = this.tasks
   }
   
   ngOnInit() {
+    console.log("printout from ngOnInit start")
     this.reloadAll();
     this.userIdProject;
+    this.selectedTasks = this.tasks
 
-    //this.selectTasks(this.userIdProject)
-   // this.selectedTasks = this.tasks
+    console.log("after initialisation from ngonInit")
 
+    this.selectTasks(this.userIdProject)
     
+    console.log("printout from ngOnInit end")
+  }
+
+  ngAfterContentInit(){
+    console.log("printout from ngAfterContentInit 1")
+    console.log("value of userIdProject" + this.userIdProject)
+    this.selectTasks(this.userIdProject)
+    console.log("finished select Tasks function")
+    this.reloadAll();
   }
 
   reloadAll() {
@@ -62,7 +72,6 @@ export class TaskListComponent implements OnInit {
   startTask(startedTask: Task){
     startedTask.status="Started";
     this.taskService.patchTask(startedTask.id, startedTask).subscribe(() => this.reloadAll());
-
   }
 
   closeTask(closedTask: Task){

@@ -23,7 +23,7 @@ import { TaskModalComponent } from '../../task-components/task-modal/task-modal.
 export class SelectionListComponent implements OnInit {
 
   tasks: Task[];
-  displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description','status', 'actions'];
+  displayedColumns: string[] = ['name', 'project.projectName','duration','description','status', 'actions'];
   newTasks:Task[];
   startedTasks:Task[];
   comingupTasks:Task[];
