@@ -36,7 +36,7 @@ export class SelectionFormComponent implements OnInit {
     this.timeWindow
     this.reloadAll()
     this.priority()
-    this.availableProject = this.loginService.globalLoginId;
+    this.availableProject = parseInt(sessionStorage.getItem('loginId'));
   }
 
   reloadAll(){
@@ -63,4 +63,5 @@ export class SelectionFormComponent implements OnInit {
       this.list.selectedTimeWindow = 0;
       this.list.reloadAll();
     }
+    
 }

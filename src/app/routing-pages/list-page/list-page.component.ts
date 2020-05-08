@@ -15,7 +15,7 @@ export class ListPageComponent implements OnInit {
   constructor(public loginService:LoginService) { }
 
   ngOnInit(): void {
-    this.projectIdUser = this.loginService.globalLoginId;
+    this.projectIdUser = this.loginService.globalLoginId
   }
 
 }
