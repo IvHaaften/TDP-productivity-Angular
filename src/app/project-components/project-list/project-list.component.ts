@@ -39,6 +39,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   projectUpdate:SelectionFormComponent
   
   constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private loginService:LoginService) {
+    this.projectService.findAll().subscribe(projects => this.projects = projects);
   }
   
   displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
@@ -89,7 +90,6 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
         
         this.selectedProjects.push(this.projects[index]);
       }
-      
     }
   }
 

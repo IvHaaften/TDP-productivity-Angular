@@ -35,7 +35,7 @@ export class TaskListComponent implements OnInit, AfterContentInit {
 
 
   constructor(private taskService: TaskService, public dialog: MatDialog, private themeService: ThemeService) {
-  this.reloadAll();
+    this.reloadAll();
     this.userIdProject;
     this.selectedTasks = this.tasks
   }
