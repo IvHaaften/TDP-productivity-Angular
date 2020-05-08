@@ -57,7 +57,11 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
     this.reloadAll();
     this.selectProjects(this.userIdProject)
   }
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 0bcaf78d939002995428260ea92deb17034d126d
   reloadAll(){
     this.projectService.findAll().subscribe(projects => this.projects = projects);
     this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
