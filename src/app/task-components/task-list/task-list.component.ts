@@ -7,8 +7,6 @@ import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 import { ThemeService } from '../../theme.service';
 
-
-
 export interface TaskModalData {
   taskEdit: Task;
 }
