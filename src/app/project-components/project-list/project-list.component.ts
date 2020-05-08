@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 import{Project} from '../../models/project';
 import{ProjectService} from '../../project.service';
 
@@ -8,7 +8,8 @@ import{ProjectModalComponent} from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import { SelectionFormComponent } from '../../selection-components/selection-form/selection-form.component';
 import { ThemeService } from '../../theme.service';
-
+import { Observable } from 'rxjs';
+import { LoginService } from 'src/app/login.service';
 
 export interface ProjectModalData {
   projectEdit: Project;
@@ -23,13 +24,13 @@ export interface ProjectModalData {
 })
 
 
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements OnInit, AfterContentInit {
   
   projects: Project[];
   theme:string;
   
   selectedProjects: Array<Project> = [];
-  
+  projectSelected: Observable<any>;
   
   @Input()
   userIdProject: UserListComponent
@@ -37,17 +38,27 @@ export class ProjectListComponent implements OnInit {
   @Input()
   projectUpdate:SelectionFormComponent
   
-  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService) {
+  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private loginService:LoginService) {
+    this.projectService.findAll().subscribe(projects => this.projects = projects);
   }
   
   displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
   
   ngOnInit(){
     this.reloadAll();
-    
     this.userIdProject;
+    this.selectProjects(this.userIdProject)
+    // this.loginService.getProject().subscribe(
+    //     input => {
+    //       this.reloadAll();
+    //       this.selectProjects(input.projNum);}) 
   }
-  
+
+  ngAfterContentInit(){
+    this.reloadAll();
+    this.selectProjects(this.userIdProject)
+  }
+   
   reloadAll(){
     this.projectService.findAll().subscribe(projects => this.projects = projects);
     this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
@@ -79,8 +90,11 @@ export class ProjectListComponent implements OnInit {
         
         this.selectedProjects.push(this.projects[index]);
       }
-      
     }
+  }
+
+  printingfunction(input){
+    console.log("print method called from the login service with selected project=" + input)
   }
   
   

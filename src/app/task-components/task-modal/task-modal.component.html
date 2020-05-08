@@ -2,7 +2,7 @@
     <div>
         <mat-form-field appearance="standard">
             <mat-label>Name</mat-label>
-            <input matInput type="text" [(ngModel)]="data.taskEdit.name" name="taskName">
+            <input matInput required type="text" [(ngModel)]="data.taskEdit.name" name="taskName">
         </mat-form-field>
         <br>
         <mat-form-field appearance="standard">
@@ -10,8 +10,8 @@
             
             
             <!-- <input matInput type="number" [(ngModel)]="data.taskEdit.project.id" name="projectID"> -->
-            <mat-select mat-select [(value)]="data.taskEdit.project.id">
-                <mat-option *ngFor="let project of projects" [value]="project.id">
+                <mat-select required mat-select [(value)]="data.taskEdit.project.id">
+                  <mat-option *ngFor="let project of projects" [value]="project.id">
                     {{project.projectName}}
                 </mat-option>
             </mat-select>
@@ -19,7 +19,7 @@
         <br>
         <mat-form-field appearance="standard">
             <mat-label>Duration</mat-label>
-            <mat-select [(value)]="data.taskEdit.duration">
+            <mat-select [(value)]="data.taskEdit.duration" required>
                 <mat-option>None</mat-option>
                 <mat-option value="5">5 min.</mat-option>
                 <mat-option value="10">10 min.</mat-option>
@@ -39,18 +39,25 @@
         -->
         <mat-form-field appearance="standard">
             <mat-label>Description</mat-label>
-            <textarea matInput [(ngModel)]="data.taskEdit.description" name="description"></textarea>
+            <textarea matInput required [(ngModel)]="data.taskEdit.description" name="description"></textarea>
         </mat-form-field>
         <br>
         <mat-form-field appearance="standard">
             <mat-label for="inputprojectdeadline">Deadline</mat-label>
-            <input matInput [min]="minDate" [matDatepicker]="picker" [(ngModel)]="data.taskEdit.deadline" name="deadline" >
+            <input matInput required [min]="minDate" [matDatepicker]="picker" [(ngModel)]="data.taskEdit.deadline" name="deadline" >
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
     </div>
 </div>
 <div mat-dialog-actions>
-    <button mat-flat-button color="primary" mat-dialog-close>Cancel</button>
-    <button mat-flat-button color="primary" [mat-dialog-close]="data.taskEdit" >Save</button>
+    <button mat-button color="primary" mat-dialog-close>Cancel</button>
+    <ng-container *ngIf="data.taskEdit.name == null
+    || data.taskEdit.project.id == null">
+    <button mat-button color="primary" [disabled]="true" >Save</button></ng-container>
+
+    <ng-container *ngIf="data.taskEdit.name != null
+    && data.taskEdit.project.id != null">
+    <button mat-button color="primary" [mat-dialog-close]="data.taskEdit" >Save</button>
+    </ng-container>
 </div>
