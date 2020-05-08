@@ -23,12 +23,12 @@
     <div *ngIf="data.origin=='login'">
         <ng-container *ngIf="data.user.username != null
         && data.user.password != null">
-        <button mat-button color="primary" [mat-dialog-close]="data.user">Login</button>
+        <button mat-flat-button color="primary" [mat-dialog-close]="data.user">Login</button>
     </ng-container>
     <ng-container *ngIf="data.user.username == null
     || data.user.password == null">
         <!-- <button mat-button color="primary" disabled>Save</button> -->
-        <button mat-button color="primary" (click)="validateLogin()">Login</button>
+        <button mat-flat-button color="primary" (click)="validateLogin()">Login</button>
     </ng-container>
     </div>
 
