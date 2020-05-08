@@ -29,7 +29,13 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
     this.LoginId = parseInt(sessionStorage.getItem('loginId'));
     this.logoutId; 
-    this.loginService.getLogin().subscribe(isLogin => this.isLogin = isLogin) 
+    this.loginService.getLogin().subscribe(isLogin => this.isLogin = isLogin)
+    if(this.LoginId > 0)
+    this.isLogin=true;
+    else
+    this.isLogin=false;
+    console.log("in onInit xxxx" + this.isLogin);
+    
   }
 
   //if register button has been pressed
@@ -68,18 +74,20 @@ export class UserLoginComponent implements OnInit {
       this.userService.login(result).subscribe(answer=>{
         //this.LoginId =  answer;
         //this.loginService.globalLoginId = this.LoginId;
-        this.loginService.globalLoginId = answer;
-        this.loginService.setLogin(); 
-        console.log("loginID = " + this.loginService.globalLoginId);
         
         sessionStorage.setItem('loginId', answer.toString())
         this.LoginId = answer;
-        this.isLogin = true;
+        console.log("in login xxxx " + this.isLogin);
+        
         if (answer == -1){
           alert("Login failed. Incorrect credentials")
         }
         else{
           this.router.navigate(['select'])
+          this.isLogin = true;
+          this.loginService.globalLoginId = answer;
+          this.loginService.setLogin(); 
+          console.log("loginID = " + this.loginService.globalLoginId);
         }
         this.send(); 
       });
@@ -95,6 +103,8 @@ export class UserLoginComponent implements OnInit {
     this.loginService.globalLoginId = this.logoutId;
     this.loginService.setLogin(); 
     this.isLogin = false;
+    console.log("in logout xxx " + this.isLogin);
+    
     // this.checkLogin()
     this.router.navigate(['home'])
     //this.ngOnInit()
