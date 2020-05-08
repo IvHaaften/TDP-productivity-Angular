@@ -13,6 +13,10 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
   } 
 
-  
+  setStorage(){
+    console.log("enter set");
+    sessionStorage.setItem('key', '1')
+    
+  }
 
 }

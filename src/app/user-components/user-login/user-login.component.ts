@@ -59,12 +59,14 @@ export class UserLoginComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(result=>{
       this.userService.login(result).subscribe(answer=>{
-        this.projectReturn = answer;
-        this.LoginId = this.projectReturn;
-        this.loginService.globalLoginId = this.LoginId;
+        // this.projectReturn = answer;
+        // this.LoginId = this.projectReturn;
+        this.loginService.globalLoginId = answer;
         this.loginService.setLogin(); 
         console.log("loginID = " + this.loginService.globalLoginId);
-        if (this.loginService.globalLoginId == -1)
+        
+        sessionStorage.setItem('loginId', answer.toString())
+        if (answer == -1)
           alert("Login failed. Incorrect credentials")
         this.send(); 
       });

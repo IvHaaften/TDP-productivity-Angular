@@ -19,11 +19,19 @@ export class ToolbarComponent implements OnInit {
     this.isDarkTheme = this.themeService.isDarkTheme;
     this.loginService.setLogin();
     this.loginService.getLogin().subscribe(isLogin => this.isLogin = isLogin) 
+    this.checkLogin()
   }
   
   toggleDarkTheme(checked: boolean) {
     this.themeService.setDarkTheme(checked) ;
     this.isDarkTheme = this.themeService.isDarkTheme;
+  }
+
+  checkLogin(){
+    if (parseInt(sessionStorage.getItem('loginId'))>0){
+      this.isLogin = true;
+    }else
+    this.isLogin = false;
   }
   
 }
