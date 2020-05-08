@@ -29,6 +29,8 @@ export class TaskListComponent implements OnInit, AfterContentInit {
   selectedTasks: Array<Task> = [];
 
   tempTask: Task;
+  duration: number;
+  temp:number;
 
     @Input()
     userIdProject: UserListComponent
@@ -38,35 +40,32 @@ export class TaskListComponent implements OnInit, AfterContentInit {
     this.reloadAll();
     this.userIdProject;
     this.selectedTasks = this.tasks
+    this.duration = 0;
+    this.temp =0;
+
   }
   
   ngOnInit() {
-    console.log("printout from ngOnInit start")
+    this.duration;
     this.reloadAll();
     this.userIdProject;
     this.selectedTasks = this.tasks
-
-    console.log("after initialisation from ngonInit")
-
     this.selectTasks(this.userIdProject)
-    
-    console.log("printout from ngOnInit end")
   }
 
   ngAfterContentInit(){
-    console.log("printout from ngAfterContentInit 1")
-    console.log("value of userIdProject" + this.userIdProject)
     this.selectTasks(this.userIdProject)
-    console.log("finished select Tasks function")
     this.reloadAll();
   }
 
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
+    this.durationCalc(this.selectedTasks);
   }
   
   delete(id: number) {
     this.taskService.delete(id).subscribe(() => this.reloadAll());
+    this.selectTasks(this.userIdProject)
   }
 
   startTask(startedTask: Task){
@@ -77,7 +76,6 @@ export class TaskListComponent implements OnInit, AfterContentInit {
   closeTask(closedTask: Task){
     closedTask.status="Closed";
     this.taskService.patchTask(closedTask.id, closedTask).subscribe(() => this.reloadAll());
-
   }
   
   editTask(task: Task) {
@@ -101,11 +99,20 @@ export class TaskListComponent implements OnInit, AfterContentInit {
       if (this.tasks[index].project.id == IdProject){
         
         this.selectedTasks.push(this.tasks[index]);
-
       }
-
     }
+    this.durationCalc(this.selectedTasks);
   }
+
+  durationCalc(selectedTasks: Array<Task>){
+    selectedTasks.forEach(element => {
+        this.temp += element.duration;
+    });
+    this.duration = this.temp;
+    this.temp=0;
+  }
+
+
   
 
 }
