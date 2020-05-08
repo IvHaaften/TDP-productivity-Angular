@@ -27,8 +27,12 @@ export class TaskListComponent implements OnInit, AfterContentInit {
   displayedColumns: string[] = ['name', 'project.projectName','duration','description','status', 'actions'];
 
   selectedTasks: Array<Task> = [];
+  tempTasks:  Array<Task> = [];
 
   tempTask: Task;
+  duration:number;
+  temp:number;
+
 
     @Input()
     userIdProject: UserListComponent
@@ -38,26 +42,24 @@ export class TaskListComponent implements OnInit, AfterContentInit {
     this.reloadAll();
     this.userIdProject;
     this.selectedTasks = this.tasks
+    this.duration =0;
+    this.temp = 0;
+    
   }
   
   ngOnInit() {
-    console.log("printout from ngOnInit start")
+
     this.reloadAll();
     this.userIdProject;
+    this.tempTasks;
     this.selectedTasks = this.tasks
-
-    console.log("after initialisation from ngonInit")
-
     this.selectTasks(this.userIdProject)
-    
-    console.log("printout from ngOnInit end")
+
   }
 
   ngAfterContentInit(){
-    console.log("printout from ngAfterContentInit 1")
-    console.log("value of userIdProject" + this.userIdProject)
+
     this.selectTasks(this.userIdProject)
-    console.log("finished select Tasks function")
     this.reloadAll();
   }
 
@@ -105,7 +107,20 @@ export class TaskListComponent implements OnInit, AfterContentInit {
       }
 
     }
-  }
-  
 
+    this.durationCalc(this.selectedTasks);
+    console.log("the total duration of all the tasks= " + this.duration)
+  }
+
+  durationCalc(selectedTasks:Array<Task>){
+    this.tempTasks = this.tasks.filter(task => task.status === "New");
+    this.tempTasks = this.tempTasks.filter(task => task.status === "Started");
+    selectedTasks.forEach(element => {
+      this.temp += element.duration
+    });
+
+    this.duration = this.temp;
+    this.temp =0;
+
+  }
 }
