@@ -40,11 +40,10 @@ export class TaskListComponent implements OnInit, AfterContentInit {
   }
   
   ngOnInit() {
+    this.reloadAll();
     this.selectedTasks = this.tasks
     this.userIdProject;
-    this.reloadAll();
     this.selectTasks(this.userIdProject)
-    
   }
 
   ngAfterContentInit(){
