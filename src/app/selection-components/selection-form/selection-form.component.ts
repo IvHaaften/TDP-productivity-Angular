@@ -6,6 +6,8 @@ import { TaskService } from '../../task.service';
 import { Project } from '../../models/project';
 import { ProjectService } from '../../project.service';
 import {LoginService} from '../../login.service'
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-selection-form',
@@ -14,53 +16,59 @@ import {LoginService} from '../../login.service'
   providers: [TaskService]
 })
 export class SelectionFormComponent implements OnInit {
-
+  
   @Input()
   list:SelectionListComponent
-
+  
   projectNumber: number;
   timeWindow: number;
-
+  
   projects: Project[];
+  filteredProjects: Project[];
   tasks: Task[];
-
+  
   important: Task[];
-
-  availableProject: number;
-
-  constructor(private projectService: ProjectService, private taskService:TaskService, public loginService: LoginService) { }
-
+  
+  userID: number;
+  user: User;
+  
+  constructor(private projectService: ProjectService, private taskService:TaskService, public userService : UserService) { }
+  
   ngOnInit(): void {
     this.projects
     this.projectNumber
     this.timeWindow
+    this.userID = parseInt(sessionStorage.getItem('loginId'));
+    this.userService.findAll().subscribe(users =>{this.user=users.find(user => user.id === this.userID)});
     this.reloadAll()
     this.priority()
-    this.availableProject = this.loginService.globalLoginId;
   }
-
+  
   reloadAll(){
-    this.projectService.findAll().subscribe(projects => this.projects = projects);
+    this.projectService.findAll().subscribe(projects => {
+      this.projects=projects;
+    this.filteredProjects = projects.filter(project=> project.users.includes(this.user))});    
   }
-
+  
   priority(){
     this.taskService.findAll().subscribe(tasks => {
       this.important = tasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
       this.important = this.important.slice(0,2);
     });
   }
-
+  
   clear(){
     this.list.selectedProjectID = this.projectNumber;
     this.list.selectedTimeWindow = this.timeWindow;
     this.projectNumber = 0;
     this.timeWindow = null;
     this.list.reloadAll();
-    }
-
-    delete(){
-      this.list.selectedProjectID = 0;
-      this.list.selectedTimeWindow = 0;
-      this.list.reloadAll();
-    }
+  }
+  
+  delete(){
+    this.list.selectedProjectID = 0;
+    this.list.selectedTimeWindow = 0;
+    this.list.reloadAll();
+  }
+  
 }

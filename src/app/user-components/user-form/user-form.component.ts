@@ -23,7 +23,7 @@ export class UserFormComponent implements OnInit {
   }
 
   clear(){
-    this.user.project = null;
+    //this.user.project = null;
     }
 
 }

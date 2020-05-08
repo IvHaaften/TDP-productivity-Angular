@@ -2,17 +2,20 @@
       
     <mat-form-field appearance="standard">
         <mat-label>Name</mat-label>
-        <input matInput required type="text" [(ngModel)]="data.projectEdit.projectName" name="projectName">
+        <input matInput required type="text" [(ngModel)]="data.projectEdit.project.projectName" name="projectName">
     </mat-form-field>
     <!-- <br> -->
     <!-- <mat-form-field appearance="standard">
         <mat-label>Duration</mat-label>
-        <input matInput required type="time" [(ngModel)]="data.projectEdit.duration" name="duration">
-    </mat-form-field> -->
-    <!-- <br> -->
+ -->
+
+        <input matInput required type="time" [(ngModel)]="data.projectEdit.project.duration" name="duration">
+    </mat-form-field>
+    <br>
+
     <mat-form-field appearance="standard">
         <mat-label for="inputprojectdeadline">Deadline</mat-label>
-        <input matInput required [min]="minDate" [matDatepicker]="picker" [(ngModel)]="data.projectEdit.deadline" name="deadline" >
+        <input matInput required [min]="minDate" [matDatepicker]="picker" [(ngModel)]="data.projectEdit.project.deadline" name="deadline" >
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -21,12 +24,16 @@
 
 <div mat-dialog-actions>
     <button mat-button color="primary" mat-dialog-close>Cancel</button>
-    <ng-container *ngIf="data.projectEdit.projectName==null 
-    || data.projectEdit.deadline == null">
+    <ng-container *ngIf="data.projectEdit.project.projectName==null 
+    || data.projectEdit.project.deadline == null
+    || data.projectEdit.project.duration == null">
     <button mat-button color="primary" [disabled]=true>Save</button>
     </ng-container>
-    <ng-container *ngIf="data.projectEdit.projectName!=null 
-    && data.projectEdit.deadline != null">
+    <ng-container *ngIf="data.projectEdit.project.projectName!=null 
+    && data.projectEdit.project.deadline != null
+    && data.projectEdit.project.duration != null">
+
+      
     <button mat-button color="primary" [mat-dialog-close]="data.projectEdit">Save</button>
     </ng-container>
 
