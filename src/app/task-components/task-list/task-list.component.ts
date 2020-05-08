@@ -35,18 +35,30 @@ export class TaskListComponent implements OnInit, AfterContentInit {
 
 
   constructor(private taskService: TaskService, public dialog: MatDialog, private themeService: ThemeService) {
+  this.reloadAll();
+    this.userIdProject;
+    this.selectedTasks = this.tasks
   }
   
   ngOnInit() {
+    console.log("printout from ngOnInit start")
     this.reloadAll();
-    this.selectedTasks = this.tasks
     this.userIdProject;
+    this.selectedTasks = this.tasks
+
+    console.log("after initialisation from ngonInit")
+
     this.selectTasks(this.userIdProject)
+    
+    console.log("printout from ngOnInit end")
   }
 
   ngAfterContentInit(){
-    this.reloadAll();
+    console.log("printout from ngAfterContentInit 1")
+    console.log("value of userIdProject" + this.userIdProject)
     this.selectTasks(this.userIdProject)
+    console.log("finished select Tasks function")
+    this.reloadAll();
   }
 
   reloadAll() {
