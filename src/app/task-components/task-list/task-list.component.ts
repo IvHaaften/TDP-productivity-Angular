@@ -32,7 +32,6 @@ export class TaskListComponent implements OnInit, AfterContentInit {
 
   tempTask: Task;
 
-
     @Input()
     userIdProject: UserListComponent
 
@@ -43,14 +42,13 @@ export class TaskListComponent implements OnInit, AfterContentInit {
   ngOnInit() {
     this.reloadAll();
     this.userIdProject;
-
-    // this.selectTasks(this.userIdProject)
-   // this.selectedTasks = this.tasks
+    this.selectTasks(this.userIdProject)
+    this.selectedTasks = this.tasks
   }
 
   ngAfterContentInit(){
-    // this.reloadAll();
-    // this.selectTasks(this.userIdProject)
+    this.reloadAll();
+    this.selectTasks(this.userIdProject)
   }
 
   reloadAll() {

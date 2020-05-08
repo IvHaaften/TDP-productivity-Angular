@@ -46,7 +46,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   ngOnInit(){
     this.reloadAll();
     this.userIdProject;
-    // this.selectProjects(this.userIdProject)
+    this.selectProjects(this.userIdProject)
     // this.loginService.getProject().subscribe(
     //     input => {
     //       this.reloadAll();
@@ -54,13 +54,13 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(){
-    // this.reloadAll();
-    // this.selectProjects(this.userIdProject)
+    this.reloadAll();
+    this.selectProjects(this.userIdProject)
   }
 
   reloadAll(){
     this.projectService.findAll().subscribe(projects => this.projects = projects);
-    // this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
+    this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
   }
   
   delete(id: number) {
