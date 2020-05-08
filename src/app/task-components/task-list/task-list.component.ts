@@ -24,7 +24,7 @@ export class TaskListComponent implements OnInit, AfterContentInit {
 
   tasks: Task[];
   theme:string;
-  displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description','status', 'actions'];
+  displayedColumns: string[] = ['name', 'project.projectName','duration','description','status', 'actions'];
 
   selectedTasks: Array<Task> = [];
 
