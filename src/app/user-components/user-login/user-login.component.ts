@@ -5,6 +5,7 @@ import {UserModalComponent } from '../user-modal/user-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import { ThemeService } from 'src/app/theme.service';
 import {LoginService} from 'src/app/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -18,15 +19,22 @@ export class UserLoginComponent implements OnInit {
   projectReturn: number;
   LoginId: number
   theme:string;
+
+  logoutId:number = -1;
+
+  isLogin:boolean;
   
-  constructor(private userService:UserService, public dialog: MatDialog, private themeService: ThemeService, public loginService:LoginService) {}
+  constructor(private userService:UserService, public dialog: MatDialog, private themeService: ThemeService, public loginService:LoginService, private router: Router) {}
   
   
   ngOnInit(): void {
     this.projectReturn;
-    this.LoginId;
+    this.LoginId = parseInt(sessionStorage.getItem('loginId'));
+    this.logoutId; 
+    this.loginService.getLogin().subscribe(isLogin => this.isLogin = isLogin) 
+   
   }
-  
+
   //if register button has been pressed
   newUser() {
     this.theme = this.themeService.currentActive();
@@ -39,10 +47,11 @@ export class UserLoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       this.userService.save(result).subscribe();
       this.userService.login(result).subscribe(answer=>{
-        this.projectReturn = answer;
-        this.LoginId = this.projectReturn;
-        this.loginService.globalLoginId = this.LoginId; 
+        // this.projectReturn = answer;
+        // this.LoginId = this.projectReturn;
+        this.loginService.globalLoginId = answer; 
         this.loginService.setLogin();
+        sessionStorage.setItem('loginId', answer.toString())
         console.log("loginID = " + this.loginService.globalLoginId);
       });
     })
@@ -66,17 +75,36 @@ export class UserLoginComponent implements OnInit {
         console.log("loginID = " + this.loginService.globalLoginId);
         
         sessionStorage.setItem('loginId', answer.toString())
-        if (answer == -1)
+        this.LoginId = answer;
+        this.isLogin = true;
+        if (answer == -1){
           alert("Login failed. Incorrect credentials")
+        }
+        else{
+          this.router.navigate(['select'])
+        }
         this.send(); 
       });
+
+
     })
-    
+  }
+
+
+  logout(){
+    sessionStorage.setItem('loginId', this.logoutId.toString())
+    this.LoginId = this.logoutId;
+    this.loginService.globalLoginId = this.logoutId;
+    this.loginService.setLogin(); 
+    this.isLogin = false;
+    // this.checkLogin()
+    this.router.navigate(['home'])
+    //this.ngOnInit()
   }
 
   //function that sends the observable to login service 
   send(){
-    this.loginService.sendProject(this.projectReturn);
+    this.loginService.sendProject(this.loginService.globalLoginId);
     
   }
   
