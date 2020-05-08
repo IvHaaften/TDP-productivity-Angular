@@ -35,8 +35,8 @@
     </ng-container>
     <ng-container *ngIf="data.user.username == null
     || data.user.password == null">
-        <button mat-button color="primary" disabled>Save</button>
-        <button mat-button color="primary" (click)="validateLogin()")>Save</button>
+        <!-- <button mat-button color="primary" disabled>Save</button> -->
+        <button mat-button color="primary" (click)="validateLogin()">Login</button>
     </ng-container>
     </div>
 
@@ -55,7 +55,7 @@
     || data.passwordCheck == null
     || data.user.project == null
     || data.passwordCheck != data.user.password">
-            <button mat-button color="primary" (click)="validateRegistration()">Save</button>
+            <button mat-button color="primary" (click)="validateRegistration()">Register</button>
         </ng-container>
     </div>
 
