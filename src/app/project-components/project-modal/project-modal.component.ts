@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject, Input} from '@angular/core';
 import{Project} from '../../models/project';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ProjectUser } from 'src/app/models/projectuser';
 
 export interface ProjectModalData {
-  projectEdit: Project;
+  projectEdit: ProjectUser;
 }
 
 @Component({
