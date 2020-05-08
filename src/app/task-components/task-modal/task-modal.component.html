@@ -12,7 +12,7 @@
             <!-- <input matInput type="number" [(ngModel)]="data.taskEdit.project.id" name="projectID"> -->
                 <mat-select required mat-select [(value)]="data.taskEdit.project.id">
                   <mat-option *ngFor="let project of projects" [value]="project.id">
-                    {{project.projectName}}
+                    {{project.projectName}} 
                 </mat-option>
             </mat-select>
         </mat-form-field>
