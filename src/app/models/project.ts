@@ -6,8 +6,8 @@ export class Project {
     id:number=0;
     projectName: string;
     deadline: Date;
-    duration: Date;
     users: SpecialUser[]= [];
+    duration: number;
     /* tasks: Task[];
     */
 }

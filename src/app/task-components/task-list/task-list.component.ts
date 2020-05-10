@@ -25,18 +25,25 @@ export class TaskListComponent implements OnInit, AfterContentInit {
   projectIDs : number[];
   tasks: Task[];
   theme:string;
-  displayedColumns: string[] = ['id', 'name', 'project.id','project.projectName','duration','description','status', 'actions'];
+  tempTasks:  Array<Task> = [];
   tempTask: Task;
-  
+  temp:number;
+  duration:number;
+  displayedColumns: string[] = ['name', 'project.projectName','duration','description','status', 'actions'];
+
   constructor(private taskService: TaskService, public dialog: MatDialog, private themeService: ThemeService, private projectUserService : ProjectUserService) {
-    this.reloadAll();
+    this.reloadAll();    
+    this.duration =0;
+    this.temp = 0;
   }
   
   ngOnInit() {
     this.userID = parseInt(sessionStorage.getItem('loginId'));
     this.projectIDs;
     this.tasks;
+    this.tempTasks;
     this.reloadAll();
+
   }
   
   ngAfterContentInit(){
@@ -94,5 +101,21 @@ export class TaskListComponent implements OnInit, AfterContentInit {
       this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
     })
   }
-  
+
+    this.durationCalc(this.selectedTasks);
+    console.log("the total duration of all the tasks= " + this.duration)
+  }
+
+  durationCalc(selectedTasks:Array<Task>){
+    this.tempTasks = this.tasks.filter(task => task.status === "New");
+    this.tempTasks = this.tempTasks.filter(task => task.status === "Started");
+    selectedTasks.forEach(element => {
+      this.temp += element.duration
+    });
+
+    this.duration = this.temp;
+    this.temp =0;
+
+  }
+
 }
