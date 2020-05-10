@@ -32,22 +32,32 @@ export class SelectionFormComponent implements OnInit {
   userID: number;
   user: User;
   
-  constructor(private projectService: ProjectService, private taskService:TaskService, public userService : UserService) { }
+  constructor(private projectService: ProjectService, private taskService:TaskService, /* public userService : UserService */) { }
   
   ngOnInit(): void {
-    this.projects
-    this.projectNumber
-    this.timeWindow
+    this.projects;
+    this.filteredProjects;
+    this.projectNumber;
+    this.timeWindow;
     this.userID = parseInt(sessionStorage.getItem('loginId'));
-    this.userService.findAll().subscribe(users =>{this.user=users.find(user => user.id === this.userID)});
-    this.reloadAll()
-    this.priority()
+    //this.userService.findAll().subscribe(users =>{this.user=users.find(user => user.id === this.userID)});
+    this.reloadAll();
+    this.priority();
   }
   
   reloadAll(){
     this.projectService.findAll().subscribe(projects => {
       this.projects=projects;
-    this.filteredProjects = projects.filter(project=> project.users.includes(this.user))});    
+      let filter = new Array;
+      for (let indexp = 0; indexp < this.projects.length; indexp++){
+        for (let indexu =0; indexu < this.projects[indexp].users.length; indexu++){
+          if (this.projects[indexp].users[indexu].user.id === this.userID){
+            filter.push(this.projects[indexp]);
+          }
+        }
+      }
+      this.filteredProjects = filter;
+    });
   }
   
   priority(){

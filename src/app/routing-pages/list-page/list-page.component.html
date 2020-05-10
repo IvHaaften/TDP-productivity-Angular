@@ -4,11 +4,11 @@
     <mat-tab-group>
       <mat-tab label="Projects">
         <div><app-project-form [projectList] = 'projectComp'></app-project-form></div>
-        <div><app-project-list #projectComp [userIdProject]="projectIdUser"></app-project-list></div>
+        <div><app-project-list #projectComp></app-project-list></div>
       </mat-tab>
       <mat-tab label="Tasks">
         <app-task-form [taskList] = 'taskComp'></app-task-form>
-        <app-task-list #taskComp [userIdProject]="projectIdUser"></app-task-list>
+        <app-task-list #taskComp></app-task-list>
       </mat-tab>
     </mat-tab-group>
   </mat-card>

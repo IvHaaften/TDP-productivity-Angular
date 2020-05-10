@@ -10,6 +10,7 @@
             
             
             <!-- <input matInput type="number" [(ngModel)]="data.taskEdit.project.id" name="projectID"> -->
+
                 <mat-select required mat-select [(value)]="data.taskEdit.project.id">
                   <mat-option *ngFor="let project of projects" [value]="project.id">
                     {{project.projectName}} 
@@ -62,9 +63,9 @@
     <ng-container *ngIf="data.taskEdit.name == null
     || data.taskEdit.project.id == null">
     <button mat-button color="primary" [disabled]="true" >Save</button></ng-container>
-
+    
     <ng-container *ngIf="data.taskEdit.name != null
     && data.taskEdit.project.id != null">
     <button mat-button color="primary" [mat-dialog-close]="data.taskEdit" >Save</button>
-    </ng-container>
+</ng-container>
 </div>
