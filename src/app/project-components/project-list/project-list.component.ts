@@ -29,11 +29,13 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   projects: Project[];
   theme:string;
   
-  selectedProjects: Array<Project> = [];
-  projectSelected: Observable<any>;
+  //selectedProjects: Array<Project> = [];
+  //projectSelected: Observable<any>;
+
+  userID : number;
   
-  @Input()
-  userIdProject: UserListComponent
+  /* @Input()
+  userIdProject: UserListComponent */
   
   @Input()
   projectUpdate:SelectionFormComponent
@@ -45,9 +47,11 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
   
   ngOnInit(){
+    this.projects;
+    this.projectUpdate;
+    this.userID = parseInt(sessionStorage.getItem('loginId'));
     this.reloadAll();
-    this.userIdProject;
-    this.selectProjects(this.userIdProject)
+    //this.selectProjects(this.userID)
     // this.loginService.getProject().subscribe(
     //     input => {
     //       this.reloadAll();
@@ -56,12 +60,25 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit(){
     this.reloadAll();
-    this.selectProjects(this.userIdProject)
+    //this.selectProjects(this.userID)
   }
    
   reloadAll(){
-    this.projectService.findAll().subscribe(projects => this.projects = projects);
-    this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
+    this.projectService.findAll().subscribe(projects => {
+      this.projects=projects;
+      let filter = new Array;
+      for (let indexp = 0; indexp < this.projects.length; indexp++){
+        for (let indexu =0; indexu < this.projects[indexp].users.length; indexu++){
+          if (this.projects[indexp].users[indexu].user.id === this.userID){
+            filter.push(this.projects[indexp]);
+          }
+        }
+      }
+      this.projects = filter;
+      //this.projectUpdate.projects = filter
+    });
+    //this.projectService.findAll().subscribe(projects => this.projects = projects);
+    //this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
   }
   
   delete(id: number) {
@@ -82,7 +99,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
     })
   }
   
-  selectProjects(IdProject){
+ /*  selectProjects(IdProject){
     this.selectedProjects = [];
     
     for (let index = 0; index < this.projects.length; index++){
@@ -91,11 +108,11 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
         this.selectedProjects.push(this.projects[index]);
       }
     }
-  }
+  } */
 
-  printingfunction(input){
+  /* printingfunction(input){
     console.log("print method called from the login service with selected project=" + input)
-  }
+  } */
   
   
 }

@@ -32,7 +32,7 @@ export class SelectionFormComponent implements OnInit {
   userID: number;
   user: User;
   
-  constructor(private projectService: ProjectService, private taskService:TaskService, public userService : UserService) { }
+  constructor(private projectService: ProjectService, private taskService:TaskService, /* public userService : UserService */) { }
   
   ngOnInit(): void {
     this.projects;
@@ -50,7 +50,6 @@ export class SelectionFormComponent implements OnInit {
       this.projects=projects;
       let filter = new Array;
       for (let indexp = 0; indexp < this.projects.length; indexp++){
-        console.log(this.projects[indexp].projectName);
         for (let indexu =0; indexu < this.projects[indexp].users.length; indexu++){
           if (this.projects[indexp].users[indexu].user.id === this.userID){
             filter.push(this.projects[indexp]);
