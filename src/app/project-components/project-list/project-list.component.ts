@@ -10,6 +10,7 @@ import { SelectionFormComponent } from '../../selection-components/selection-for
 import { ThemeService } from '../../theme.service';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login.service';
+import { Task } from 'src/app/models/task';
 
 export interface ProjectModalData {
   projectEdit: Project;
@@ -51,16 +52,10 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
     this.projectUpdate;
     this.userID = parseInt(sessionStorage.getItem('loginId'));
     this.reloadAll();
-    //this.selectProjects(this.userID)
-    // this.loginService.getProject().subscribe(
-    //     input => {
-    //       this.reloadAll();
-    //       this.selectProjects(input.projNum);}) 
   }
 
   ngAfterContentInit(){
     this.reloadAll();
-    //this.selectProjects(this.userID)
   }
    
   reloadAll(){
@@ -113,6 +108,11 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   /* printingfunction(input){
     console.log("print method called from the login service with selected project=" + input)
   } */
+
+
+  // duration function 
+
+  tasks = Task[];
   
   
 }
