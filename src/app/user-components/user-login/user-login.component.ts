@@ -18,9 +18,9 @@ export class UserLoginComponent implements OnInit {
   
   LoginId: number
   theme:string;
-
+  
   logoutId:number = -1;
-
+  
   isLogin:boolean;
   
   constructor(private userService:UserService, public dialog: MatDialog, private themeService: ThemeService, public loginService:LoginService, private router: Router) {}
@@ -37,7 +37,7 @@ export class UserLoginComponent implements OnInit {
     console.log("in onInit xxxx" + this.isLogin);
     
   }
-
+  
   //if register button has been pressed
   newUser() {
     this.theme = this.themeService.currentActive();
@@ -48,16 +48,18 @@ export class UserLoginComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      this.userService.save(result).subscribe();
-      this.userService.login(result).subscribe(answer=>{
-        //this.LoginId =  answer;
-        //this.loginService.globalLoginId = this.LoginId; 
-        this.loginService.globalLoginId = answer; 
-
-        this.loginService.setLogin();
-        sessionStorage.setItem('loginId', answer.toString())
-        console.log("loginID = " + this.loginService.globalLoginId);
-      });
+      if(result!= null){
+        this.userService.save(result).subscribe();
+        this.userService.login(result).subscribe(answer=>{
+          //this.LoginId =  answer;
+          //this.loginService.globalLoginId = this.LoginId; 
+          this.loginService.globalLoginId = answer; 
+          
+          this.loginService.setLogin();
+          sessionStorage.setItem('loginId', answer.toString())
+          console.log("loginID = " + this.loginService.globalLoginId);
+        });
+      }
     })
   }
   
@@ -71,32 +73,32 @@ export class UserLoginComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      this.userService.login(result).subscribe(answer=>{
-        //this.LoginId =  answer;
-        //this.loginService.globalLoginId = this.LoginId;
-        
-        sessionStorage.setItem('loginId', answer.toString())
-        this.LoginId = answer;
-        console.log("in login xxxx " + this.isLogin);
-        
-        if (answer == -1){
-          alert("Login failed. Incorrect credentials")
-        }
-        else{
-          this.router.navigate(['select'])
-          this.isLogin = true;
-          this.loginService.globalLoginId = answer;
-          this.loginService.setLogin(); 
-          console.log("loginID = " + this.loginService.globalLoginId);
-        }
-        this.send(); 
-      });
-
-
+      if(result!= null){
+        this.userService.login(result).subscribe(answer=>{
+          //this.LoginId =  answer;
+          //this.loginService.globalLoginId = this.LoginId;
+          
+          sessionStorage.setItem('loginId', answer.toString())
+          this.LoginId = answer;
+          console.log("in login xxxx " + this.isLogin);
+          
+          if (answer == -1){
+            alert("Login failed. Incorrect credentials")
+          }
+          else{
+            this.router.navigate(['select'])
+            this.isLogin = true;
+            this.loginService.globalLoginId = answer;
+            this.loginService.setLogin(); 
+            console.log("loginID = " + this.loginService.globalLoginId);
+          }
+          this.send(); 
+        });
+      }
     })
   }
-
-
+  
+  
   logout(){
     sessionStorage.setItem('loginId', this.logoutId.toString())
     this.LoginId = this.logoutId;
@@ -109,7 +111,7 @@ export class UserLoginComponent implements OnInit {
     this.router.navigate(['home'])
     //this.ngOnInit()
   }
-
+  
   //function that sends the observable to login service 
   send(){
     this.loginService.sendProject(this.loginService.globalLoginId);

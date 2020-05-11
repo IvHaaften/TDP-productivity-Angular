@@ -30,7 +30,7 @@ export class TaskListComponent implements OnInit, AfterContentInit {
   temp:number;
   duration:number;
   displayedColumns: string[] = ['name', 'project.projectName','duration','description','status', 'actions'];
-
+  
   constructor(private taskService: TaskService, public dialog: MatDialog, private themeService: ThemeService, private projectUserService : ProjectUserService) {
     this.reloadAll();    
     this.duration =0;
@@ -43,7 +43,7 @@ export class TaskListComponent implements OnInit, AfterContentInit {
     this.tasks;
     this.tempTasks;
     this.reloadAll();
-
+    
   }
   
   ngAfterContentInit(){
@@ -100,20 +100,22 @@ export class TaskListComponent implements OnInit, AfterContentInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
+      if(result!= null){
+        this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
+      }
     })
   }
-
+  
   durationCalc(selectedTasks:Array<Task>){
     this.tempTasks = this.tasks.filter(task => task.status === "New");
     this.tempTasks = this.tempTasks.filter(task => task.status === "Started");
     selectedTasks.forEach(element => {
       this.temp += element.duration
     });
-
+    
     this.duration = this.temp;
     this.temp =0;
-
+    
   }
-
+  
 }

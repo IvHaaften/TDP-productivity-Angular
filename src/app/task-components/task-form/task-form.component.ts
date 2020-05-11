@@ -48,10 +48,11 @@ export class TaskFormComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
-      this.taskService.save(result).subscribe(() => {
-        this.taskList.reloadAll();
-        this.clear();});
-        
+      if(result!= null){
+        this.taskService.save(result).subscribe(() => {
+          this.taskList.reloadAll();
+          this.clear();});
+        }
       })
     }
     
