@@ -5,16 +5,6 @@
         <input matInput required type="text" [(ngModel)]="data.projectEdit.project.projectName" name="projectName">
     </mat-form-field>
 
-    <!-- <br> -->
-
-
-    <!-- <mat-form-field appearance="standard">
-        <mat-label>Duration</mat-label>
-        <input matInput required type="time" [(ngModel)]="data.projectEdit.project.duration" name="duration">
-    </mat-form-field>
-    <br> -->
-
-
     <mat-form-field appearance="standard">
         <mat-label for="inputprojectdeadline">Deadline</mat-label>
         <input matInput required [min]="minDate" [matDatepicker]="picker" [(ngModel)]="data.projectEdit.project.deadline" name="deadline" >
