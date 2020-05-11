@@ -12,21 +12,21 @@ export class TaskService {
   constructor(private http: HttpClient) { }
   
   findAll(): Observable<Task[]>  {
-    return this.http.get<any>('http://localhost:8080/task')
+    return this.http.get<any>('/task')
   }
   
   save(task: Task) {
-    return this.http.post('http://localhost:8080/task', task)
+    return this.http.post('/task', task)
   }
   
   delete(id) {
-    return this.http.delete('http://localhost:8080/task/' + id)
+    return this.http.delete('/task/' + id)
   }
   
   //to edit the listing.
   patchTask(id:number, task:Task){
     task.project.users=null;
-    return this.http.patch('http://localhost:8080/task/' + id, task)
+    return this.http.patch('/task/' + id, task)
   }
   
 }
