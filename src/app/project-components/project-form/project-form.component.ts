@@ -48,6 +48,8 @@ export class ProjectFormComponent implements OnInit {
   
   newProject() {
     this.theme = this.themeService.currentActive();
+    this.userID = this.loginService.globalLoginId; 
+    this.projectUser.user.id=this.userID;
     const dialogRef = this.dialog.open(ProjectModalComponent, {
       width: '50%',
       data:{projectEdit: this.projectUser},
@@ -65,5 +67,6 @@ export class ProjectFormComponent implements OnInit {
     this.projectUser.project.projectName = "";
     this.projectUser.project.deadline = null;
     this.projectUser.project.duration = null; 
+    this.projectUser.user.id=this.userID;
   }  
 }
