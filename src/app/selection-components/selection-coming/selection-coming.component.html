@@ -1,0 +1,63 @@
+<table mat-table [dataSource]="comingupTasks">
+    <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <ng-container *matCellDef="let task">
+            <td mat-cell >{{task.id}} </td>
+        </ng-container> 
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <ng-container *matCellDef="let task">
+            <td mat-cell>{{task.name}} <!-- /ng-container --></td>
+        </ng-container> 
+    </ng-container>
+    <ng-container matColumnDef="project.id">
+        <th mat-header-cell *matHeaderCellDef> Project ID </th>
+        <ng-container *matCellDef="let task">
+            <td mat-cell >{{task.project.id}} <!-- /ng-container --></td>
+        </ng-container> 
+    </ng-container>
+    <ng-container matColumnDef="project.projectName">
+        <th mat-header-cell *matHeaderCellDef> Project Name </th>
+        <ng-container *matCellDef="let task">
+            <td mat-cell > {{task.project.projectName}} <!-- /ng-container --></td>
+        </ng-container> 
+    </ng-container>
+    <ng-container matColumnDef="duration">
+        <th mat-header-cell *matHeaderCellDef> Duration (min.) </th>
+        <ng-container *matCellDef="let task">
+            <td mat-cell>{{task.duration}} <!-- /ng-container --></td>
+        </ng-container> 
+    </ng-container>
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <ng-container *matCellDef="let task">
+            <td mat-cell>{{task.description}} <!-- /ng-container --></td>
+        </ng-container> 
+    </ng-container>
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <ng-container *matCellDef="let task">
+            <td mat-cell>{{task.status}} <!-- /ng-container --></td>
+        </ng-container> 
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <ng-container *matCellDef="let task">
+            <td mat-cell>
+                <ng-container *ngIf="task.status == 'New'">
+                    <button mat-raised-button color="accent" (click)="startTask(task)">Start</button>
+                </ng-container>
+                <ng-container *ngIf="task.status == 'Started'">
+                    <button mat-raised-button color="accent" (click)="closeTask(task)">Close</button>
+                </ng-container>
+                <button mat-raised-button color="primary" (click)="editTask(task)">Edit</button>        
+                <button mat-raised-button color="warn" (click)="delete(task.id)">Del</button>
+                <!-- /ng-container -->
+            </td>
+        </ng-container> 
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

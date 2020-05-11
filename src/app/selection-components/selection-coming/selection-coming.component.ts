@@ -7,9 +7,9 @@ import { TaskModalComponent } from '../../task-components/task-modal/task-modal.
 
 
 @Component({
-  selector: 'app-selection-list',
-  templateUrl: './selection-list.component.html',
-  styleUrls: ['./selection-list.component.css'],
+  selector: 'app-selection-coming',
+  templateUrl: './selection-coming.component.html',
+  styleUrls: ['./selection-coming.component.css'],
   providers:  [TaskService],
   animations: [
     trigger('detailExpand', [
@@ -20,16 +20,13 @@ import { TaskModalComponent } from '../../task-components/task-modal/task-modal.
   ],
 })
 
-export class SelectionListComponent implements OnInit {
+export class SelectionComingComponent implements OnInit {
 
   tasks: Task[];
   displayedColumns: string[] = ['name', 'project.projectName','duration', 'status', 'actions'];
-  newTasks:Task[];
-  startedTasks:Task[];
+  comingupTasks:Task[];
   columnsToDisplay = ['name','duration', 'deadline', 'status'];
   expandedElement: Task | null;
-  selectedProjectID: number;
-  selectedTimeWindow: number;
 
   constructor(private taskService: TaskService, public dialog: MatDialog) { }
 
@@ -39,25 +36,9 @@ export class SelectionListComponent implements OnInit {
 
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => {
-      // Stukje code dat filtered en sorteerd voor new
-      
-      let newfilteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
-      newfilteredTasks = newfilteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
-      newfilteredTasks = newfilteredTasks.filter(task => task.status === "New");
-      newfilteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1);
-      newfilteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
-
-      this.newTasks = newfilteredTasks/* .slice(0,4) */
-
-      // Stukje code dat filtered en sorteerd voor started
-      let startedfilteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
-      startedfilteredTasks = startedfilteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
-      startedfilteredTasks = startedfilteredTasks.filter(task => task.status === "Started");
-      startedfilteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1);
-      startedfilteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
-
-      this.startedTasks = startedfilteredTasks/* .slice(0,4) */
-
+      //Stukje code dat filtered en sorteerd voor coming up
+      let comingupfilteredTasks = tasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
+      this.comingupTasks = comingupfilteredTasks.slice(0,4)
     });
   }
 
@@ -88,5 +69,6 @@ export class SelectionListComponent implements OnInit {
       this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
     })
   }
+
 
 }
