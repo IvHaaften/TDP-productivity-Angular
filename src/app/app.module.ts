@@ -29,7 +29,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HomepageComponent } from './routing-pages/homepage/homepage.component';
 import { SelectPageComponent } from './routing-pages/select-page/select-page.component';
 import { ListPageComponent } from './routing-pages/list-page/list-page.component';
-import { SelectionComingComponent } from './selection-components/selection-coming/selection-coming.component';
 
 
 
@@ -51,8 +50,7 @@ import { SelectionComingComponent } from './selection-components/selection-comin
     ToolbarComponent,
     HomepageComponent,
     SelectPageComponent,
-    ListPageComponent,
-    SelectionComingComponent
+    ListPageComponent
   ],
   imports: [
     BrowserModule,

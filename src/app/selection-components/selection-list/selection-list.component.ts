@@ -4,7 +4,6 @@ import {TaskService} from '../../task.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskModalComponent } from '../../task-components/task-modal/task-modal.component';
-import { ProjectUserService } from 'src/app/project-user.service';
 
 
 @Component({
@@ -27,6 +26,9 @@ export class SelectionListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'project.projectName','duration', 'status', 'actions'];
   newTasks:Task[];
   startedTasks:Task[];
+  comingupTasks:Task[];
+  selectedTasks: Array<Task> = [];
+
   columnsToDisplay = ['name','duration', 'deadline', 'status'];
   expandedElement: Task | null;
   selectedProjectID: number;
@@ -35,15 +37,13 @@ export class SelectionListComponent implements OnInit {
   constructor(private taskService: TaskService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.tasks;
-    this.newTasks;
-    this.startTask;
     this.reloadAll()
   }
 
   reloadAll() {
     this.taskService.findAll().subscribe(tasks => {
       // Stukje code dat filtered en sorteerd voor new
+      
       let newfilteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
       newfilteredTasks = newfilteredTasks.filter(task => task.duration <= this.selectedTimeWindow);
       newfilteredTasks = newfilteredTasks.filter(task => task.status === "New");
@@ -51,7 +51,6 @@ export class SelectionListComponent implements OnInit {
       newfilteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
 
       this.newTasks = newfilteredTasks.slice(0,4)
-
 
       // Stukje code dat filtered en sorteerd voor started
       let startedfilteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
@@ -61,6 +60,10 @@ export class SelectionListComponent implements OnInit {
       startedfilteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
 
       this.startedTasks = startedfilteredTasks.slice(0,4)
+
+      //Stukje code dat filtered en sorteerd voor coming up
+      let comingupfilteredTasks = tasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
+      this.comingupTasks = comingupfilteredTasks.slice(0,4)
     });
   }
 
@@ -90,5 +93,19 @@ export class SelectionListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
     })
+  }
+
+
+  selectTasks(IdProject){
+    this.selectedTasks = [];
+    
+    for (let index = 0; index < this.tasks.length; index++){
+      if (this.tasks[index].project.id == IdProject){
+        
+        this.selectedTasks.push(this.tasks[index]);
+
+      }
+
+    }
   }
 }

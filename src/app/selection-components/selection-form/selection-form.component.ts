@@ -78,8 +78,6 @@ export class SelectionFormComponent implements OnInit {
   delete(){
     this.list.selectedProjectID = 0;
     this.list.selectedTimeWindow = 0;
-    this.projectNumber = 0;
-    this.timeWindow = null;
     this.list.reloadAll();
   }
   

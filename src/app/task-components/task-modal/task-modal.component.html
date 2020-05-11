@@ -4,18 +4,24 @@
             <mat-label>Name</mat-label>
             <input matInput required type="text" [(ngModel)]="data.taskEdit.name" name="taskName">
         </mat-form-field>
+        <!-- <br> -->
         <mat-form-field appearance="standard">
             <mat-label>Project</mat-label>
+            
+            
             <!-- <input matInput type="number" [(ngModel)]="data.taskEdit.project.id" name="projectID"> -->
-            <mat-select required mat-select [(value)]="data.taskEdit.project.id">
-                <mat-option *ngFor="let project of projects" [value]="project.id">
+
+                <mat-select required mat-select [(value)]="data.taskEdit.project.id">
+                  <mat-option *ngFor="let project of projects" [value]="project.id">
                     {{project.projectName}} 
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        <!-- <br> -->
         <mat-form-field appearance="standard">
             <mat-label>Duration</mat-label>
             <mat-select [(value)]="data.taskEdit.duration" required>
+                <mat-option>None</mat-option>
                 <mat-option value="5">5 min.</mat-option>
                 <mat-option value="10">10 min.</mat-option>
                 <mat-option value="15">15 min.</mat-option>
@@ -24,18 +30,32 @@
                 <mat-option value="60">60 min.</mat-option>
             </mat-select>
         </mat-form-field>
+        <!-- <br> -->
+        <!-- <br>
+            <mat-form-field appearance="standard">
+                <mat-label>Duration</mat-label>
+                <input matInput type="number" [(ngModel)]="data.taskEdit.duration" name="duration">
+            </mat-form-field>
+            <br> 
+        -->
         <mat-form-field appearance="standard">
             <mat-label for="inputprojectdeadline">Deadline</mat-label>
             <input matInput required [min]="minDate" [matDatepicker]="picker" [(ngModel)]="data.taskEdit.deadline" name="deadline" >
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <br>
-        <mat-form-field appearance="standard" style="width: 100%;">
+        	<br>
+
+        <mat-form-field appearance="standard" style="width: 800px;">
             <mat-label>Description</mat-label>
-            <textarea rows="10" matInput required [(ngModel)]="data.taskEdit.description" name="description"></textarea>
+            <textarea rows="10" cols="100" matInput required [(ngModel)]="data.taskEdit.description" name="description"></textarea>
         </mat-form-field>
         <!-- <br> -->
+
+        
+
+
+
     </div>
 </div>
 <div mat-dialog-actions>
