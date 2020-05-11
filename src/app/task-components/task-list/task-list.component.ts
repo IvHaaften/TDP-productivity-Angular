@@ -69,6 +69,8 @@ export class TaskListComponent implements OnInit, AfterContentInit {
           }
         }
         this.tasks = filter;
+        this.durationCalc(this.tasks);
+        console.log("the total duration of all the tasks= " + this.duration)
       });
     });
     
@@ -100,10 +102,6 @@ export class TaskListComponent implements OnInit, AfterContentInit {
     dialogRef.afterClosed().subscribe(result=>{
       this.taskService.patchTask(result.id, result).subscribe(() => this.reloadAll());
     })
-  }
-
-    this.durationCalc(this.selectedTasks);
-    console.log("the total duration of all the tasks= " + this.duration)
   }
 
   durationCalc(selectedTasks:Array<Task>){
