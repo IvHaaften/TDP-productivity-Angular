@@ -25,7 +25,6 @@ export class TaskService {
   
   //to edit the listing.
   patchTask(id:number, task:Task){
-    task.project.users=null;
     return this.http.patch('http://localhost:8080/task/' + id, task)
   }
   
