@@ -55,7 +55,9 @@ export class ProjectFormComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
+      if(result!= null){
       this.projectService.save(result).subscribe(() => this.projectList.reloadAll());
+      }
       this.clear();
     })
   }

@@ -10,6 +10,8 @@ import { SelectionFormComponent } from '../../selection-components/selection-for
 import { ThemeService } from '../../theme.service';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login.service';
+import { ProjectUser } from 'src/app/models/projectuser';
+import { ProjectUserService } from 'src/app/project-user.service';
 
 export interface ProjectModalData {
   projectEdit: Project;
@@ -31,7 +33,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   
   //selectedProjects: Array<Project> = [];
   //projectSelected: Observable<any>;
-
+  
   userID : number;
   
   /* @Input()
@@ -40,7 +42,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   @Input()
   projectUpdate:SelectionFormComponent
   
-  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private loginService:LoginService) {
+  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private projectUserService : ProjectUserService) {
     this.projectService.findAll().subscribe(projects => this.projects = projects);
   }
   
@@ -57,17 +59,17 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
     //       this.reloadAll();
     //       this.selectProjects(input.projNum);}) 
   }
-
+  
   ngAfterContentInit(){
     this.reloadAll();
     //this.selectProjects(this.userID)
   }
-   
+  
   reloadAll(){
     this.projectService.findAll().subscribe(projects => {
       this.projects=projects;
       let filter = new Array;
-      for (let indexp = 0; indexp < this.projects.length; indexp++){
+      for (let indexp = 0; indexp < this.projects.length; indexp++){ 
         for (let indexu =0; indexu < this.projects[indexp].users.length; indexu++){
           if (this.projects[indexp].users[indexu].user.id === this.userID){
             filter.push(this.projects[indexp]);
@@ -88,18 +90,25 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   
   editProject(project: Project) {
     this.theme = this.themeService.currentActive();
-    const dialogRef = this.dialog.open(ProjectModalComponent, {
-      width: '50%',
-      data: {projectEdit : project},
-      panelClass: this.theme,
+    this.projectUserService.findAll().subscribe(projectUsers => {
+      let projectUser = projectUsers.find(projectUser=> projectUser.project.id===project.id && projectUser.user.id === this.userID)
+      const dialogRef = this.dialog.open(ProjectModalComponent, {
+        width: '50%',
+        data: {projectEdit : projectUser},
+        panelClass: this.theme,
+      });
+      
+      dialogRef.afterClosed().subscribe(result=>{
+        if(result!= null){
+        console.log(result);
+        console.log(result.project);
+        this.projectService.patchProject(result.project.id, result.project).subscribe(() => this.reloadAll());
+      }
+      })
     });
-    
-    dialogRef.afterClosed().subscribe(result=>{
-      this.projectService.patchProject(result.id, result).subscribe(() => this.reloadAll());
-    })
   }
   
- /*  selectProjects(IdProject){
+  /*  selectProjects(IdProject){
     this.selectedProjects = [];
     
     for (let index = 0; index < this.projects.length; index++){
@@ -109,7 +118,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       }
     }
   } */
-
+  
   /* printingfunction(input){
     console.log("print method called from the login service with selected project=" + input)
   } */
