@@ -14,7 +14,7 @@ export class HomepageComponent implements OnInit {
   } 
 
   setStorage(){
-    console.log("enter set");
+    // console.log("enter set");
     sessionStorage.setItem('key', '1')
     
   }

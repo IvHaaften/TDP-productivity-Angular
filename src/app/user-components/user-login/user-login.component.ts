@@ -34,7 +34,7 @@ export class UserLoginComponent implements OnInit {
     this.isLogin=true;
     else
     this.isLogin=false;
-    console.log("in onInit xxxx" + this.isLogin);
+    // console.log("in onInit xxxx" + this.isLogin);
     
   }
   
@@ -57,7 +57,7 @@ export class UserLoginComponent implements OnInit {
           
           this.loginService.setLogin();
           sessionStorage.setItem('loginId', answer.toString())
-          console.log("loginID = " + this.loginService.globalLoginId);
+          // console.log("loginID = " + this.loginService.globalLoginId);
         });
       }
     })
@@ -80,7 +80,7 @@ export class UserLoginComponent implements OnInit {
           
           sessionStorage.setItem('loginId', answer.toString())
           this.LoginId = answer;
-          console.log("in login xxxx " + this.isLogin);
+          // console.log("in login xxxx " + this.isLogin);
           
           if (answer == -1){
             alert("Login failed. Incorrect credentials")
@@ -90,7 +90,7 @@ export class UserLoginComponent implements OnInit {
             this.isLogin = true;
             this.loginService.globalLoginId = answer;
             this.loginService.setLogin(); 
-            console.log("loginID = " + this.loginService.globalLoginId);
+            // console.log("loginID = " + this.loginService.globalLoginId);
           }
           this.send(); 
         });
@@ -105,7 +105,7 @@ export class UserLoginComponent implements OnInit {
     this.loginService.globalLoginId = this.logoutId;
     this.loginService.setLogin(); 
     this.isLogin = false;
-    console.log("in logout xxx " + this.isLogin);
+    // console.log("in logout xxx " + this.isLogin);
     
     // this.checkLogin()
     this.router.navigate(['home'])

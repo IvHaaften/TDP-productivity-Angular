@@ -30,8 +30,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   tasks:Task[]; 
   tempUser:ProjectUser;
   users:User[];
-  
-  
+
   userID : number;
   
   @Input()
@@ -88,11 +87,10 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       
       dialogRef.afterClosed().subscribe(result=>{
         if(result!= null){
-          console.log("Triggered afterclose");
+          // console.log("Triggered afterclose");
           this.projectService.patchProject(result.project.id, result.project).subscribe(() => this.reloadAll());
         }
       })
     });
   }
-  
 }

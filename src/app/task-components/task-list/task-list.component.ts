@@ -68,7 +68,7 @@ export class TaskListComponent implements OnInit, AfterContentInit {
         }
         this.tasks = filter;
         this.durationCalc(this.tasks);
-        console.log("the total duration of all the tasks= " + this.duration)
+        // console.log("the total duration of all the tasks= " + this.duration)
       });
     });
   }
