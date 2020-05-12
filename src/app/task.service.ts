@@ -8,7 +8,6 @@ import {Project} from './models/project';
   providedIn: 'root'
 })
 export class TaskService {
-  
   constructor(private http: HttpClient) { }
   
   findAll(): Observable<Task[]>  {
@@ -27,5 +26,4 @@ export class TaskService {
   patchTask(id:number, task:Task){
     return this.http.patch('http://localhost:8080/task/' + id, task)
   }
-  
 }
