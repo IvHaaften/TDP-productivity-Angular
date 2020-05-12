@@ -39,13 +39,13 @@
     && data.user.password != null
     && data.passwordCheck != null
     && data.passwordCheck == data.user.password">
-            <button mat-button color="primary" [mat-dialog-close]="data.user" >Register</button>
+            <button mat-flat-button color="primary" [mat-dialog-close]="data.user" >Register</button>
         </ng-container>
         <ng-container *ngIf="data.user.username == null
     || data.user.password == null
     || data.passwordCheck == null
     || data.passwordCheck != data.user.password">
-            <button mat-button color="primary" (click)="validateRegistration()">Register</button>
+            <button mat-flat-button color="primary" (click)="validateRegistration()">Register</button>
         </ng-container>
     </div>
 
