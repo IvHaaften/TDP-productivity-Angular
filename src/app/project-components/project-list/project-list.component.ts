@@ -31,21 +31,14 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   tempUser:ProjectUser;
   users:User[];
   
-  //selectedProjects: Array<Project> = [];
-  //projectSelected: Observable<any>;
-
+  
   userID : number;
   
   @Input()
   projectUpdate:SelectionFormComponent
   
   constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private projectUserService : ProjectUserService, private loginService:LoginService, private taskService:TaskService) {
-    this.projectService.findAll().subscribe(projects => this.projects = projects);
-    this.tasks; 
-    this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
-    this.tempUser;
-    this.projects;
-      }
+  }
   
   displayedColumns: string[] = ['projectName', 'deadline', 'actions'];
   
@@ -76,8 +69,6 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
         }
       }
       this.projects = filter;
-      //this.projectUpdate.projects = filter
-      this.durationCalc()
     });
   }
   
@@ -103,32 +94,5 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       })
     });
   }
-
-  // duration function 
-
-  durationCalc(){
-
-    var temp = 0;
-    this.projects.forEach(projectLoop => {
-      
-      console.log("printing project name: " + projectLoop.projectName)
-      this.tasks.forEach(taskLoop => { 
-        if(projectLoop.id === taskLoop.project.id && taskLoop.status != "Closed"){
-          console.log("Task belongs to this project: " + taskLoop.id);
-          temp += taskLoop.duration;
-        }
-
-      });
-      console.log("the duration for this project is: "+ temp)
-      
-      // this.tempUser.user = this.users[this.userID];
-      // this.tempUser.project = projectLoop;  
-      // this.projectService.patchProject(projectLoop.id, this.tempUser.project).subscribe( () => this.reloadAll())
-
-      temp = 0;
-    });
-    this.tempUser = null;
-  }
-
-
+  
 }
