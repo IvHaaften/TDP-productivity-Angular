@@ -56,13 +56,13 @@ export class SelectionComingComponent implements OnInit {
       //filter all tasks to projects connected to the current user
       this.taskService.findAll().subscribe(tasks => {
         this.tasks=tasks;
-        let filter = new Array;
+        let filterT = new Array;
         for (let i = 0; i < this.tasks.length; i++){
-          if (this.projectIDs.includes(this.tasks[i].project.id)){
-            filter.push(this.tasks[i]);
+          if (this.projectIDs.includes(this.tasks[i].project.id) && this.tasks[i].status != "Closed"){
+            filterT.push(this.tasks[i]);
           }
         }
-        this.tasks = filter.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
+        this.tasks = filterT.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
       });
     });
   }
