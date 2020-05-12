@@ -30,10 +30,6 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   tasks:Task[]; 
   tempUser:ProjectUser;
   users:User[];
-  
-  //selectedProjects: Array<Project> = [];
-  //projectSelected: Observable<any>;
-
   userID : number;
   
   @Input()
@@ -76,7 +72,6 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
         }
       }
       this.projects = filter;
-      //this.projectUpdate.projects = filter
       this.durationCalc()
     });
   }
@@ -103,24 +98,6 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       })
     });
   }
-  
- /*  selectProjects(IdProject){
-    this.selectedProjects = [];
-    
-    for (let index = 0; index < this.projects.length; index++){
-      if (this.projects[index].id == IdProject){
-        
-        this.selectedProjects.push(this.projects[index]);
-      }
-    }
-  } */
-
-  /* printingfunction(input){
-    console.log("print method called from the login service with selected project=" + input)
-  } */
-
-
-  // duration function 
 
   durationCalc(){
 
@@ -133,18 +110,17 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
           console.log("Task belongs to this project: " + taskLoop.id);
           temp += taskLoop.duration;
         }
-
       });
       console.log("the duration for this project is: "+ temp)
+
+      projectLoop.duration = temp;
+
+      console.log("Project: " + projectLoop.id + " has a duration of: " + projectLoop.duration)   
       
-      // this.tempUser.user = this.users[this.userID];
-      // this.tempUser.project = projectLoop;  
-      // this.projectService.patchProject(projectLoop.id, this.tempUser.project).subscribe( () => this.reloadAll())
+      this.projectService.patchProject(projectLoop.id, projectLoop).subscribe( () => this.reloadAll())
 
       temp = 0;
     });
     this.tempUser = null;
   }
-
-
 }
