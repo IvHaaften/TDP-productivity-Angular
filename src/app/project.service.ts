@@ -11,19 +11,19 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Project[]>  {
-    return this.http.get<any>('http://localhost:8080/project')
+    return this.http.get<any>('/project')
   }
 
   save(projectUser: ProjectUser) {
-    return this.http.post('http://localhost:8080/project', projectUser)
+    return this.http.post('/project', projectUser)
   }
 
   delete(id:number) {
-    return this.http.delete('http://localhost:8080/project/' + id)
+    return this.http.delete('/project/' + id)
   }
 
   //to edit the listing.
   patchProject(id:number, project:Project){
-    return this.http.patch('http://localhost:8080/project/' + id, project)
+    return this.http.patch('/project/' + id, project)
   }
 }
