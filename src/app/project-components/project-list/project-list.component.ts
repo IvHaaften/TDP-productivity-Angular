@@ -11,6 +11,9 @@ import { ThemeService } from '../../theme.service';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login.service';
 import { Task } from 'src/app/models/task';
+import { TaskService } from 'src/app/task.service';
+import { ProjectUser } from 'src/app/models/projectuser';
+import { User } from 'src/app/models/user';
 
 export interface ProjectModalData {
   projectEdit: Project;
@@ -29,6 +32,9 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   
   projects: Project[];
   theme:string;
+  tasks:Task[]; 
+  tempUser:ProjectUser;
+  users:User[];
   
   //selectedProjects: Array<Project> = [];
   //projectSelected: Observable<any>;
@@ -41,15 +47,20 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   @Input()
   projectUpdate:SelectionFormComponent
   
-  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private loginService:LoginService) {
+  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private loginService:LoginService, private taskService:TaskService) {
     this.projectService.findAll().subscribe(projects => this.projects = projects);
-  }
+    this.tasks; 
+    this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
+    this.tempUser;
+      }
   
   displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
   
   ngOnInit(){
     this.projects;
+    this.tasks;
     this.projectUpdate;
+    this.tempUser;
     this.userID = parseInt(sessionStorage.getItem('loginId'));
     this.reloadAll();
   }
@@ -59,6 +70,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
   }
    
   reloadAll(){
+    this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
     this.projectService.findAll().subscribe(projects => {
       this.projects=projects;
       let filter = new Array;
@@ -71,6 +83,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       }
       this.projects = filter;
       //this.projectUpdate.projects = filter
+      this.durationCalc()
     });
     //this.projectService.findAll().subscribe(projects => this.projects = projects);
     //this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
@@ -112,7 +125,21 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
 
   // duration function 
 
-  tasks = Task[];
-  
-  
+  durationCalc(){
+
+    var temp = 0;
+    this.projects.forEach(projectLoop => {
+      console.log(projectLoop.id)
+      this.tasks.forEach(taskLoop => { 
+        if(projectLoop.id === taskLoop.project.id && taskLoop.status != "Closed"){
+          console.log("Task belongs to this project: " + taskLoop.id);
+          temp += taskLoop.duration;
+        }
+      });
+      this.tempUser.user = this.users[this.userID];
+      this.tempUser.project = projectLoop;  
+      this.projectService.patchProject(projectLoop.id, this.tempUser).subscribe( () => this.reloadAll())
+    });
+    this.tempUser = null;
+  }
 }

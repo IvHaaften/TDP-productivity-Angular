@@ -20,9 +20,7 @@ export class UserListComponent implements OnInit {
   constructor(private userService:UserService) { }
   
   ngOnInit(): void {
-    this.reloadAll();
-    
-    
+    this.reloadAll();   
   }
   reloadAll() {
     this.userService.findAll().subscribe(users=> this.users = users);

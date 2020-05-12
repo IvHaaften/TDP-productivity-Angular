@@ -32,20 +32,20 @@
     </ng-container>
     </div>
 
-
-
     <div *ngIf="data.origin=='register'">
         <ng-container *ngIf="data.user.username != null
     && data.user.password != null
     && data.passwordCheck != null
-    && data.passwordCheck == data.user.password">
+    && data.passwordCheck == data.user.password
+    ">
             <button mat-button color="primary" [mat-dialog-close]="data.user" >Register</button>
         </ng-container>
         <ng-container *ngIf="data.user.username == null
     || data.user.password == null
     || data.passwordCheck == null
-    || data.passwordCheck != data.user.password">
-            <button mat-button color="primary" (click)="validateRegistration()">Register</button>
+    || data.passwordCheck != data.user.password
+    || duplicateCheck(data.user.username) == true">
+            <button mat-button type="button" color="primary" (click)="validateRegistration()"  >Register</button>
         </ng-container>
     </div>
 
