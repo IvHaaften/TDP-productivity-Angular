@@ -2,8 +2,20 @@
   z-index:2000;
 }
 
+.top-toolbar{
+  height:60px
+}
+
 .basic-container {
-  padding: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  min-height: calc(100vh - 185px);
+}
+
+.center {
+  text-align: center;
 }
 
 body{
@@ -24,21 +36,14 @@ mat-slide-toggle {
 }
 
 footer {
-  position: sticky;
+  z-index:1000;
   bottom:0;
   width: 100%;
   overflow: hidden;
 }
 
 .footerClass{
-    position: fixed;
-    bottom: 0px;;
+  bottom: 0px;
+  
 }
 
-.mat-app-background{
-  height: 82vh;
-}
-
-.mat-body{
-    margin-bottom: 80pt;
-}
