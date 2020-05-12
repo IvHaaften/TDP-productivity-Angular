@@ -38,12 +38,10 @@
 </div>
 <div mat-dialog-actions>
     <button mat-flat-button color="primary" mat-dialog-close>Cancel</button>
-    <ng-container *ngIf="data.taskEdit.name == null
-    || data.taskEdit.project.id == null">
+    <ng-container *ngIf="data.taskEdit.name == null || data.taskEdit.project.id == null">
     <button mat-flat-button color="primary" [disabled]="true" >Save</button></ng-container>
     
-    <ng-container *ngIf="data.taskEdit.name != null
-    && data.taskEdit.project.id != null">
+    <ng-container *ngIf="data.taskEdit.name != null && data.taskEdit.project.id != null">
     <button mat-flat-button color="primary" [mat-dialog-close]="data.taskEdit" >Save</button>
 </ng-container>
 </div>

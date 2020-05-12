@@ -11,7 +11,7 @@
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
-    <button mat-button color="primary" mat-dialog-close>Cancel</button>
+    <button mat-flat-button color="primary" mat-dialog-close>Cancel</button>
     <ng-container *ngIf="data.projectEdit.project.projectName==null || data.projectEdit.project.deadline == null">
         <button mat-flat-button color="primary" [disabled]=true>Save</button>
     </ng-container>
