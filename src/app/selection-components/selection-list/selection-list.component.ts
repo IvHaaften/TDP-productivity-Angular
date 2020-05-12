@@ -4,6 +4,7 @@ import {TaskService} from '../../task.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskModalComponent } from '../../task-components/task-modal/task-modal.component';
+import { ThemeService } from 'src/app/theme.service';
 
 
 @Component({
@@ -29,8 +30,9 @@ export class SelectionListComponent implements OnInit {
   expandedElement: Task | null;
   selectedProjectID: number;
   selectedTimeWindow: number;
+  theme:string;
 
-  constructor(private taskService: TaskService, public dialog: MatDialog) { }
+  constructor(private taskService: TaskService, public dialog: MatDialog,private themeService: ThemeService) { }
 
   ngOnInit() {
     this.reloadAll()
@@ -78,9 +80,11 @@ export class SelectionListComponent implements OnInit {
   }
   
   editTask(task: Task) {
+    this.theme = this.themeService.currentActive();
     const dialogRef = this.dialog.open(TaskModalComponent, {
       width: '50%',
-      data: {taskEdit : task}
+      data: {taskEdit : task},
+      panelClass: this.theme
     });
     
     dialogRef.afterClosed().subscribe(result=>{

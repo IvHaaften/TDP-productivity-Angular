@@ -30,20 +30,20 @@
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <br>
-        <mat-form-field appearance="standard" style="width: 800px;">
+        <mat-form-field appearance="standard" style="width: 100%;">
             <mat-label>Description</mat-label>
-            <textarea rows="10" cols="100" matInput required [(ngModel)]="data.taskEdit.description" name="description"></textarea>
+            <textarea rows="10" matInput required [(ngModel)]="data.taskEdit.description" name="description"></textarea>
         </mat-form-field>
     </div>
 </div>
 <div mat-dialog-actions>
-    <button mat-button color="primary" mat-dialog-close>Cancel</button>
+    <button mat-flat-button color="primary" mat-dialog-close>Cancel</button>
     <ng-container *ngIf="data.taskEdit.name == null
     || data.taskEdit.project.id == null">
-    <button mat-button color="primary" [disabled]="true" >Save</button></ng-container>
+    <button mat-flat-button color="primary" [disabled]="true" >Save</button></ng-container>
     
     <ng-container *ngIf="data.taskEdit.name != null
     && data.taskEdit.project.id != null">
-    <button mat-button color="primary" [mat-dialog-close]="data.taskEdit" >Save</button>
+    <button mat-flat-button color="primary" [mat-dialog-close]="data.taskEdit" >Save</button>
 </ng-container>
 </div>

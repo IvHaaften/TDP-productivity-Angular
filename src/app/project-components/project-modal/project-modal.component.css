@@ -1,0 +1,11 @@
+button {
+    margin-right: 10px;
+}
+
+textarea {
+    width: 100%;
+}
+
+mat-form-field {
+    margin: 5px;
+}
