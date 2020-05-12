@@ -5,6 +5,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskModalComponent } from '../../task-components/task-modal/task-modal.component';
 import { ThemeService } from 'src/app/theme.service';
+import { ProjectUserService } from 'src/app/project-user.service';
 
 
 @Component({
@@ -28,18 +29,44 @@ export class SelectionComingComponent implements OnInit {
   comingupTasks:Task[];
   expandedElement: Task | null;
   theme:string;
+  userID: number;
+  projectIDs : number[];
 
-  constructor(private taskService: TaskService, public dialog: MatDialog,private themeService: ThemeService) { }
+  constructor(private taskService: TaskService, public dialog: MatDialog,private themeService: ThemeService, private projectUserService:ProjectUserService) { 
+  }
 
   ngOnInit() {
     this.reloadAll()
   }
 
-  reloadAll() {
-    this.taskService.findAll().subscribe(tasks => {
-      //Stukje code dat filtered en sorteerd voor coming up
-      let comingupfilteredTasks = tasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
-      this.comingupTasks = comingupfilteredTasks.slice(0,4)
+
+  // let comingupfilteredTasks = this.tasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
+          // this.comingupTasks = comingupfilteredTasks.slice(0,4)
+
+ reloadAll() {
+    this.projectUserService.findAll().subscribe(projectUsers => {
+      let filterP = new Array;
+      for(let i=0; i<projectUsers.length; i++){
+        // console.log("User Id list printout: " + projectUsers[i].user.id)
+        if(projectUsers[i].user.id===this.userID){
+          filterP.push(projectUsers[i].project.id);
+        }
+      }
+      this.projectIDs = filterP;
+      //filter all tasks to projects connected to the current user
+      this.taskService.findAll().subscribe(tasks => {
+        this.tasks=tasks;
+        let filter = new Array;
+        for (let i = 0; i < this.tasks.length; i++){
+          console.log("printing task loop: " + i)
+          console.log("printing tasks: " + this.tasks[i].project.id)
+          if (this.projectIDs.includes(this.tasks[i].project.id)){
+            filter.push(this.tasks[i]);
+          }
+        }
+        this.tasks = filter;
+        console.log("Reaching the task setting part of the loop")
+      });
     });
   }
 
