@@ -104,10 +104,10 @@ export class TaskListComponent implements OnInit, AfterContentInit {
   }
   
   durationCalc(selectedTasks:Array<Task>){
-    this.tempTasks = this.tasks.filter(task => task.status === "New");
-    this.tempTasks = this.tempTasks.filter(task => task.status === "Started");
+    this.tempTasks = this.tempTasks
     selectedTasks.forEach(element => {
-      this.temp += element.duration
+      if(element.status != "Closed"){
+      this.temp += element.duration}
     });
     
     this.duration = this.temp;

@@ -33,15 +33,15 @@ export class SelectionComingComponent implements OnInit {
   projectIDs : number[];
 
   constructor(private taskService: TaskService, public dialog: MatDialog,private themeService: ThemeService, private projectUserService:ProjectUserService) { 
+    this.reloadAll(); 
   }
 
   ngOnInit() {
-    this.reloadAll()
+    this.userID = parseInt(sessionStorage.getItem('loginId'));
+    this.projectIDs;
+    this.tasks;
+    this.reloadAll();
   }
-
-
-  // let comingupfilteredTasks = this.tasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
-          // this.comingupTasks = comingupfilteredTasks.slice(0,4)
 
  reloadAll() {
     this.projectUserService.findAll().subscribe(projectUsers => {
@@ -58,14 +58,11 @@ export class SelectionComingComponent implements OnInit {
         this.tasks=tasks;
         let filter = new Array;
         for (let i = 0; i < this.tasks.length; i++){
-          console.log("printing task loop: " + i)
-          console.log("printing tasks: " + this.tasks[i].project.id)
           if (this.projectIDs.includes(this.tasks[i].project.id)){
             filter.push(this.tasks[i]);
           }
         }
-        this.tasks = filter;
-        console.log("Reaching the task setting part of the loop")
+        this.tasks = filter.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
       });
     });
   }
