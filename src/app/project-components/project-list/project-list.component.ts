@@ -92,7 +92,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       
       dialogRef.afterClosed().subscribe(result=>{
         if(result!= null){
-          console.log("Triggered afterclose");
+          // console.log("Triggered afterclose");
           this.projectService.patchProject(result.project.id, result.project).subscribe(() => this.reloadAll());
         }
       })
@@ -101,28 +101,29 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
 
   // duration function 
 
-  durationCalc(){
-
+durationCalc(){
+    
     var temp = 0;
     this.projects.forEach(projectLoop => {
       
-      console.log("printing project name: " + projectLoop.projectName)
+      // console.log("printing project name: " + projectLoop.projectName)
       this.tasks.forEach(taskLoop => { 
         if(projectLoop.id === taskLoop.project.id && taskLoop.status != "Closed"){
-          console.log("Task belongs to this project: " + taskLoop.id);
+          // console.log("Task belongs to this project: " + taskLoop.id);
           temp += taskLoop.duration;
         }
+        
       });
-      console.log("the duration for this project is: "+ temp)
-
-      projectLoop.duration = temp;
-
-      console.log("Project: " + projectLoop.id + " has a duration of: " + projectLoop.duration)   
-
-      this.projectService.patchProject(projectLoop.id, projectLoop).subscribe( () => this.reloadAll())
-
+      // console.log("the duration for this project is: "+ temp)
+      
+      this.projectService.patchProject(projectLoop.id, projectLoop).subscribe();
+      
       temp = 0;
     });
+    
     this.tempUser = null;
+    this.projectService.findAll().subscribe(result => this.projects=result );
+    
   }
+
 }
