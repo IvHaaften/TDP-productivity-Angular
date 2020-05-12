@@ -7,7 +7,6 @@ import {MatDialog} from '@angular/material/dialog';
 import { ThemeService } from '../../theme.service';
 import { ProjectUser } from 'src/app/models/projectuser';
 import { User } from 'src/app/models/user';
-import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login.service';
 
 @Component({
@@ -48,6 +47,8 @@ export class ProjectFormComponent implements OnInit {
   
   newProject() {
     this.theme = this.themeService.currentActive();
+    this.userID = this.loginService.globalLoginId; 
+    this.projectUser.user.id=this.userID;
     const dialogRef = this.dialog.open(ProjectModalComponent, {
       width: '50%',
       data:{projectEdit: this.projectUser},
@@ -55,7 +56,9 @@ export class ProjectFormComponent implements OnInit {
     });
     
     dialogRef.afterClosed().subscribe(result=>{
+      if(result!= null){
       this.projectService.save(result).subscribe(() => this.projectList.reloadAll());
+      }
       this.clear();
     })
   }
@@ -63,5 +66,6 @@ export class ProjectFormComponent implements OnInit {
     this.projectUser.project.projectName = "";
     this.projectUser.project.deadline = null;
     this.projectUser.project.duration = null; 
+    this.projectUser.user.id=this.userID;
   }  
 }

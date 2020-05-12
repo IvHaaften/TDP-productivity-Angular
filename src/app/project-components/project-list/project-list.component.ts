@@ -1,9 +1,6 @@
 import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 import{Project} from '../../models/project';
 import{ProjectService} from '../../project.service';
-
-import { UserListComponent } from '../../user-components/user-list/user-list.component';
-
 import{ProjectModalComponent} from '../project-modal/project-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import { SelectionFormComponent } from '../../selection-components/selection-form/selection-form.component';
@@ -14,11 +11,11 @@ import { Task } from 'src/app/models/task';
 import { TaskService } from 'src/app/task.service';
 import { ProjectUser } from 'src/app/models/projectuser';
 import { User } from 'src/app/models/user';
+import { ProjectUserService } from 'src/app/project-user.service';
 
 export interface ProjectModalData {
   projectEdit: Project;
 }
-
 
 @Component({
   selector: 'app-project-list',
@@ -27,9 +24,7 @@ export interface ProjectModalData {
   providers: [ProjectService]
 })
 
-
 export class ProjectListComponent implements OnInit, AfterContentInit {
-  
   projects: Project[];
   theme:string;
   tasks:Task[]; 
@@ -41,20 +36,17 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
 
   userID : number;
   
-  /* @Input()
-  userIdProject: UserListComponent */
-  
   @Input()
   projectUpdate:SelectionFormComponent
   
-  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private loginService:LoginService, private taskService:TaskService) {
+  constructor(private projectService: ProjectService, public dialog: MatDialog,private themeService: ThemeService, private projectUserService : ProjectUserService, private loginService:LoginService, private taskService:TaskService) {
     this.projectService.findAll().subscribe(projects => this.projects = projects);
     this.tasks; 
     this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
     this.tempUser;
       }
   
-  displayedColumns: string[] = ['id', 'projectName', 'deadline', 'actions'];
+  displayedColumns: string[] = ['projectName', 'deadline', 'actions'];
   
   ngOnInit(){
     this.projects;
@@ -64,17 +56,17 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
     this.userID = parseInt(sessionStorage.getItem('loginId'));
     this.reloadAll();
   }
-
+  
   ngAfterContentInit(){
     this.reloadAll();
   }
-   
+  
   reloadAll(){
     this.taskService.findAll().subscribe(tasks => this.tasks = tasks);
     this.projectService.findAll().subscribe(projects => {
       this.projects=projects;
       let filter = new Array;
-      for (let indexp = 0; indexp < this.projects.length; indexp++){
+      for (let indexp = 0; indexp < this.projects.length; indexp++){ 
         for (let indexu =0; indexu < this.projects[indexp].users.length; indexu++){
           if (this.projects[indexp].users[indexu].user.id === this.userID){
             filter.push(this.projects[indexp]);
@@ -85,26 +77,29 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       //this.projectUpdate.projects = filter
       this.durationCalc()
     });
-    //this.projectService.findAll().subscribe(projects => this.projects = projects);
-    //this.projectService.findAll().subscribe(projects => this.projectUpdate.projects = projects);
   }
   
   delete(id: number) {
     this.projectService.delete(id).subscribe(() => this.reloadAll());
   }
   
-  
   editProject(project: Project) {
     this.theme = this.themeService.currentActive();
-    const dialogRef = this.dialog.open(ProjectModalComponent, {
-      width: '50%',
-      data: {projectEdit : project},
-      panelClass: this.theme,
+    this.projectUserService.findAll().subscribe(projectUsers => {
+      let projectUser = projectUsers.find(projectUser=> projectUser.project.id===project.id && projectUser.user.id === this.userID)
+      const dialogRef = this.dialog.open(ProjectModalComponent, {
+        width: '50%',
+        data: {projectEdit : projectUser},
+        panelClass: this.theme,
+      });
+      
+      dialogRef.afterClosed().subscribe(result=>{
+        if(result!= null && result!=projectUser){
+          console.log("Triggered afterclose");
+          this.projectService.patchProject(result.project.id, result.project).subscribe(() => this.reloadAll());
+        }
+      })
     });
-    
-    dialogRef.afterClosed().subscribe(result=>{
-      this.projectService.patchProject(result.id, result).subscribe(() => this.reloadAll());
-    })
   }
   
  /*  selectProjects(IdProject){

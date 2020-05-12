@@ -2,7 +2,6 @@ import { Component, OnInit, Inject, Input} from '@angular/core';
 import { Task } from '../../models/task';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Project } from '../../models/project';
-import { ProjectService } from '../../project.service';
 import { ProjectUserService } from 'src/app/project-user.service';
 
 
@@ -26,7 +25,6 @@ export class TaskModalComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<TaskModalComponent>,@Inject(MAT_DIALOG_DATA) public data: TaskModalData, private projectUserService: ProjectUserService) {
     const currentDate: Date = new Date; currentDate.getDate();
     this.minDate = currentDate;
-    // this.taskEdit.name = "default_Name"
   }
   
   ngOnInit(){
@@ -43,10 +41,7 @@ export class TaskModalComponent implements OnInit {
           filterP.push(projectUsers[i].project);
         }
       }
-      this.projects = filterP;});
-      
-      //this.projectService.findAll().subscribe(projects => this.projects = projects);
-    }
-    
-  }
-  
+      this.projects = filterP;
+    });
+  } 
+}

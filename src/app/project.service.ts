@@ -8,9 +8,7 @@ import { ProjectUser } from './models/projectuser';
   providedIn: 'root'
 })
 export class ProjectService {
-
   constructor(private http: HttpClient) { }
-
 
   findAll(): Observable<Project[]>  {
     return this.http.get<any>('http://localhost:8080/project')
@@ -25,8 +23,7 @@ export class ProjectService {
   }
 
   //to edit the listing.
-  patchProject(id:number, projectUser:ProjectUser){
-    return this.http.patch('http://localhost:8080/project/' + id, projectUser)
+  patchProject(id:number, project:Project){
+    return this.http.patch('http://localhost:8080/project/' + id, project)
   }
-
 }

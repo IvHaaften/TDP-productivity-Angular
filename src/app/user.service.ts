@@ -7,7 +7,6 @@ import { User } from './models/user';
   providedIn: 'root'
 })
 export class UserService {
-  
   userId:number;
   
   login(user: User){

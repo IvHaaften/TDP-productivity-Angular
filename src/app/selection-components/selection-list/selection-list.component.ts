@@ -5,6 +5,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskModalComponent } from '../../task-components/task-modal/task-modal.component';
 import { ProjectUserService } from 'src/app/project-user.service';
+import { ThemeService } from 'src/app/theme.service';
+
 
 @Component({
   selector: 'app-selection-list',
@@ -33,8 +35,9 @@ export class SelectionListComponent implements OnInit {
   expandedElement: Task | null;
   selectedProjectID: number;
   selectedTimeWindow: number;
+  theme:string;
 
-  constructor(private taskService: TaskService, public dialog: MatDialog, private projectUserService : ProjectUserService) { }
+  constructor(private taskService: TaskService, public dialog: MatDialog,private themeService: ThemeService, private projectUserService : ProjectUserService) { }
 
   ngOnInit() {
     this.reloadAll()
@@ -52,7 +55,7 @@ export class SelectionListComponent implements OnInit {
       newfilteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1);
       newfilteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
 
-      this.newTasks = newfilteredTasks.slice(0,4)
+      this.newTasks = newfilteredTasks/* .slice(0,4) */
 
       // Stukje code dat filtered en sorteerd voor started
       let startedfilteredTasks = tasks.filter(task => task.project.id === this.selectedProjectID );
@@ -61,39 +64,8 @@ export class SelectionListComponent implements OnInit {
       startedfilteredTasks.sort((a, b) => (a.duration > b.duration) ? 1 : -1);
       startedfilteredTasks.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1);
 
-      this.startedTasks = startedfilteredTasks.slice(0,4)
+      this.startedTasks = startedfilteredTasks/* .slice(0,4) */
 
-      // copy paste stuk van Inge op selectie van tasks op basis van project nummer
-
-      this.projectUserService.findAll().subscribe(projectUsers => {
-        let filterP = new Array;
-        for(let i=0; i<projectUsers.length; i++){
-          if(projectUsers[i].user.id===this.userID){
-            filterP.push(projectUsers[i].project.id);
-          }
-        }
-        this.projectIDs = filterP;
-        //filter all tasks to projects connected to the current user
-        this.taskService.findAll().subscribe(tasks => {
-          this.tasks=tasks;
-          let filter = new Array;
-          for (let i = 0; i < this.tasks.length; i++){
-            if (this.projectIDs.includes(this.tasks[i].project.id)){
-              filter.push(this.tasks[i]);
-            }
-          }
-          this.comingupTasks = filter.sort((a, b) => (a.deadline > b.deadline) ? 1 : -1).slice(0,5);
-
-          var d = new Date();
-          console.log(d);
-          
-          var c = Math.abs(<any>(new Date().getTime) - <any>(this.comingupTasks[0].deadline.getTime)); 
-          console.log("Difference between two dates in days: " + c);
-          console.log("Value of the first variable: " + <any>(this.comingupTasks[0].deadline.getDay));
-          console.log("Value of the second variable: " + <any>(new Date().getTime));
-
-        });
-      });
     });
   }
 
@@ -115,9 +87,11 @@ export class SelectionListComponent implements OnInit {
   }
   
   editTask(task: Task) {
+    this.theme = this.themeService.currentActive();
     const dialogRef = this.dialog.open(TaskModalComponent, {
       width: '50%',
-      data: {taskEdit : task}
+      data: {taskEdit : task},
+      panelClass: this.theme
     });
     
     dialogRef.afterClosed().subscribe(result=>{
@@ -125,17 +99,4 @@ export class SelectionListComponent implements OnInit {
     })
   }
 
-
-  selectTasks(IdProject){
-    this.selectedTasks = [];
-    
-    for (let index = 0; index < this.tasks.length; index++){
-      if (this.tasks[index].project.id == IdProject){
-        
-        this.selectedTasks.push(this.tasks[index]);
-
-      }
-
-    }
-  }
 }
