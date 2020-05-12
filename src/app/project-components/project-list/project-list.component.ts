@@ -75,7 +75,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       }
       this.projects = filter;
       //this.projectUpdate.projects = filter
-      this.durationCalc()
+      // this.durationCalc()
     });
   }
   
@@ -120,21 +120,21 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
 
   // duration function 
 
-  durationCalc(){
+  // durationCalc(){
 
-    var temp = 0;
-    this.projects.forEach(projectLoop => {
-      console.log(projectLoop.id)
-      this.tasks.forEach(taskLoop => { 
-        if(projectLoop.id === taskLoop.project.id && taskLoop.status != "Closed"){
-          console.log("Task belongs to this project: " + taskLoop.id);
-          temp += taskLoop.duration;
-        }
-      });
-      this.tempUser.user = this.users[this.userID];
-      this.tempUser.project = projectLoop;  
-      this.projectService.patchProject(projectLoop.id, this.tempUser).subscribe( () => this.reloadAll())
-    });
-    this.tempUser = null;
-  }
+  //   var temp = 0;
+  //   this.projects.forEach(projectLoop => {
+  //     console.log(projectLoop.id)
+  //     this.tasks.forEach(taskLoop => { 
+  //       if(projectLoop.id === taskLoop.project.id && taskLoop.status != "Closed"){
+  //         console.log("Task belongs to this project: " + taskLoop.id);
+  //         temp += taskLoop.duration;
+  //       }
+  //     });
+  //     this.tempUser.user = this.users[this.userID];
+  //     this.tempUser.project = projectLoop;  
+  //     this.projectService.patchProject(projectLoop.id, this.tempUser).subscribe( () => this.reloadAll())
+  //   });
+  //   this.tempUser = null;
+  // }
 }
