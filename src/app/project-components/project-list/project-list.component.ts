@@ -91,13 +91,15 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       });
       
       dialogRef.afterClosed().subscribe(result=>{
-        if(result!= null && result!=projectUser){
+        if(result!= null){
           console.log("Triggered afterclose");
           this.projectService.patchProject(result.project.id, result.project).subscribe(() => this.reloadAll());
         }
       })
     });
   }
+
+  // duration function 
 
   durationCalc(){
 
@@ -116,7 +118,7 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       projectLoop.duration = temp;
 
       console.log("Project: " + projectLoop.id + " has a duration of: " + projectLoop.duration)   
-      
+
       this.projectService.patchProject(projectLoop.id, projectLoop).subscribe( () => this.reloadAll())
 
       temp = 0;
