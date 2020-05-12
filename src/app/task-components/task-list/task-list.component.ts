@@ -71,7 +71,6 @@ export class TaskListComponent implements OnInit, AfterContentInit {
         console.log("the total duration of all the tasks= " + this.duration)
       });
     });
-    
   }
   
   delete(id: number) {

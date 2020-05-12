@@ -4,6 +4,7 @@ import {TaskService} from '../../task.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskModalComponent } from '../../task-components/task-modal/task-modal.component';
+import { ProjectUserService } from 'src/app/project-user.service';
 import { ThemeService } from 'src/app/theme.service';
 
 
@@ -22,20 +23,26 @@ import { ThemeService } from 'src/app/theme.service';
 })
 
 export class SelectionListComponent implements OnInit {
-
+  userID: number;
+  projectIDs : number[];
   tasks: Task[];
   displayedColumns: string[] = ['name', 'project.projectName','duration', 'status', 'actions'];
   newTasks:Task[];
   startedTasks:Task[];
+  comingupTasks:Task[];
+  selectedTasks: Array<Task> = [];
+  columnsToDisplay = ['name','duration', 'deadline', 'status'];
   expandedElement: Task | null;
   selectedProjectID: number;
   selectedTimeWindow: number;
   theme:string;
 
-  constructor(private taskService: TaskService, public dialog: MatDialog,private themeService: ThemeService) { }
+  constructor(private taskService: TaskService, public dialog: MatDialog,private themeService: ThemeService, private projectUserService : ProjectUserService) { }
 
   ngOnInit() {
     this.reloadAll()
+    this.projectIDs;
+    this.userID = parseInt(sessionStorage.getItem('loginId'));
   }
 
   reloadAll() {
