@@ -1,4 +1,5 @@
 import { SpecialUser } from './specialUser';
+import { Task } from './task';
 
 export class Project {
     id:number=0;
@@ -6,4 +7,5 @@ export class Project {
     deadline: Date;
     users: SpecialUser[]= [];
     duration: number;
+    tasks: Task[];
 }

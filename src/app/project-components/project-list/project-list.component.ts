@@ -96,29 +96,13 @@ export class ProjectListComponent implements OnInit, AfterContentInit {
       });
       
       dialogRef.afterClosed().subscribe(result=>{
-        if(result!= null && result!=projectUser){
+        if(result!= null){
           console.log("Triggered afterclose");
           this.projectService.patchProject(result.project.id, result.project).subscribe(() => this.reloadAll());
         }
       })
     });
   }
-  
- /*  selectProjects(IdProject){
-    this.selectedProjects = [];
-    
-    for (let index = 0; index < this.projects.length; index++){
-      if (this.projects[index].id == IdProject){
-        
-        this.selectedProjects.push(this.projects[index]);
-      }
-    }
-  } */
-
-  /* printingfunction(input){
-    console.log("print method called from the login service with selected project=" + input)
-  } */
-
 
   // duration function 
 
