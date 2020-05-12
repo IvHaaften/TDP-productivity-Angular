@@ -70,22 +70,10 @@
     <mat-tab label="Started">
       <table mat-table [dataSource]="startedTasks">
         <!--Column ordering irrelevant dont forget to add them to displayedColumns-->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> ID </th>
-          <ng-container *matCellDef="let task">
-            <td mat-cell >{{task.id}} </td>
-          </ng-container> 
-        </ng-container>
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
           <ng-container *matCellDef="let task">
             <td mat-cell>{{task.name}} <!-- /ng-container --></td>
-          </ng-container> 
-        </ng-container>
-        <ng-container matColumnDef="project.id">
-          <th mat-header-cell *matHeaderCellDef> Project ID </th>
-          <ng-container *matCellDef="let task">
-            <td mat-cell >{{task.project.id}} <!-- /ng-container --></td>
           </ng-container> 
         </ng-container>
         <ng-container matColumnDef="project.projectName">
@@ -95,7 +83,7 @@
           </ng-container> 
         </ng-container>
         <ng-container matColumnDef="duration">
-          <th mat-header-cell *matHeaderCellDef> Duration </th>
+          <th mat-header-cell *matHeaderCellDef> Duration (min.)</th>
           <ng-container *matCellDef="let task">
             <td mat-cell>{{task.duration}} <!-- /ng-container --></td>
           </ng-container> 

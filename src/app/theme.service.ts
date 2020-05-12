@@ -18,7 +18,4 @@ export class ThemeService {
   currentActive(){
     return this.theme
   }
-
-
-  
 }

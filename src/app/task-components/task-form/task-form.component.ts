@@ -7,7 +7,6 @@ import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 import { ThemeService } from '../../theme.service';
 
-
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
@@ -18,11 +17,8 @@ export class TaskFormComponent implements OnInit {
   
   @Input()
   taskList:TaskListComponent;
-  
   minDate: Date;
-  
   task = new Task();
-  
   theme:string;
   
   constructor(private taskService:TaskService, public dialog: MatDialog, private themeService: ThemeService) {
@@ -33,7 +29,6 @@ export class TaskFormComponent implements OnInit {
   ngOnInit() {
     this.task.project = new Project();
   }
-  
   
   public save(){
     this.taskService.save(this.task).subscribe(() => this.taskList.reloadAll());
@@ -51,18 +46,17 @@ export class TaskFormComponent implements OnInit {
       if(result!= null){
         this.taskService.save(result).subscribe(() => {
           this.taskList.reloadAll();
-          this.clear();});
-        }
-      })
-    }
-    
-    clear(){
-      this.task.name = "";
-      this.task.project = new Project;
-      this.task.duration = null; 
-      this.task.description = "";
-      this.task.deadline = null;
-    }
-    
+          this.clear();
+        });
+      }
+    })
   }
   
+  clear(){
+    this.task.name = "";
+    this.task.project = new Project;
+    this.task.duration = null; 
+    this.task.description = "";
+    this.task.deadline = null;
+  }
+}

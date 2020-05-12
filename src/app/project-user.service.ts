@@ -9,7 +9,6 @@ import { ProjectUser } from './models/projectuser';
 export class ProjectUserService {
   constructor(private http: HttpClient) { }
 
-
   findAll(): Observable<ProjectUser[]>  {
     return this.http.get<any>('http://localhost:8080/projectuser')
   }

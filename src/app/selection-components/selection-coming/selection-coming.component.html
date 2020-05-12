@@ -12,12 +12,6 @@
             <td mat-cell>{{task.name}} <!-- /ng-container --></td>
         </ng-container> 
     </ng-container>
-    <ng-container matColumnDef="project.id">
-        <th mat-header-cell *matHeaderCellDef> Project ID </th>
-        <ng-container *matCellDef="let task">
-            <td mat-cell >{{task.project.id}} <!-- /ng-container --></td>
-        </ng-container> 
-    </ng-container>
     <ng-container matColumnDef="project.projectName">
         <th mat-header-cell *matHeaderCellDef> Project Name </th>
         <ng-container *matCellDef="let task">

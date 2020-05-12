@@ -5,9 +5,7 @@ import { Subject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-
   globalLoginId: number;
-
   _login = new Subject<boolean>();
   isLogin = this._login.asObservable();
 
@@ -18,9 +16,6 @@ export class LoginService {
   getLogin(): Observable<boolean>{
     return this.isLogin
   }
-
-
-//stuk aangaande de select button update
 
   private subject = new Subject<any>();
 

@@ -7,7 +7,6 @@ import {MatDialog} from '@angular/material/dialog';
 import { ThemeService } from '../../theme.service';
 import { ProjectUser } from 'src/app/models/projectuser';
 import { User } from 'src/app/models/user';
-import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login.service';
 
 @Component({

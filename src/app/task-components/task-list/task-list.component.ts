@@ -1,8 +1,6 @@
-import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
+import {Component, OnInit, AfterContentInit} from '@angular/core';
 import {Task} from '../../models/task';
 import {TaskService} from '../../task.service';
-import { UserListComponent } from '../../user-components/user-list/user-list.component';
-
 import {MatDialog} from '@angular/material/dialog';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 import { ThemeService } from '../../theme.service';
@@ -115,7 +113,5 @@ export class TaskListComponent implements OnInit, AfterContentInit {
     
     this.duration = this.temp;
     this.temp =0;
-    
   }
-  
 }

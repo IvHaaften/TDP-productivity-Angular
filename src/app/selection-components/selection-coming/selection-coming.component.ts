@@ -25,7 +25,6 @@ export class SelectionComingComponent implements OnInit {
   tasks: Task[];
   displayedColumns: string[] = ['name', 'project.projectName','duration', 'status', 'actions'];
   comingupTasks:Task[];
-  columnsToDisplay = ['name','duration', 'deadline', 'status'];
   expandedElement: Task | null;
 
   constructor(private taskService: TaskService, public dialog: MatDialog) { }
